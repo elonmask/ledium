@@ -1,0 +1,25 @@
+<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	viewBox="0 0 151.4 151.4" style="enable-background:new 0 0 151.4 151.4;" width="22px" xml:space="preserve">
+	<style type="text/css">
+		.st0{fill:none;stroke:#6f6f6f;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	</style>
+	<g>
+		<circle class="st0" cx="75.7" cy="75.7" r="33.5"/>
+		<g>
+			<line class="st0" x1="145.4" y1="75.7" x2="127.2" y2="75.7"/>
+			<line class="st0" x1="24.2" y1="75.7" x2="6" y2="75.7"/>
+		</g>
+		<g>
+			<line class="st0" x1="26.4" y1="26.4" x2="39.3" y2="39.3"/>
+			<line class="st0" x1="112.1" y1="112.1" x2="125" y2="125"/>
+		</g>
+		<g>
+			<line class="st0" x1="75.7" y1="6" x2="75.7" y2="24.2"/>
+			<line class="st0" x1="75.7" y1="127.2" x2="75.7" y2="145.4"/>
+		</g>
+		<g>
+			<line class="st0" x1="125" y1="26.4" x2="112.1" y2="39.3"/>
+			<line class="st0" x1="39.3" y1="112.1" x2="26.4" y2="125"/>
+		</g>
+	</g>
+</svg>
