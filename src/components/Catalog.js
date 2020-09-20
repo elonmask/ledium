@@ -10,11 +10,11 @@ const Catalog = () => {
                 <div className="breadcrumbs">
                     <span>
                         <span>
-                            <a href="#">Главная</a>>
+                            <a href="#">Главная</a> > 
                             <span>
-                                <a href="#">Продукция</a>>
+                                <a href="#">Продукция</a> > 
                                 <span>
-                                    <a href="#">Светодиодные лампы</a>>
+                                    <a href="#">Светодиодные лампы</a> > 
                                     <span>
                                         <a href="#">Шар</a>
                                     </span>

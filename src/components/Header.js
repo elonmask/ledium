@@ -221,7 +221,8 @@ const Header = () => {
                 </ul>
             </ul>
         </section>
-        <div class="header__logo"></div>
+        <a href="/" class="header__logo">
+        </a>
         <section class="header__contant">
             <section class="header__menu">
                 <ul class="header__list">
