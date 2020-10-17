@@ -8,13 +8,11 @@ const Footer = () => {
         <div className="footer__section">
             <img className="footer__img" alt="" src="images/LEDiumLOGO.png" />
             <p className="footer__p">
-                ООО ТПК «Вартон»<br />
-                г. Москва, ул.Дорогобужская, д. 14<br />
-                +7 (495) 649-81-33
+                г. Запорожье<br />
+                +380507324444
             </p>
-            <a href="mailto:info@varton.ru" className="footer__link">info@varton.ru</a>
             <p className="footer__p">
-                Сopyright 2015-2020.<br />
+                Сopyright 2020.<br />
                 Все права защищены.
             </p>
         </div>

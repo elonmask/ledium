@@ -8,7 +8,7 @@ const Main = () => {
     <section className="section__menu">
         <section className="section__menu-h2">
             <h2>Наша продукция</h2>
-            <a href="#">перейти<i>></i></a>
+            <a href="catalog">перейти<i>></i></a>
         </section>
         <ul className="section__list">
             <li className="section__item">
@@ -17,31 +17,31 @@ const Main = () => {
                     <span>Лампы</span>
                 </a>
             </li>
-            <li className="section__item">
+            <li href="catalog" className="section__item">
                 <a className="section__link" href="#">
                     <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-2.png" />
                     <span>Прожекторы</span>
                 </a>
             </li>
-            <li className="section__item">
+            <li href="catalog" className="section__item">
                 <a className="section__link" href="#">
                     <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-3.png" />
                     <span>Светильники</span>
                 </a>
             </li>
-            <li className="section__item">
+            <li href="catalog" className="section__item">
                 <a className="section__link" href="#">
                     <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-4.png" />
                     <span>Уличные</span>
                 </a>
             </li>
-            <li className="section__item">
+            <li href="catalog" className="section__item">
                 <a className="section__link" href="#">
                     <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-5.png" />
                     <span>Промышленные</span>
                 </a>
             </li>
-            <li className="section__item">
+            <li href="catalog" className="section__item">
                 <a className="section__link" href="#">
                     <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-1.png" />
                     <span>Кабель-провод</span>
