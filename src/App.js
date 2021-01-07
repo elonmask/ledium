@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Navigate from './components/routing/Navigate'
 import Footer from './components/Footer';
 import { routes } from './components/routing/mainRoutes'
-import './public/style.css';
+import './public/style/style.css';
 
 
 function App() {

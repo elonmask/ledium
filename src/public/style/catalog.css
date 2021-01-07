@@ -30,7 +30,7 @@ button:focus {
 
 @font-face {
   font-family: "Roboto";
-  src: url(./fonts/Roboto-Regular-webfont.woff) format("woff");
+  src: url(..//fonts/Roboto-Regular-webfont.woff) format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -154,13 +154,24 @@ button:focus {
 
 .card__img {
   position: relative;
-  height: auto;
+  height: 200px;
   max-width: 100%;
+  display: block;
+  margin: 0 auto;
   z-index: 1;
 }
 
+@media screen and (max-width: 500px) {
+  .card__img {
+    position: relative;
+    height: auto;
+    width: 100%;
+    z-index: 1;
+  }
+}
+
 .card__info {
-  margin-top: -100px;
+  margin-top: -70px;
   position: relative;
   height: 150px;
   box-sizing: content-box;
@@ -250,7 +261,9 @@ button:focus {
 .card__link {
   color: black;
   font-size: 18px;
-  text-align: center;
+  text-align: start;
+  cursor: pointer;
+
 }
 
 .card__link:hover {
@@ -352,7 +365,7 @@ button:focus {
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   .catalog-header h1 {
     font-size: 38px;
   }
@@ -365,7 +378,7 @@ button:focus {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .catalog-goods {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -388,7 +401,11 @@ button:focus {
   .label-products {
     padding: 4px 10px;
   }
+  .card__h3 {
+    height: 70px;
+  }
 }
+
 
 
 .sidebar {
@@ -525,7 +542,7 @@ button:focus {
 }
 
 .filter__icon {
-  background-image: url(./images/adjust.svg);
+  background-image: url(..//images/adjust.svg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

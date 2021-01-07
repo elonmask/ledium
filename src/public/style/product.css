@@ -1,0 +1,166 @@
+.product {
+  margin: 0;
+  padding: 50px 10%;
+}
+
+.product__info {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.product__block-img {
+  width: 50%;
+  height: 300px;
+  border: solid 1px #d7d7d7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.product__img {
+  width: 250px;
+  height: 250px;
+}
+
+.product__info-block {
+  width: 50%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product__info-block > p {
+  margin-top: 0;
+  font-weight: bold;
+}
+
+.product__card {
+  display: flex;
+}
+
+.product__icon {
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.product__icon span {
+  font-size: 12px;
+}
+
+.product__icon-img {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.product__buy {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product__btn {
+  width: 250px;
+  height: 50px;
+  line-height: 30px;
+  align-self: flex-end;
+  border: none;
+  outline: none;
+  display: block;
+  color: #fff;
+  background-color: #56b4c9;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 3px 13px 0 rgba(0,0,0,0.3);
+  transition: all .2s ease;
+}
+
+.product__btn:hover {
+  cursor: pointer;
+  color: #56b4c9;
+  background-color: white;
+}
+
+.poduct__price__text {
+  font-size: 28px;
+  margin: 0;
+  font-weight: bold;
+  color: red;
+}
+
+.product__description {
+  font-weight: normal !important;
+}
+
+.product p {
+  margin: 0;
+}
+
+.quantity-title {
+  font-size: 15px;
+  letter-spacing: .4px;
+  color: #a5a6a6;
+  margin-bottom: 7px;
+}
+
+.quantity {
+  width: 70px;
+  height: 30px;
+  display: block;
+}
+
+@media screen and (min-width: 1600px) {
+  .product {
+    padding: 50px 15%;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .product {
+    padding: 50px 20%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .product {
+    padding: 50px 2%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .product {
+    padding: 50px 10%;
+  }
+  .product__info {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .product__info-block,
+  .product__block-img {
+    width: 100%;
+  }
+  .product__block-img {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .product {
+    padding: 50px 5%;
+  }
+  .product__buy {
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .product__btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

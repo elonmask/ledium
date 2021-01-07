@@ -30,7 +30,7 @@ button:focus {
 
 @font-face {
   font-family: "Roboto";
-  src: url(./fonts/Roboto-Regular-webfont.woff) format("woff");
+  src: url(../fonts/Roboto-Regular-webfont.woff) format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -76,7 +76,7 @@ button:focus {
 }
 
 .header__logo {
-  background-image: url(./images/LEDiumLOGO.png);
+  background-image: url(../images/LEDiumLOGO.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -170,7 +170,7 @@ button:focus {
   top: 10px;
   left: -20px;
   padding-right: 10px;
-  background-image: url(./images/user.svg);
+  background-image: url(..//images/user.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -629,7 +629,7 @@ button:focus {
 
 .section__first {
   width: 100%;
-  background-image: url(./images/main/111.jpg);
+  background-image: url(..//images/main/111.jpg);
   background-position: left top;
   background-repeat: no-repeat;
   background-size: 72% 100%;
@@ -674,7 +674,7 @@ button:focus {
 }
 
 .section__parallax {
-  background-image: url(./images/main/Lenta.png);
+  background-image: url(../images/main/Lenta.png);
   background-position: 0% -8.8px;
   background-repeat: no-repeat;
   background-size: contain;
@@ -742,7 +742,7 @@ button:focus {
 }
 
 .section__article1 {
-  background-image: url(./images/main/block-2-1.png);
+  background-image: url(..//images/main/block-2-1.png);
   background-repeat: no-repeat;
   background-position: left top;
   background-size: 90% auto;
@@ -804,7 +804,7 @@ button:focus {
 }
 
 .section__article2 {
-  background-image: url(./images/main/figura-1.jpg);
+  background-image: url(../images/main/figura-1.jpg);
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: cover;
@@ -931,7 +931,7 @@ button:focus {
 }
 
 .section__third {
-  background: url(./images/main/romb.jpg) no-repeat center center / cover;
+  background: url(../images/main/romb.jpg) no-repeat center center / cover;
   height: 530px;
   position: relative;
 }
@@ -996,7 +996,7 @@ button:focus {
 }
 
 .section__four {
-  background-image: url(./images/main/article4.jpg);
+  background-image: url(../images/main/article4.jpg);
   background-attachment: scroll;
   background-clip: border-box;
   background-color: rgba(0, 0, 0, 0);
@@ -1103,7 +1103,7 @@ button:focus {
 
 
 .section__article5 {
-  background-image: url(./images/main/article5.jpg);
+  background-image: url(../images/main/article5.jpg);
   background-repeat: no-repeat;
   background-position: left top;
   background-size: cover;

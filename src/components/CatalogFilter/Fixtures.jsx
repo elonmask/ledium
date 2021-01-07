@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
-import goods from '..//public/data.json';
-import '../public/style/catalog.css';
-import Product from './Product';
+import React from 'react';
+import goods from '../../public/data.json';
+import '..//../public/style/catalog.css';
 
-const Catalog = ( ) => {
+const Fixtures = () => {
 
-  const goodsWithImages = goods.filter(good => good.img !== "");
+  const goodsWithImages = goods.filter(good => good.img !== "")
+  console.log(goodsWithImages);
+
+  const goodsOfFixtures = goodsWithImages.filter(good => good.name.includes('Світильник'));
 
   return (
     <main>
@@ -24,14 +26,14 @@ const Catalog = ( ) => {
                         </span>
                     </span>
                 </div>
-                <h1>Каталог</h1>
+                <h1>Светильники</h1>
             </div>
             <div className="sidebar">
                 <div className="sidebar-menu">
                     <ul className="sidebar-list">
                         <li className="sidebar-item"><a href="LEDlampa" className="sidebar-link">Светодиодные лампы</a></li>
                         <li className="sidebar-item"><a href="spotlights" className="sidebar-link">Прожекторы</a></li>
-                        <li className="sidebar-item"><a href="fixtures" className="sidebar-link">Светильники</a></li>
+                        <li className="sidebar-item"><a href="#" className="sidebar-link">Светильники</a></li>
                         <li className="sidebar-item"><a href="phitolamp" className="sidebar-link">Фитолампы</a></li>
                         <li className="sidebar-item"><a href="tableLamp" className="sidebar-link">Настольные лампы</a></li>
                     </ul>
@@ -70,7 +72,7 @@ const Catalog = ( ) => {
             </div>
             <div className="catalog-content">
                 <div className="catalog-goods"> 
-                  {goodsWithImages.map(good => (
+                  {goodsOfFixtures.map(good => (
                     <div className="card">
                     <img src="images/heart-shape.svg" alt="" className="heart" />
                     <img src="images/scales.svg" alt="" className="scales heart" />
@@ -82,12 +84,7 @@ const Catalog = ( ) => {
                         </div>
                         <div className="card__title">
                             <h3 className="card__h3">
-                                <a
-                                  href="product"
-                                  className="card__link"
-                                >
-                                  {good.name}
-                                </a>
+                                <a href="#" className="card__link">{good.name}</a>
                             </h3>
                         </div>
                         <div className="card__buy">
@@ -114,4 +111,4 @@ const Catalog = ( ) => {
   );
 };
 
-export default Catalog;
+export default Fixtures;
