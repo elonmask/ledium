@@ -12,39 +12,33 @@ const Main = () => {
         </section>
         <ul className="section__list">
             <li className="section__item">
-                <a className="section__link" href="#">
+                <a className="section__link" href="fixtures">
                     <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-1.png" />
-                    <span>Лампы</span>
-                </a>
-            </li>
-            <li href="catalog" className="section__item">
-                <a className="section__link" href="#">
-                    <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-2.png" />
-                    <span>Прожекторы</span>
-                </a>
-            </li>
-            <li href="catalog" className="section__item">
-                <a className="section__link" href="#">
-                    <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-3.png" />
                     <span>Светильники</span>
                 </a>
             </li>
-            <li href="catalog" className="section__item">
-                <a className="section__link" href="#">
+            <li className="section__item">
+                <a className="section__link" href="LEDlampa">
+                    <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-2.png" />
+                    <span>Лампы</span>
+                </a>
+            </li>
+            <li className="section__item">
+                <a className="section__link" href="phitolamp">
+                    <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-3.png" />
+                    <span>Фитолампы</span>
+                </a>
+            </li>
+            <li className="section__item">
+                <a className="section__link" href="spotlights">
                     <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-4.png" />
-                    <span>Уличные</span>
+                    <span>Прожекторы</span>
                 </a>
             </li>
-            <li href="catalog" className="section__item">
-                <a className="section__link" href="#">
+            <li className="section__item">
+                <a className="section__link" href="tableLamp">
                     <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-5.png" />
-                    <span>Промышленные</span>
-                </a>
-            </li>
-            <li href="catalog" className="section__item">
-                <a className="section__link" href="#">
-                    <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-1.png" />
-                    <span>Кабель-провод</span>
+                    <span>Настольные лампы</span>
                 </a>
             </li>
         </ul>

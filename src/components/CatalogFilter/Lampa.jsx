@@ -19,7 +19,7 @@ const Lampa = () => {
                         <span>
                             <a href="#">Главная</a> 
                             <span>
-                                <a href="#">Каталог</a> 
+                                <a href="catalog">Каталог</a> 
                                 <span>
                                 </span>
                             </span>
@@ -38,44 +38,12 @@ const Lampa = () => {
                         <li className="sidebar-item"><a href="tableLamp" className="sidebar-link">Настольные лампы</a></li>
                     </ul>
                 </div>
-                <div className="sidebar-filter">
-                    <div className="sidebar-filter__item">
-                        <h3 className="sidebar-filter__title">Форма/Тип</h3>
-                        <input type="checkbox" id="shar" className="custom-checkbox" />
-                        <label for="shar">Шар</label>
-                    </div>
-                    <div className="sidebar-filter__item">
-                        <h3 className="sidebar-filter__title">Цоколь</h3>
-                        <input type="checkbox" id="e14" className="custom-checkbox" />
-                        <label for="e14">Е14</label>
-                        <input type="checkbox" id="e27" className="custom-checkbox" />
-                        <label for="e27">Е27</label>
-                    </div>
-                    <div className="sidebar-filter__item">
-                        <h3 className="sidebar-filter__title">Цветовая температура</h3>
-                        <input type="checkbox" id="3k" className="custom-checkbox" />
-                        <label for="3k">3000K</label>
-                        <input type="checkbox" id="4k" className="custom-checkbox" />
-                        <label for="4k">4100K</label>
-                        <input type="checkbox" id="4k" className="custom-checkbox" />
-                        <label for="4k">6500K</label>
-                    </div>
-                    <div className="sidebar-filter__item">
-                        <h3 className="sidebar-filter__title">Мощность</h3>
-                        <input type="range" min="6" max="12" value="1" />
-                    </div>
-                    <div className="sidebar-filter__item">
-                        <h3 className="sidebar-filter__title">Лампы накаливания</h3>
-                        <input type="range" min="6" max="12" value="1" />
-                    </div>
-                </div>
             </div>
             <div className="catalog-content">
                 <div className="catalog-goods"> 
                   {goodsOfLamps.map(good => (
                     <div className="card">
                     <img src="images/heart-shape.svg" alt="" className="heart" />
-                    <img src="images/scales.svg" alt="" className="scales heart" />
                     <img alt="" src={good.img} className="card__img" />
                     <div className="card__info">
                         <div className="card__icons">

@@ -9,7 +9,7 @@ const Header = () => {
         <div class="hamburger"><div></div></div>
         <section class="mob-menu">
             <img alt="" src="./images/LEDiumLOGO.png" class="mob-menu__logo" />
-            <div>
+            {/*<div>
                 <input type="checkbox" name="menu-mob" class="toggler-filter" id="filter-mob" />
                 <div class="filter__icon"></div>
                 <div class="sidebar-filter-mob">
@@ -43,16 +43,16 @@ const Header = () => {
                         <input type="range" min="6" max="12" value="1" />
                     </div>
                 </div>
-            </div>
+            </div>*/}
             <ul class="mob-menu__list">
                 <li class="mob-menu__item">
                     <input type="checkbox" name="menu-mob" class="toggler-arrow" id="menu-mob-arrow" />
-                    <div class="arrow"></div>
-                    <a href="#" class="mob-menu__link">
+                    {/*<div class="arrow"></div>*/}
+                    <a href="LEDlampa" class="mob-menu__link">
                         <img alt="" src="images/lampa.png" class="mob-menu__img" />
                         Лампы(LED)
                     </a>
-                    <ul class="mob-menu__list-child">
+                    {/*<ul class="mob-menu__list-child">
                         <li class="mob-menu__item-child">
                             <a href="#" class="mob-menu__link-child">
                                 <span class="mob-menu__span">Светодиодные лампы(LED)</span>
@@ -68,16 +68,16 @@ const Header = () => {
                                 <span class="mob-menu__span">Светодиодные лампы(LED)</span>
                             </a>
                         </li>
-                    </ul>
+                      </ul>*/}
                 </li>
                 <li class="mob-menu__item">
                     <input type="checkbox" name="menu-mob" class="toggler-arrow" id="menu-mob-arrow" />
-                    <div class="arrow"></div>
-                    <a href="#article" class="mob-menu__link">
+                    {/*<div class="arrow"></div>*/}
+                    <a href="spotlights" class="mob-menu__link">
                         <img alt="" src="images/prozhektor.png" class="mob-menu__img" />
                         Прожекторы(LED)
                     </a>
-                    <ul class="mob-menu__list-child">
+                    {/*<ul class="mob-menu__list-child">
                         <li class="mob-menu__item-child">
                             <a href="#" class="mob-menu__link-child">
                                 <span class="mob-menu__span">Светодиодные лампы(LED)</span>
@@ -93,16 +93,16 @@ const Header = () => {
                                 <span class="mob-menu__span">Светодиодные лампы(LED)</span>
                             </a>
                         </li>
-                    </ul>
+                    </ul>*/}
                 </li>
                 <li class="mob-menu__item">
                     <input type="checkbox" name="menu-mob" class="toggler-arrow" id="menu-mob-arrow" />
-                    <div class="arrow"></div>
-                    <a href="#technology" class="mob-menu__link">
+                    {/*<div class="arrow"></div>*/}
+                    <a href="fixtures" class="mob-menu__link">
                         <img alt="" src="images/ulichnoe-osveschenie.png" class="mob-menu__img" />
-                        Уличные(LED)
+                        Фитолампы
                     </a>
-                    <ul class="mob-menu__list-child">
+                    {/*<ul class="mob-menu__list-child">
                         <li class="mob-menu__item-child">
                             <a href="#" class="mob-menu__link-child">
                                 <span class="mob-menu__span">Светодиодные лампы(LED)</span>
@@ -118,16 +118,16 @@ const Header = () => {
                                 <span class="mob-menu__span">Светодиодные лампы(LED)</span>
                             </a>
                         </li>
-                    </ul>
+                  </ul>*/}
                 </li>
                 <li class="mob-menu__item">
                     <input type="checkbox" name="menu-mob" class="toggler-arrow" id="menu-mob-arrow" />
-                    <div class="arrow"></div>
-                    <a href="#features" class="mob-menu__link">
+                    {/*<div class="arrow"></div>*/}
+                    <a href="phitolamp" class="mob-menu__link">
                         <img alt="" src="images/svetilnik.png" class="mob-menu__img" />
-                        Светильники(LED)
+                        Светильники
                     </a>
-                    <ul class="mob-menu__list-child">
+                    {/*<ul class="mob-menu__list-child">
                         <li class="mob-menu__item-child">
                             <a href="#" class="mob-menu__link-child">
                                 <span class="mob-menu__span">Светодиодные лампы(LED)</span>
@@ -143,16 +143,16 @@ const Header = () => {
                                 <span class="mob-menu__span">Светодиодные лампы(LED)</span>
                             </a>
                         </li>
-                    </ul>
+                      </ul>*/}
                 </li>
                 <li class="mob-menu__item">
                     <input type="checkbox" name="menu-mob" class="toggler-arrow" id="menu-mob-arrow" />
-                    <div class="arrow"></div>
-                    <a href="#question" class="mob-menu__link">
+                    {/*<div class="arrow"></div>*/}
+                    <a href="tableLamp" class="mob-menu__link">
                         <img alt="" src="images/elektrotovary.png" class="mob-menu__img" />
-                        Промышленные
+                        Настольные лампы
                     </a>
-                    <ul class="mob-menu__list-child">
+                    {/*<ul class="mob-menu__list-child">
                         <li class="mob-menu__item-child">
                             <a href="#" class="mob-menu__link-child">
                                 <span class="mob-menu__span">Светодиодные лампы(LED)</span>
@@ -168,32 +168,7 @@ const Header = () => {
                                 <span class="mob-menu__span">Светодиодные лампы(LED)</span>
                             </a>
                         </li>
-                    </ul>
-                </li>
-                <li class="mob-menu__item">
-                    <input type="checkbox" name="menu-mob" class="toggler-arrow" id="menu-mob-arrow" />
-                    <div class="arrow"></div>
-                    <a href="#question" class="mob-menu__link">
-                        <img alt="" src="images/lampa.png" class="mob-menu__img" />
-                        Кабель-провод
-                    </a>
-                    <ul class="mob-menu__list-child">
-                        <li class="mob-menu__item-child">
-                            <a href="#" class="mob-menu__link-child">
-                                <span class="mob-menu__span">Светодиодные лампы(LED)</span>
-                            </a>
-                        </li>
-                        <li class="mob-menu__item-child">
-                            <a href="#" class="mob-menu__link-child">
-                                <span class="mob-menu__span">Светодиодные лампы(LED)</span>
-                            </a>
-                        </li>
-                        <li class="mob-menu__item-child">
-                            <a href="#" class="mob-menu__link-child">
-                                <span class="mob-menu__span">Светодиодные лампы(LED)</span>
-                            </a>
-                        </li>
-                    </ul>
+                    </ul>*/}
                 </li>
             </ul>
             <ul class="mob-menu__list">
@@ -272,8 +247,8 @@ const Header = () => {
     </section>
     <ul class="header__nav-list">
         <li class="header__nav-item">
-            <a href="#" class="header__nav-link"> <img src="images/lampa.png" alt="" class="header__nav-img" />Лампы(LED) </a>
-            <div class="header__menu-child">
+            <a href="LEDlampa" class="header__nav-link"> <img src="images/lampa.png" alt="" class="header__nav-img" />Лампы(LED) </a>
+            {/*<div class="header__menu-child">
                 <ul class="header__list-child">
                     <li class="header__item-child">
                         <a href="#" class="header__link-child">
@@ -330,11 +305,11 @@ const Header = () => {
                         </a>
                     </li>
                 </ul>
-            </div>
+              </div>*/}
         </li>
         <li class="header__nav-item">
-            <a href="#" class="header__nav-link"> <img src="images/prozhektor.png" alt="" class="header__nav-img" />Прожекторы(LED) </a>
-            <div class="header__menu-child">
+            <a href="spotlights" class="header__nav-link"> <img src="images/prozhektor.png" alt="" class="header__nav-img" />Прожекторы(LED) </a>
+            {/*<div class="header__menu-child">
                 <ul class="header__list-child">
                     <li class="header__item-child">
                         <a href="#" class="header__link-child">
@@ -367,11 +342,11 @@ const Header = () => {
                         </a>
                     </li>
                 </ul>
-            </div>
+              </div>*/}
         </li>
         <li class="header__nav-item">
-            <a href="#" class="header__nav-link"> <img src="images/svetilnik.png" alt="" class="header__nav-img header__nav-img--1" />Светильники(LED) </a>
-            <div class="header__menu-child">
+            <a href="fixtures" class="header__nav-link"> <img src="images/svetilnik.png" alt="" class="header__nav-img header__nav-img--1" />Светильники(LED) </a>
+            {/*<div class="header__menu-child">
                 <ul class="header__list-child">
                     <li class="header__item-child">
                         <a href="#" class="header__link-child">
@@ -434,11 +409,11 @@ const Header = () => {
                         </a>
                     </li>
                 </ul>
-            </div>
+              </div>*/}
         </li>
         <li class="header__nav-item">
-            <a href="#" class="header__nav-link"> <img src="images/ulichnoe-osveschenie.png" alt="" class="header__nav-img" />Уличные(LED) </a>
-            <div class="header__menu-child">
+            <a href="phitolamp" class="header__nav-link"> <img src="images/ulichnoe-osveschenie.png" alt="" class="header__nav-img" />Фитолампы </a>
+            {/*<div class="header__menu-child">
                 <ul class="header__list-child">
                     <li class="header__item-child">
                         <a href="#" class="header__link-child">
@@ -459,11 +434,11 @@ const Header = () => {
                         </a>
                     </li>
                 </ul>
-            </div>
+              </div>*/}
         </li>
         <li class="header__nav-item">
-            <a href="#" class="header__nav-link"> <img src="images/akcent-svetilnik.png" alt="" class="header__nav-img" />Промышленные </a>
-            <div class="header__menu-child">
+            <a href="tableLamp" class="header__nav-link"> <img src="images/akcent-svetilnik.png" alt="" class="header__nav-img" />Настольные лампы </a>
+            {/*<div class="header__menu-child">
                 <ul class="header__list-child">
                     <li class="header__item-child">
                         <a href="#" class="header__link-child">
@@ -502,10 +477,7 @@ const Header = () => {
                         </a>
                     </li>
                 </ul>
-            </div>
-        </li>
-        <li class="header__nav-item">
-            <a href="#" class="header__nav-link"> <img src="images/lenta.png" alt="" class="header__nav-img" />Кабель-провод </a>
+              </div>*/}
         </li>
     </ul>
 </header>

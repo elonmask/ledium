@@ -16,11 +16,6 @@ const Catalog = ( ) => {
                     <span>
                         <span>
                             <a href="#">Главная</a> 
-                            <span>
-                                <a href="#">Каталог</a> 
-                                <span>
-                                </span>
-                            </span>
                         </span>
                     </span>
                 </div>
@@ -36,7 +31,7 @@ const Catalog = ( ) => {
                         <li className="sidebar-item"><a href="tableLamp" className="sidebar-link">Настольные лампы</a></li>
                     </ul>
                 </div>
-                <div className="sidebar-filter">
+                {/*<div className="sidebar-filter">
                     <div className="sidebar-filter__item">
                         <h3 className="sidebar-filter__title">Форма/Тип</h3>
                         <input type="checkbox" id="shar" className="custom-checkbox" />
@@ -66,20 +61,21 @@ const Catalog = ( ) => {
                         <h3 className="sidebar-filter__title">Лампы накаливания</h3>
                         <input type="range" min="6" max="12" value="1" />
                     </div>
-                </div>
-            </div>
+                </div>*/}
+              </div>
             <div className="catalog-content">
                 <div className="catalog-goods"> 
                   {goodsWithImages.map(good => (
                     <div className="card">
                     <img src="images/heart-shape.svg" alt="" className="heart" />
-                    <img src="images/scales.svg" alt="" className="scales heart" />
                     <img alt="" src={good.img} className="card__img" />
                     <div className="card__info">
-                        <div className="card__icons">
+                      { good.LightFlow && good.LightTemperature && (
+                          <div className="card__icons">
                             <div className="card__icons-box" title="Световой поток"><img src="images/potok.svg" alt="" className="card__icon" /><span>{good.LightFlow}</span></div>
                             <div className="card__icons-box" title="Цветовая температура"><img src="images/temp_svet.svg" alt="" className="card__icon" /><span>{good.LightTemperature}</span></div>
-                        </div>
+                          </div>
+                      )}
                         <div className="card__title">
                             <h3 className="card__h3">
                                 <a
