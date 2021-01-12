@@ -1,6 +1,8 @@
 import React from 'react';
 import goods from '../../public/data.json';
+import { Link } from 'react-router-dom';
 import '..//../public/style/catalog.css';
+
 
 const Lampa = () => {
 
@@ -17,7 +19,7 @@ const Lampa = () => {
                 <div className="breadcrumbs">
                     <span>
                         <span>
-                            <a href="#">Главная</a> 
+                            <a href="#">Главная > </a> 
                             <span>
                                 <a href="catalog">Каталог</a> 
                                 <span>
@@ -31,7 +33,7 @@ const Lampa = () => {
             <div className="sidebar">
                 <div className="sidebar-menu">
                     <ul className="sidebar-list">
-                        <li className="sidebar-item"><a href="#" className="sidebar-link">Светодиодные лампы</a></li>
+                        <li className="sidebar-item"><a href="#" className="sidebar-link sidebar-active">Светодиодные лампы</a></li>
                         <li className="sidebar-item"><a href="spotlights" className="sidebar-link">Прожекторы</a></li>
                         <li className="sidebar-item"><a href="fixtures" className="sidebar-link">Светильники</a></li>
                         <li className="sidebar-item"><a href="phitolamp" className="sidebar-link">Фитолампы</a></li>
@@ -42,17 +44,22 @@ const Lampa = () => {
             <div className="catalog-content">
                 <div className="catalog-goods"> 
                   {goodsOfLamps.map(good => (
+                    <Link to="product">
                     <div className="card">
                     <img src="images/heart-shape.svg" alt="" className="heart" />
                     <img alt="" src={good.img} className="card__img" />
                     <div className="card__info">
-                        <div className="card__icons">
+                    <div className="card__icons">
+                        { good.LightFlow && good.LightTemperature && (
+                          <>
                             <div className="card__icons-box" title="Световой поток"><img src="images/potok.svg" alt="" className="card__icon" /><span>{good.LightFlow}</span></div>
                             <div className="card__icons-box" title="Цветовая температура"><img src="images/temp_svet.svg" alt="" className="card__icon" /><span>{good.LightTemperature}</span></div>
-                        </div>
+                          </>
+                        )}
+                      </div>
                         <div className="card__title">
                             <h3 className="card__h3">
-                                <a href="#" className="card__link">{good.name}</a>
+                                <a href="product" className="card__link">{good.name.split(' ').splice(0, 4).join(' ')}</a>
                             </h3>
                         </div>
                         <div className="card__buy">
@@ -67,6 +74,7 @@ const Lampa = () => {
                         </div>
                     </div>
                 </div>
+                </Link>
                   ))}
                     
                 </div>

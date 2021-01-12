@@ -13,31 +13,31 @@ const Main = () => {
         <ul className="section__list">
             <li className="section__item">
                 <a className="section__link" href="fixtures">
-                    <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-1.png" />
+                    <img className="section__menu-img" alt="" src="https://api.ledium.shop/img/?prodname=protect" />
                     <span>Светильники</span>
                 </a>
             </li>
             <li className="section__item">
                 <a className="section__link" href="LEDlampa">
-                    <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-2.png" />
+                    <img className="section__menu-img" alt="" src="https://api.ledium.shop/img/?prodname=Лампа LED A55 6W 4100K Е27" />
                     <span>Лампы</span>
                 </a>
             </li>
             <li className="section__item">
                 <a className="section__link" href="phitolamp">
-                    <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-3.png" />
+                    <img className="section__menu-img" alt="" src="https://api.ledium.shop/img/?prodname=Лампа LED A60 FITO 11W 4100K Е27" />
                     <span>Фитолампы</span>
                 </a>
             </li>
             <li className="section__item">
                 <a className="section__link" href="spotlights">
-                    <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-4.png" />
+                    <img className="section__menu-img" alt="" src="https://api.ledium.shop/img/?prodname=Світлодіодний_прожектор_30W_LEDium_EXCELLENT" />
                     <span>Прожекторы</span>
                 </a>
             </li>
             <li className="section__item">
                 <a className="section__link" href="tableLamp">
-                    <img className="section__menu-img" alt="" src="images/menu/Montazhnaya-oblast-5.png" />
+                    <img className="section__menu-img" alt="" src="https://api.ledium.shop/img/?prodname=Настольная лампа LEDium RAINBOW" />
                     <span>Настольные лампы</span>
                 </a>
             </li>

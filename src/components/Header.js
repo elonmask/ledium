@@ -98,7 +98,7 @@ const Header = () => {
                 <li class="mob-menu__item">
                     <input type="checkbox" name="menu-mob" class="toggler-arrow" id="menu-mob-arrow" />
                     {/*<div class="arrow"></div>*/}
-                    <a href="fixtures" class="mob-menu__link">
+                    <a href="phitolamp" class="mob-menu__link">
                         <img alt="" src="images/ulichnoe-osveschenie.png" class="mob-menu__img" />
                         Фитолампы
                     </a>
@@ -123,7 +123,7 @@ const Header = () => {
                 <li class="mob-menu__item">
                     <input type="checkbox" name="menu-mob" class="toggler-arrow" id="menu-mob-arrow" />
                     {/*<div class="arrow"></div>*/}
-                    <a href="phitolamp" class="mob-menu__link">
+                    <a href="fixtures" class="mob-menu__link">
                         <img alt="" src="images/svetilnik.png" class="mob-menu__img" />
                         Светильники
                     </a>
@@ -236,9 +236,9 @@ const Header = () => {
                 <a href="#" class="header__mob-block header__mob-block--active">
                     <img src="images/phone-call.svg" alt="" class="header__icon header__icon--white" />
                 </a>
-                <a href="#" class="header__mob-block" id="block1">
+                {/*<a href="#" class="header__mob-block" id="block1">
                     <img src="images/adjust.svg" alt="" class="header__icon" />
-                </a>
+                  </a>*/}
                 <a href="#" class="header__mob-block">
                     <img src="images/supermarket.svg" alt="" class="header__icon" />
                 </a>

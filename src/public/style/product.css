@@ -1,6 +1,12 @@
 .product {
-  margin: 0;
+  margin: 230px 0 0;
   padding: 50px 10%;
+}
+
+@media screen and (max-width: 1150px) {
+  .product {
+    margin: 0;
+  }
 }
 
 .product__info {

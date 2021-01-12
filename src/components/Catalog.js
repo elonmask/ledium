@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import goods from '..//public/data.json';
 import '../public/style/catalog.css';
 import Product from './Product';
+import { Link } from 'react-router-dom';
 
 const Catalog = ( ) => {
 
@@ -66,23 +67,26 @@ const Catalog = ( ) => {
             <div className="catalog-content">
                 <div className="catalog-goods"> 
                   {goodsWithImages.map(good => (
+                    <Link to="product">
                     <div className="card">
                     <img src="images/heart-shape.svg" alt="" className="heart" />
                     <img alt="" src={good.img} className="card__img" />
                     <div className="card__info">
-                      { good.LightFlow && good.LightTemperature && (
-                          <div className="card__icons">
+                      <div className="card__icons">
+                        { good.LightFlow && good.LightTemperature && (
+                          <>
                             <div className="card__icons-box" title="Световой поток"><img src="images/potok.svg" alt="" className="card__icon" /><span>{good.LightFlow}</span></div>
                             <div className="card__icons-box" title="Цветовая температура"><img src="images/temp_svet.svg" alt="" className="card__icon" /><span>{good.LightTemperature}</span></div>
-                          </div>
-                      )}
+                          </>
+                        )}
+                      </div>
                         <div className="card__title">
                             <h3 className="card__h3">
                                 <a
                                   href="product"
                                   className="card__link"
                                 >
-                                  {good.name}
+                                  {good.name.split(' ').splice(0, 4).join(' ')}
                                 </a>
                             </h3>
                         </div>
@@ -98,6 +102,7 @@ const Catalog = ( ) => {
                         </div>
                     </div>
                 </div>
+                </Link>
                   ))}
                     
                 </div>
