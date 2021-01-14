@@ -41,33 +41,36 @@ button:focus {
 }
 
 .header {
-  position: fixed;
   top: 0;
   z-index: 3000;
   margin: 0;
-  padding: 42px 5% 0;
-  height: 265px;
+  padding: 20px 5% 0;
+  height: 228px;
   width: 100%;
   background-color: white;
   box-shadow: 0 3px 13px 0 rgba(0,0,0, 0.3);
 }
 
+.header-height {
+  height: 160px;
+}
+
 @media screen and (max-width: 1200px) {
   .header {
-    padding: 42px 2% 0;
+    padding: 20px 2% 0;
     
   }
 }
 
 @media screen and (min-width: 1500px) {
   .header {
-    padding: 42px 10% 0;
+    padding: 20px 10% 0;
   }
 }
 
 @media screen and (min-width: 2000px) {
   .header {
-    padding: 42px 20% 0;
+    padding: 20px 20% 0;
   }
 }
 
@@ -103,6 +106,13 @@ button:focus {
 @media screen and (max-width: 1150px) {
   .header__contant {
     height: 50px;
+    max-width: 90%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header__contant {
+    max-width: 30%;
   }
 }
 
@@ -311,10 +321,15 @@ button:focus {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 15px;
   max-width: 100%;
   z-index: 1;
 }
+
+.header__nav-list-none {
+  display: none;
+}
+
 
 .header__nav-item {
   display: block;
@@ -442,7 +457,7 @@ button:focus {
   .header__logo {
     height: 45px;
     width: 250px;
-    margin: 3px 0 0 30px;
+    margin: 3px 0 0 15px;
     align-self: flex-start;
   }
   .header__menu,
@@ -480,7 +495,7 @@ button:focus {
 }
 
 .section__first {
-  margin-top: 230px;
+  margin-top: 0;
 }
 
 .section__menu {
@@ -1292,7 +1307,7 @@ button:focus {
   .mob-menu {
     width: 100%;
   }
-  .toggler:checked ~ .mob-menu {
+  .active-menu {
     right: 0;
   }
 }
@@ -1301,7 +1316,7 @@ button:focus {
   .mob-menu {
     width: 40%;
   }
-  .toggler:checked ~ .mob-menu {
+  .active-menu {
     right: 60%;
   }
 }
@@ -1388,6 +1403,57 @@ button:focus {
    .hamburger {
     opacity: 1;
    }
+   .header__burger {
+    display: inline-block;
+    z-index: 1000;
+    position: relative;
+    top: 15px;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .header__burger::before,
+  .header__burger::after {
+    content: "";
+    background-color: #000;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    transition: all 0.3s ease 0s;
+  }
+  
+  .header__burger::before {
+    top: 0;
+  }
+  
+  .header__burger::after {
+    bottom: 0;
+  }
+  
+  .header__burger span {
+    background-color: #000;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    top: 9px;
+    transition: all 0.3s ease 0s;
+  }
+  
+  .header__burger.active::before {
+     transform: rotate(45deg);
+     top: 9px;
+  }
+  
+  .header__burger.active::after {
+    transform: rotate(-45deg);
+    bottom: 9px;
+  }
+  
+  .header__burger.active span {
+   transform: scale(0);
+  }
 }
 
 /* Hamburger Line (middle one)*/

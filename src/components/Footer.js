@@ -19,12 +19,11 @@ const Footer = () => {
         <div className="footer__section">
             <h4 className="footer__h4">Продукция</h4>
             <ul>
-                <li className="footer__item"><a href="#" className="footer__nav-link">Лампы</a></li>
-                <li className="footer__item"><a href="#" className="footer__nav-link">Прожекторы</a></li>
-                <li className="footer__item"><a href="#" className="footer__nav-link">Светильники</a></li>
-                <li className="footer__item"><a href="#" className="footer__nav-link">Уличные</a></li>
-                <li className="footer__item"><a href="#" className="footer__nav-link">Промышленные</a></li>
-                <li className="footer__item"><a href="#" className="footer__nav-link">Кабель-провод</a></li>
+                <li className="footer__item"><a href="LEDlampa" className="footer__nav-link">Лампы</a></li>
+                <li className="footer__item"><a href="spotlights" className="footer__nav-link">Прожекторы</a></li>
+                <li className="footer__item"><a href="fixtures" className="footer__nav-link">Светильники</a></li>
+                <li className="footer__item"><a href="tableLamp" className="footer__nav-link">Настольные лампы</a></li>
+                <li className="footer__item"><a href="phitolamp" className="footer__nav-link">Фитолампы</a></li>
             </ul>
         </div>
         <div className="footer__section">

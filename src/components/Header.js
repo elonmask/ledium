@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Header = () => {
+
+  console.log(window.location);
+
+  const [burger, setBurger] = useState(false);
+
+  let className = 'header__burger';
+  let mobMenu = 'mob-menu';
+  if (burger) {
+    className += ' active';
+    mobMenu += ' active-menu';
+  };
  
   return (
-    <header class="header">
+    <header class={ window.location.pathname.includes('catalog') ? "header header-height" : "header"}>
     <section class="header__block">
-        <input type="checkbox" name="menu-mob" class="toggler" id="menu-mob" />
-        <div class="hamburger"><div></div></div>
-        <section class="mob-menu">
+        <div
+          className={className}
+          onClick={() => { setBurger(!burger)}}
+        >
+          <span></span>
+        </div>
+        <section className={mobMenu}>
             <img alt="" src="./images/LEDiumLOGO.png" class="mob-menu__logo" />
             {/*<div>
                 <input type="checkbox" name="menu-mob" class="toggler-filter" id="filter-mob" />
@@ -245,7 +260,7 @@ const Header = () => {
             </section>
         </section>
     </section>
-    <ul class="header__nav-list">
+    <ul class={ window.location.pathname.includes('catalog') ? "header__nav-list header__nav-list-none" : "header__nav-list"}>
         <li class="header__nav-item">
             <a href="LEDlampa" class="header__nav-link"> <img src="images/lampa.png" alt="" class="header__nav-img" />Лампы(LED) </a>
             {/*<div class="header__menu-child">
