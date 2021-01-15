@@ -239,6 +239,7 @@ button:focus {
 .card__icon {
   cursor: pointer;
   align-self: center;
+  height: 25px;
 }
 
 .card__h3 {
