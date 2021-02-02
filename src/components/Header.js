@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import PersonalMenu from '..//components/PersonalAccountPages/PersonalMenu';
+
 
 const Header = () => {
 
   console.log(window.location);
 
   const [burger, setBurger] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   let className = 'header__burger';
   let mobMenu = 'mob-menu';
@@ -12,6 +15,10 @@ const Header = () => {
     className += ' active';
     mobMenu += ' active-menu';
   };
+
+  const openMenu = () => {
+    setMenuIsOpen(true);
+  }
  
   return (
     <header class={ window.location.pathname.includes('catalog') ? "header header-height" : "header"}>
@@ -238,7 +245,6 @@ const Header = () => {
                     </li>
                 </ul>
                 <ul class="header__specs">
-                    <li><a href="#" class="header__log">Войти</a></li>
                     <li><a href="#" class="header__lang">UA/RU</a></li>
                 </ul>
             </section>
@@ -248,8 +254,14 @@ const Header = () => {
                     <input class="header__searchbar" type="text" name="search" placeholder="Поиск товаров по каталогу" />
                     <button class="header__btn-search">Поиск</button>
                 </div>
-                <a href="#" class="header__mob-block header__mob-block--active">
+                <a href="#" class="none header__mob-block header__mob-block--active">
                     <img src="images/phone-call.svg" alt="" class="header__icon header__icon--white" />
+                </a>
+                <a 
+                  class=" header__mob-block header__mob-block--active user-block"
+                  onClick={()=>{openMenu()}}
+                >
+                  <i class="fas fa-user-alt"></i>
                 </a>
                 {/*<a href="#" class="header__mob-block" id="block1">
                     <img src="images/adjust.svg" alt="" class="header__icon" />
@@ -258,6 +270,10 @@ const Header = () => {
                     <img src="images/supermarket.svg" alt="" class="header__icon" />
                 </a>
             </section>
+            <PersonalMenu 
+      setMenuIsOpen={setMenuIsOpen}
+      menuIsOpen={menuIsOpen}
+    />
         </section>
     </section>
     <ul class={ window.location.pathname.includes('catalog') ? "header__nav-list header__nav-list-none" : "header__nav-list"}>

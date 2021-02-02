@@ -121,7 +121,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "60mm",
-   "Price": 133,
+   "Price": 52,
    "Available": "В наличии",
    "img": ""
  },
@@ -163,7 +163,7 @@
    "MountingType": "",
    "Scattering": 220,
    "width": "26mm",
-   "Price": 299,
+   "Price": 146,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=lamp1"
  },
@@ -184,7 +184,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "26mm",
-   "Price": 68,
+   "Price": 199,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=lamp1"
  },
@@ -205,7 +205,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "80mm",
-   "Price": 68,
+   "Price": 159,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=Лампа LED T80 25W 6500K 2500Lm Е27"
  },
@@ -226,7 +226,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "60mm",
-   "Price": 36,
+   "Price": 62,
    "Available": "В наличии",
    "img": ""
  },
@@ -247,7 +247,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "60mm",
-   "Price": 36,
+   "Price": 62,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=Лампа LED A60 10W 4100K 1000Lm Е27"
  },
@@ -268,7 +268,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "60mm",
-   "Price": 73,
+   "Price": 37,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=Лампа LED A60 10W 4100K Е27"
  },
@@ -289,7 +289,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "60mm",
-   "Price": 41,
+   "Price": 37,
    "Available": "Нет в наличии",
    "img": ""
  },
@@ -352,7 +352,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "60mm",
-   "Price": 55,
+   "Price": 73,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=Лампа LED A60 12W 4100K 1200Lm Е27"
  },
@@ -373,7 +373,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "60mm",
-   "Price": 88,
+   "Price": 41,
    "Available": "Нет в наличии",
    "img": ""
  },
@@ -415,7 +415,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "60mm",
-   "Price": 129,
+   "Price": 99,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=Лампа LED A60 15W 4100K 1500Lm Е27"
  },
@@ -436,7 +436,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "60mm",
-   "Price": 99,
+   "Price": 55,
    "Available": "Нет в наличии",
    "img": ""
  },
@@ -457,7 +457,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "60mm",
-   "Price": 129,
+   "Price": 159,
    "Available": "Нет в наличии",
    "img": ""
  },
@@ -499,7 +499,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "65mm",
-   "Price": 250,
+   "Price": 159,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=Лампа LED A65 20W 4100K 2000Lm Е27"
  },
@@ -520,7 +520,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "65mm",
-   "Price": 69,
+   "Price": 99,
    "Available": "Нет в наличии",
    "img": ""
  },
@@ -541,7 +541,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "70mm",
-   "Price": 69,
+   "Price": 179,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=Лампа LED A70 Battery 11W 4100K Е27"
  },
@@ -709,7 +709,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "100mm",
-   "Price": 1659,
+   "Price": 228,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=Лампа LED T100 30W 6500K Е27"
  },
@@ -730,7 +730,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "125mm",
-   "Price": 570,
+   "Price": 599,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=Лампа LED T125 50W 6500K 5000Lm Е27"
  },
@@ -751,7 +751,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "140mm",
-   "Price": 216,
+   "Price": 1599,
    "Available": "Нет в наличии",
    "img": ""
  },
@@ -772,7 +772,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "140mm",
-   "Price": 216,
+   "Price": 799,
    "Available": "Нет в наличии",
    "img": "https://api.ledium.shop/img/?prodname=Лампа LED T140 50W 6500K 500Lm Е40"
  },
@@ -814,7 +814,7 @@
    "MountingType": "",
    "Scattering": 220,
    "width": "26mm",
-   "Price": 288,
+   "Price": 246,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=lamp1"
  },
@@ -835,7 +835,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "26mm",
-   "Price": 189,
+   "Price": 299,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=lamp1"
  },
@@ -856,7 +856,7 @@
    "MountingType": "",
    "Scattering": 220,
    "width": "26mm",
-   "Price": 99,
+   "Price": 399,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=lamp1"
  },
@@ -898,7 +898,7 @@
    "MountingType": "",
    "Scattering": 220,
    "width": "125mm",
-   "Price": 129,
+   "Price": 69,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=икек"
  },
@@ -919,7 +919,7 @@
    "MountingType": "",
    "Scattering": 220,
    "width": "125mm",
-   "Price": 61,
+   "Price": 99,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=икек"
  },
@@ -1045,7 +1045,7 @@
    "MountingType": "",
    "Scattering": 360,
    "width": "16mm",
-   "Price": 55,
+   "Price": 199,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=50-51"
  },
@@ -1087,7 +1087,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "60mm",
-   "Price": 499,
+   "Price": 55,
    "Available": "Нет в наличии",
    "img": ""
  },
@@ -1108,7 +1108,7 @@
    "MountingType": "",
    "Scattering": 270,
    "width": "65mm",
-   "Price": 499,
+   "Price": 99,
    "Available": "Нет в наличии",
    "img": ""
  },
@@ -1318,7 +1318,7 @@
    "MountingType": "",
    "Scattering": null,
    "width": "",
-   "Price": 359,
+   "Price": 799,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=Настольная лампа LEDium UNIVER белая"
  },
@@ -1339,7 +1339,7 @@
    "MountingType": "",
    "Scattering": null,
    "width": "",
-   "Price": 359,
+   "Price": 799,
    "Available": "В наличии",
    "img": "https://api.ledium.shop/img/?prodname=Настольная лампа LEDium UNIVER черная"
  },
@@ -1360,7 +1360,7 @@
    "MountingType": "",
    "Scattering": null,
    "width": "",
-   "Price": 799,
+   "Price": 499,
    "Available": "В наличии",
    "img": ""
  },
@@ -1381,7 +1381,7 @@
    "MountingType": "",
    "Scattering": null,
    "width": "",
-   "Price": 799,
+   "Price": 499,
    "Available": "В наличии",
    "img": ""
  },

@@ -49,6 +49,7 @@ button:focus {
   width: 100%;
   background-color: white;
   box-shadow: 0 3px 13px 0 rgba(0,0,0, 0.3);
+  position: relative;
 }
 
 .header-height {
@@ -101,6 +102,7 @@ button:focus {
   height: 132px;
   margin: 0;
   padding: 8px 0 0;
+  position: relative;
 }
 
 @media screen and (max-width: 1150px) {
@@ -286,6 +288,7 @@ button:focus {
   box-shadow: 0 3px 13px 0 rgba(0,0,0,0.4);
   padding: 15px;
   transition: all 0.5s;
+  cursor: pointer;
 }
 
 .header__mob-block:hover,
@@ -715,7 +718,9 @@ button:focus {
 }
 
 @media screen and (max-width: 1150px) {
-
+  .none {
+    display: none;
+  }
   /*.header {
     display: none;
   }*/
@@ -1325,6 +1330,9 @@ button:focus {
   .mob-menu {
     display: none;
   }
+  .desktop-none {
+    display: none;
+  }
 }
 
 .mob-menu__list {
@@ -1589,4 +1597,15 @@ button:focus {
 
 .toggler-arrow:checked ~ .mob-menu__list-child {
   display: flex;
+}
+
+
+.header__mob-block--active i {
+  color: #fff;
+  font-size: 16px;
+  padding: 5px 5px 10px;
+}
+
+.user-block {
+  position: relative;
 }

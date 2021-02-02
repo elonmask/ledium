@@ -8,6 +8,10 @@ import  Fixtures  from '../CatalogFilter/Fixtures.jsx';
 import  Phitolamp  from '../CatalogFilter/Phitolamp.jsx';
 import TableLamp from '../CatalogFilter/TableLamp';
 import Product from '..//Product.jsx';
+import PersonalInfo from '..//PersonalAccountPages/PersonalInfo.jsx';
+import ViewedProducts from '..//PersonalAccountPages/ViewedProducts.jsx';
+import Orders from '..//PersonalAccountPages/Orders';
+import Testimonials from '..//PersonalAccountPages/Testimonials';
 
 export const routes = [
   {
@@ -43,6 +47,26 @@ export const routes = [
   {
     path: '/tableLamp',
     component: TableLamp,
+    exact: true,
+  },
+  {
+    path: '/info',
+    component: PersonalInfo,
+    exact: true,
+  },
+  {
+    path: '/viewed',
+    component: ViewedProducts,
+    exact: true,
+  },
+  {
+    path: '/orders',
+    component: Orders,
+    exact: true,
+  },
+  {
+    path: '/testimonials',
+    component: Testimonials,
     exact: true,
   },
   {
