@@ -26,14 +26,9 @@ const Catalog = ({match}) => {
         sessionStorage.setItem("data", JSON.stringify(response.data));
         setGoods(getProducts(match.params.id));
       })
-    }
-  });
-
-
-  useEffect(() => {
-    if (match.params.id != categoryId) {
-        setCategoryId(match.params.id);
-    }
+    } else if (match.params.id != categoryId) {
+      setCategoryId(match.params.id);
+  }
   });
 
 /*********************************** */
