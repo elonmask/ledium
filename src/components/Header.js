@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import PersonalMenu from '..//components/PersonalAccountPages/PersonalMenu';
+import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { getCategories } from '../public/utils'
 
 
 const Header = () => {
+  const history = useHistory();
+  const [categories, setCategories] = useState(getCategories);
 
   console.log(window.location);
 
@@ -19,9 +25,50 @@ const Header = () => {
   const openMenu = () => {
     setMenuIsOpen(true);
   }
- 
-  return (
-    <header class={ window.location.pathname.includes('catalog') ? "header header-height" : "header"}>
+
+  const categoriesImg = [
+    {
+      img: 'images/lampa.png',
+      id: '1',
+    },
+    {
+      img: 'images/prozhektor.png',
+      id: '2',
+    },
+    {
+      img: 'images/ulichnoe-osveschenie.png',
+      id: '3',
+    },
+    {
+      img: 'images/svetilnik.png',
+      id: '4',
+    },
+    {
+      img: 'images/akcent-svetilnik.png',
+      id: '5',
+    },
+    {
+      img: 'images/lampa.png',
+      id: '6',
+    },
+  ]
+
+  useEffect(() => {
+    if( categories == false ) {
+      axios
+      .get('https://api.ledium.shop/feed')
+      .then( response => {
+        sessionStorage.setItem("data", JSON.stringify(response.data));
+        setCategories(getCategories)
+      })
+    }
+  })
+
+  if(categories.length > 0) {
+    return (
+      <header //class={ window.location.pathname.includes('catalog') ? "header header-height" : "header"}
+        className="header"
+      >
     <section class="header__block">
         <div
           className={className}
@@ -80,16 +127,6 @@ const Header = () => {
                                 <span class="mob-menu__span">Светодиодные лампы(LED)</span>
                             </a>
                         </li>
-                        <li class="mob-menu__item-child">
-                            <a href="#" class="mob-menu__link-child">
-                                <span class="mob-menu__span">Светодиодные лампы(LED)</span>
-                            </a>
-                        </li>
-                        <li class="mob-menu__item-child">
-                            <a href="#" class="mob-menu__link-child">
-                                <span class="mob-menu__span">Светодиодные лампы(LED)</span>
-                            </a>
-                        </li>
                       </ul>*/}
                 </li>
                 <li class="mob-menu__item">
@@ -100,16 +137,6 @@ const Header = () => {
                         Прожекторы(LED)
                     </a>
                     {/*<ul class="mob-menu__list-child">
-                        <li class="mob-menu__item-child">
-                            <a href="#" class="mob-menu__link-child">
-                                <span class="mob-menu__span">Светодиодные лампы(LED)</span>
-                            </a>
-                        </li>
-                        <li class="mob-menu__item-child">
-                            <a href="#" class="mob-menu__link-child">
-                                <span class="mob-menu__span">Светодиодные лампы(LED)</span>
-                            </a>
-                        </li>
                         <li class="mob-menu__item-child">
                             <a href="#" class="mob-menu__link-child">
                                 <span class="mob-menu__span">Светодиодные лампы(LED)</span>
@@ -130,16 +157,6 @@ const Header = () => {
                                 <span class="mob-menu__span">Светодиодные лампы(LED)</span>
                             </a>
                         </li>
-                        <li class="mob-menu__item-child">
-                            <a href="#" class="mob-menu__link-child">
-                                <span class="mob-menu__span">Светодиодные лампы(LED)</span>
-                            </a>
-                        </li>
-                        <li class="mob-menu__item-child">
-                            <a href="#" class="mob-menu__link-child">
-                                <span class="mob-menu__span">Светодиодные лампы(LED)</span>
-                            </a>
-                        </li>
                   </ul>*/}
                 </li>
                 <li class="mob-menu__item">
@@ -155,16 +172,6 @@ const Header = () => {
                                 <span class="mob-menu__span">Светодиодные лампы(LED)</span>
                             </a>
                         </li>
-                        <li class="mob-menu__item-child">
-                            <a href="#" class="mob-menu__link-child">
-                                <span class="mob-menu__span">Светодиодные лампы(LED)</span>
-                            </a>
-                        </li>
-                        <li class="mob-menu__item-child">
-                            <a href="#" class="mob-menu__link-child">
-                                <span class="mob-menu__span">Светодиодные лампы(LED)</span>
-                            </a>
-                        </li>
                       </ul>*/}
                 </li>
                 <li class="mob-menu__item">
@@ -175,16 +182,6 @@ const Header = () => {
                         Настольные лампы
                     </a>
                     {/*<ul class="mob-menu__list-child">
-                        <li class="mob-menu__item-child">
-                            <a href="#" class="mob-menu__link-child">
-                                <span class="mob-menu__span">Светодиодные лампы(LED)</span>
-                            </a>
-                        </li>
-                        <li class="mob-menu__item-child">
-                            <a href="#" class="mob-menu__link-child">
-                                <span class="mob-menu__span">Светодиодные лампы(LED)</span>
-                            </a>
-                        </li>
                         <li class="mob-menu__item-child">
                             <a href="#" class="mob-menu__link-child">
                                 <span class="mob-menu__span">Светодиодные лампы(LED)</span>
@@ -249,7 +246,7 @@ const Header = () => {
                 </ul>
             </section>
             <section class="header__action">
-                <a href="catalog" class="header__catalog">Каталог</a>
+                <a href="/catalog" class="header__catalog">Каталог</a>
                 <div class="header__search">
                     <input class="header__searchbar" type="text" name="search" placeholder="Поиск товаров по каталогу" />
                     <button class="header__btn-search">Поиск</button>
@@ -276,243 +273,48 @@ const Header = () => {
     />
         </section>
     </section>
-    <ul class={ window.location.pathname.includes('catalog') ? "header__nav-list header__nav-list-none" : "header__nav-list"}>
+    <ul
+      /*class={ window.location.pathname.includes('catalog') 
+        ? "header__nav-list header__nav-list-none" 
+        : "header__nav-list"
+      }*/
+      className="header__nav-list"
+    >
+      {categories.map(category => (
         <li class="header__nav-item">
-            <a href="LEDlampa" class="header__nav-link"> <img src="images/lampa.png" alt="" class="header__nav-img" />Лампы(LED) </a>
-            {/*<div class="header__menu-child">
-                <ul class="header__list-child">
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/1.1.jpg" />
-                            <span class="header__span">Светодиодные(LED) лампы</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/1.2.jpg" />
-                            <span class="header__span">Светодиодные(LED) лампы-шар</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/1.3.jpg" />
-                            <span class="header__span">Светодиодные(LED) лампы-свеча</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/1.4.jpg" />
-                            <span class="header__span">Рефлекторные светодиодные(LED) лампы</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/1.5.jpg" />
-                            <span class="header__span">Линейные T8 cветодиодные(LED) лампы</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/1.6.jpg" />
-                            <span class="header__span">Высокомощные cветодиодные(LED) лампы</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/1.7.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) Низковольтные</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/1.8.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) Globe шар</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/1.9.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) 3-х режимные</span>
-                        </a>
-                    </li>
-                </ul>
-              </div>*/}
+          <a 
+            class="header__nav-link"
+            onClick={() => {history.push(`/catalog/category/${category.id}`)} }
+          > 
+            {categoriesImg.map(categoryImg => (
+              <img 
+                src={category.id === categoryImg.id ? categoryImg.img : ''}
+                alt="" 
+                class="header__nav-img" 
+              />
+            ))}
+                {category.text} 
+          </a>
+        {/*<div class="header__menu-child">
+            <ul class="header__list-child">
+                <li class="header__item-child">
+                    <a href="#" class="header__link-child">
+                        <img class="header__img-child" alt="" src="./images/menu-child/1.1.jpg" />
+                        <span class="header__span">Светодиодные(LED) лампы</span>
+                    </a>
+                </li>
+            </ul>
+          </div>*/}
         </li>
-        <li class="header__nav-item">
-            <a href="spotlights" class="header__nav-link"> <img src="images/prozhektor.png" alt="" class="header__nav-img" />Прожекторы(LED) </a>
-            {/*<div class="header__menu-child">
-                <ul class="header__list-child">
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/2.1.jpg" />
-                            <span class="header__span">Светодиодные(LED) лампы</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/2.2.jpg" />
-                            <span class="header__span">Светодиодные(LED) лампы-шар</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/2.3.jpg" />
-                            <span class="header__span">Светодиодные(LED) лампы-свеча</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/2.4.jpg" />
-                            <span class="header__span">Рефлекторные светодиодные(LED) лампы</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/2.5.jpg" />
-                            <span class="header__span">Линейные T8 cветодиодные(LED) лампы</span>
-                        </a>
-                    </li>
-                </ul>
-              </div>*/}
-        </li>
-        <li class="header__nav-item">
-            <a href="fixtures" class="header__nav-link"> <img src="images/svetilnik.png" alt="" class="header__nav-img header__nav-img--1" />Светильники(LED) </a>
-            {/*<div class="header__menu-child">
-                <ul class="header__list-child">
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/3.1.jpg" />
-                            <span class="header__span">Светодиодные(LED) лампы</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/3.2.jpg" />
-                            <span class="header__span">Светодиодные(LED) лампы-шар</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/3.3.jpg" />
-                            <span class="header__span">Светодиодные(LED) лампы-свеча</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/3.4.jpg" />
-                            <span class="header__span">Рефлекторные светодиодные(LED) лампы</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/3.5.jpg" />
-                            <span class="header__span">Линейные T8 cветодиодные(LED) лампы</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/3.6.jpg" />
-                            <span class="header__span">Высокомощные cветодиодные(LED) лампы</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/3.7.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) Низковольтные</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/3.8.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) Globe шар</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/3.9.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) 3-х режимные</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/3.10.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) 3-х режимные</span>
-                        </a>
-                    </li>
-                </ul>
-              </div>*/}
-        </li>
-        <li class="header__nav-item">
-            <a href="phitolamp" class="header__nav-link"> <img src="images/ulichnoe-osveschenie.png" alt="" class="header__nav-img" />Фитолампы </a>
-            {/*<div class="header__menu-child">
-                <ul class="header__list-child">
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/4.1.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) Globe шар</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/4.2.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) 3-х режимные</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/4.3.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) 3-х режимные</span>
-                        </a>
-                    </li>
-                </ul>
-              </div>*/}
-        </li>
-        <li class="header__nav-item">
-            <a href="tableLamp" class="header__nav-link"> <img src="images/akcent-svetilnik.png" alt="" class="header__nav-img" />Настольные лампы </a>
-            {/*<div class="header__menu-child">
-                <ul class="header__list-child">
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/5.1.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) Globe шар</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/5.2.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) 3-х режимные</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/5.3.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) 3-х режимные</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/5.4.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) Globe шар</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/5.5.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) 3-х режимные</span>
-                        </a>
-                    </li>
-                    <li class="header__item-child">
-                        <a href="#" class="header__link-child">
-                            <img class="header__img-child" alt="" src="./images/menu-child/5.6.jpg" />
-                            <span class="header__span">Светодиодные лампы(LED) 3-х режимные</span>
-                        </a>
-                    </li>
-                </ul>
-              </div>*/}
-        </li>
+      ))}
+        
     </ul>
 </header>
-
+    )
+  } else 
+ 
+  return (
+    <div></div>
   )
 };
 

@@ -1,86 +1,99 @@
-import React, {useState} from 'react';
-import goods from '..//public/data.json';
-import '../public/style/catalog.css';
-import Product from './Product';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import CatalogProduct from './CatalogProduct';
+import axios from 'axios';
+import FilterMenu from './FilterMenu';
+import { getProducts } from '../public/utils'
+import '../public/style/catalog.css';
 
-const Catalog = ( ) => {
+const Catalog = ({match}) => {
 
-  const goodsWithImages = goods.filter(good => good.img !== "");
+  const [goods, setGoods] = useState(getProducts(match.params.id));
+  const [category, setCategory] = useState([]);
+  const [array, setArray] = useState([]);
+  const [categoryId, setCategoryId] = useState(match.params.id);
+  const [categoryText, setCategoryText] = useState('');
 
-  return (
-    <main>
-    <div className="page-content">
+  const history = useHistory();
+
+  useEffect(() => {
+    axios
+      .get('https://api.ledium.shop/feed')
+      .then( response => {setCategory(response.data.data.categories.category)} )
+  }, []);
+
+  useEffect(() => {
+    if( goods == false ) {
+      axios
+      .get('https://api.ledium.shop/feed')
+      .then( response => {
+        sessionStorage.setItem("data", JSON.stringify(response.data));
+        setGoods(getProducts(match.params.id))
+      })
+    }
+  })
+
+  const data = sessionStorage.getItem("data")
+
+  console.log(match);
+  console.log(goods);
+  console.log(data);
+  console.log(categoryId)
+
+  if(goods.length > 0) {
+    return (
+      <main>
+      <div className="page-content">
         <div className="catalog">
-            <div className="catalog-header">
-                <div className="breadcrumbs">
-                    <span>
-                        <span>
-                            <a href="#">Главная</a> 
-                        </span>
-                    </span>
-                </div>
-                <h1>Каталог</h1>
+          <div className="catalog-header">
+            <div className="breadcrumbs">
+              <span>
+                <span>
+                  <a href="/">Главная  </a> 
+                </span>
+                <span>
+                  <a href="/catalog">Каталог  </a> 
+                </span>
+                <span>
+                  <a >{categoryText}</a> 
+                </span>
+              </span>
             </div>
-            <div className="sidebar">
-                <div className="sidebar-menu">
-                    <ul className="sidebar-list">
-                        <li className="sidebar-item"><a href="LEDlampa" className="sidebar-link">Светодиодные лампы</a></li>
-                        <li className="sidebar-item"><a href="spotlights" className="sidebar-link">Прожекторы</a></li>
-                        <li className="sidebar-item"><a href="fixtures" className="sidebar-link">Светильники</a></li>
-                        <li className="sidebar-item"><a href="phitolamp" className="sidebar-link">Фитолампы</a></li>
-                        <li className="sidebar-item"><a href="tableLamp" className="sidebar-link">Настольные лампы</a></li>
-                    </ul>
-                </div>
-                {/*<div className="sidebar-filter">
-                    <div className="sidebar-filter__item">
-                        <h3 className="sidebar-filter__title">Форма/Тип</h3>
-                        <input type="checkbox" id="shar" className="custom-checkbox" />
-                        <label for="shar">Шар</label>
-                    </div>
-                    <div className="sidebar-filter__item">
-                        <h3 className="sidebar-filter__title">Цоколь</h3>
-                        <input type="checkbox" id="e14" className="custom-checkbox" />
-                        <label for="e14">Е14</label>
-                        <input type="checkbox" id="e27" className="custom-checkbox" />
-                        <label for="e27">Е27</label>
-                    </div>
-                    <div className="sidebar-filter__item">
-                        <h3 className="sidebar-filter__title">Цветовая температура</h3>
-                        <input type="checkbox" id="3k" className="custom-checkbox" />
-                        <label for="3k">3000K</label>
-                        <input type="checkbox" id="4k" className="custom-checkbox" />
-                        <label for="4k">4100K</label>
-                        <input type="checkbox" id="4k" className="custom-checkbox" />
-                        <label for="4k">6500K</label>
-                    </div>
-                    <div className="sidebar-filter__item">
-                        <h3 className="sidebar-filter__title">Мощность</h3>
-                        <input type="range" min="6" max="12" value="1" />
-                    </div>
-                    <div className="sidebar-filter__item">
-                        <h3 className="sidebar-filter__title">Лампы накаливания</h3>
-                        <input type="range" min="6" max="12" value="1" />
-                    </div>
-                </div>*/}
-              </div>
-            <div className="catalog-content">
-                <div className="catalog-goods"> 
-                  {goodsWithImages.map(good => (
-                    <Link to="product">
-                      <CatalogProduct good={good}/>
-                    </Link>
-                  ))}
-                    
-                </div>
-                {/*<a href="#" className="section__read black">Загрузить еще</a>*/}
-            </div>
+            <h1>Каталог</h1>
+          </div>
+        <div className="sidebar">
+          <FilterMenu
+            category={category}
+            goods={goods}
+            setGoods={setGoods}
+            setCategoryId={setCategoryId}
+            setArray={setArray}
+            setCategoryText={setCategoryText}
+          />
         </div>
+        <div className="catalog-content">
+          <div className="catalog-goods"> 
+            { goods.map(good => (
+              good.price !== '0' && good.picture !== 'undefined' && good.description.text !== 'undefined' && (
+                <>
+                <div onClick={() => {history.push(`/catalog/category/${match.params.id}/product/${good.id}`)} }>
+                  <CatalogProduct good={good}/>
+                </div>
+                </>
+              )
+            ))}
+          </div>
+          {/*<a href="#" className="section__read black">Загрузить еще</a>*/}
+        </div>
+      </div>
     </div>
-</main>
-
-  );
-};
+  </main>
+    )
+  } else {
+    return (
+      <div></div>
+    )
+  }
+    };
 
 export default Catalog;

@@ -4,45 +4,11 @@ const Main = () => {
  
   return (
     
-    <main classNameName="section">
-    <section className="section__menu">
-        <section className="section__menu-h2">
-            <h2>Наша продукция</h2>
-            <a href="catalog">перейти<i>></i></a>
+    <main className="section">
+      <section className="section__menu-h2 menu-mob">
+          <h2>Наша продукция</h2>
+          <a href="catalog">перейти в каталог<i>></i></a>
         </section>
-        <ul className="section__list">
-            <li className="section__item">
-                <a className="section__link" href="fixtures">
-                    <img className="section__menu-img" alt="" src="https://api.ledium.shop/img/?prodname=protect" />
-                    <span>Светильники</span>
-                </a>
-            </li>
-            <li className="section__item">
-                <a className="section__link" href="LEDlampa">
-                    <img className="section__menu-img" alt="" src="https://api.ledium.shop/img/?prodname=Лампа LED A55 6W 4100K Е27" />
-                    <span>Лампы</span>
-                </a>
-            </li>
-            <li className="section__item">
-                <a className="section__link" href="phitolamp">
-                    <img className="section__menu-img" alt="" src="https://api.ledium.shop/img/?prodname=Лампа LED A60 FITO 11W 4100K Е27" />
-                    <span>Фитолампы</span>
-                </a>
-            </li>
-            <li className="section__item">
-                <a className="section__link" href="spotlights">
-                    <img className="section__menu-img" alt="" src="https://api.ledium.shop/img/?prodname=Світлодіодний_прожектор_30W_LEDium_EXCELLENT" />
-                    <span>Прожекторы</span>
-                </a>
-            </li>
-            <li className="section__item">
-                <a className="section__link" href="tableLamp">
-                    <img className="section__menu-img" alt="" src="https://api.ledium.shop/img/?prodname=Настольная лампа LEDium RAINBOW" />
-                    <span>Настольные лампы</span>
-                </a>
-            </li>
-        </ul>
-    </section>
     <section className="section__first">
         <div className="section__content">
             <h2 className="section__h2">Форма и содержание</h2>

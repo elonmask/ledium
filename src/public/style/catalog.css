@@ -423,6 +423,9 @@ button:focus {
 }
 
 .sidebar-link {
+  background-color: transparent;
+  border: none;
+  outline: none;
   line-height: 33px;
   font-size: 16px;
   color: black;

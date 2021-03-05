@@ -502,7 +502,7 @@ button:focus {
 }
 
 .section__menu {
-  display: none;
+  
   padding: 40px 16vw;
 }
 
@@ -538,14 +538,16 @@ button:focus {
 }
 
 .section__list {
-  display: table;
+  display: grid;
   width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
 }
 
 .section__item {
   width: 50%;
-  display: table-cell;
-  float: left;
+  justify-self: center;
   margin: 0;
 }
 
@@ -563,6 +565,7 @@ button:focus {
 }
 
 .section__link {
+  cursor: pointer;
   display: block;
   color: black;
 }
@@ -577,12 +580,16 @@ button:focus {
     padding: 40px;
   }
   .section__link {
-    height: calc(50vw - 40px);
     margin: 0 auto;
-    height: 180px;
+    height: 200px;
     width: 150px;
     padding: 2vw;
-    width: calc(50vw - 40px);
+  }
+  .section__item {
+    margin: 0;
+    height: 200px;
+    width: 150px;
+    padding: 0;
   }
   .section__menu-h2 {
     margin: 20px 0;
@@ -613,12 +620,13 @@ button:focus {
 @media (min-width: 769px) {
   .section__menu {
     display: block;
-    padding: 40px 16vw;
+    padding: 40px 10%;
   }
 
   .section__menu-h2 h2 {
     font-size: 27px;
     padding: 0 20px 0 0;
+    margin-bottom: 100px;
   }
 
   .section__menu-h2 h2::after {
@@ -626,7 +634,7 @@ button:focus {
   }
 
   .section__menu-h2 {
-    height: 100px;
+    height: 50px;
     line-height: 100px;
     padding: 0;
   }
@@ -636,21 +644,30 @@ button:focus {
     top: -6px;
   }
 
+  .section__item {
+    justify-self: center;
+    height: max-content;
+    width: max-content;
+  }
+
   .section__link {
-    height: 34vw;
-    max-height: 350px;
-    max-width: 350px;
-    min-height: 190px;
-    min-width: 190px;
-    padding: 6vw;
-    width: 34vw;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: max-content;
+    padding: 20px;
+    width: max-content;
     color: black;
+  }
+  .section__menu img {
+    width: 200px;
+    height: 200px;
   }
 }
 
 @media (min-width: 1151px) {
-  .section__menu {
+  .menu-mob{
     display: none;
   }
 }
@@ -1608,4 +1625,13 @@ button:focus {
 
 .user-block {
   position: relative;
+}
+
+@media screen and (max-width: 1200px) {
+  .section__menu {
+    padding: 40px 5%;
+  }
+  .section__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

@@ -1,21 +1,37 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Tabs from './Tabs.jsx';
+import axios from 'axios';
+import { getProduct } from '../public/utils'
 import '../public/style/product.css';
 
 import tempSvet from '../public/images/temp_svet.svg';
 import potok from '../public/images/potok.svg';
 
-const Product = () => {
+const Product = ({match}) => {
 
+  const [products, setProducts] = useState(getProduct(match.params.id));
 
-  return (
-    <>
-      <main className="product">
-        <h2>Лaмпа LED A60 8W 3000K 800Lm Е27 AC165-265V LDM PRO (100)</h2>
+  useEffect(() => {
+    if( products == false ) {
+      axios
+      .get('https://api.ledium.shop/feed')
+      .then( response => {
+        sessionStorage.setItem("data", JSON.stringify(response.data));
+        setProducts(getProduct(match.params.id))
+      })
+    }
+  })
+
+  if(Object.keys(products).length !== 0) {
+    return (
+      <>
+      {Object.keys(products).length !== 0 && (
+        <main className="product">
+        <h2>{products.name}</h2>
         <div className="product__info">
           <div className="product__block-img">
             <img
-              src="https://api.ledium.shop/img/?prodname=Лампа LED A60 8W 4100K Е27"
+              src={products.picture}
               alt=""
               className="product__img"
             ></img>
@@ -37,11 +53,11 @@ const Product = () => {
                   alt=""
                   className="product__icon-img"
                 ></img>
-                <span>800Lm</span>
+                <span>4000Lm</span>
               </div>
             </div>
             <p>Описание</p>
-            <p className="product__description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut ipsam ipsa, praesentium odio porro eveniet. Placeat quod dignissimos iure asperiores!</p>
+            <p className="product__description">{products.description.text}</p>
             <div className="product__buy">
               <div className="product__buy-quantity">
                 <label className="quantity-title" htmlFor="input-quantity">Кол-во</label>
@@ -49,7 +65,7 @@ const Product = () => {
               </div>
               <div className="product__price">
                 <p className="quantity-title">Цена</p>
-                <p className="poduct__price__text">33 грн</p>
+                <p className="poduct__price__text">{products.price} грн</p>
               </div>
               <button className="header__catalog product__btn">Добавить в корзину</button>
             </div>
@@ -57,8 +73,15 @@ const Product = () => {
         </div>
         <Tabs />
       </main>
-    </>
-  )
+      )}
+      </>
+    )
+  } else {
+    return (
+      <div></div>
+    )
+  }
+  
 }
 
 export default Product;
