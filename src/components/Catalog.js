@@ -8,19 +8,15 @@ import '../public/style/catalog.css';
 
 const Catalog = ({match}) => {
 
-  const [goods, setGoods] = useState(getProducts(match.params.id));
   const [category, setCategory] = useState([]);
   const [array, setArray] = useState([]);
+
   const [categoryId, setCategoryId] = useState(match.params.id);
+  const [goods, setGoods] = useState(getProducts(categoryId));
+
   const [categoryText, setCategoryText] = useState('');
 
   const history = useHistory();
-
-  useEffect(() => {
-    axios
-      .get('https://api.ledium.shop/feed')
-      .then( response => {setCategory(response.data.data.categories.category)} )
-  }, []);
 
   useEffect(() => {
     if( goods == false ) {
@@ -28,17 +24,31 @@ const Catalog = ({match}) => {
       .get('https://api.ledium.shop/feed')
       .then( response => {
         sessionStorage.setItem("data", JSON.stringify(response.data));
-        setGoods(getProducts(match.params.id))
+        setGoods(getProducts(match.params.id));
       })
     }
-  })
+  });
 
-  const data = sessionStorage.getItem("data")
 
-  console.log(match);
-  console.log(goods);
-  console.log(data);
-  console.log(categoryId)
+  useEffect(() => {
+    if (match.params.id != categoryId) {
+        setCategoryId(match.params.id);
+    }
+  });
+
+/*********************************** */
+/**Вот этот Юзэфект это костыль, что бы меню работало. Его нужно будет убрать*/
+  useEffect(() => { 
+    if (sessionStorage.getItem("data") != null && typeof sessionStorage.getItem("data") !== "undefined") {
+      setCategory(JSON.parse(sessionStorage.getItem("data"))?.data?.categories?.category);
+    }
+   }, [goods]);
+
+   /************************* */
+
+  useEffect(() => {
+    setGoods(getProducts(categoryId));
+  }, [categoryId]);
 
   if(goods.length > 0) {
     return (

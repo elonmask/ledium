@@ -1,7 +1,8 @@
 const formProducts = (id, data) => {
   const dataObj = JSON.parse(data);
   const array = dataObj.data.offers.offer;
-  const newArr =array.filter(item => item.categoryId == id);
+  const newArr = array.filter(item => item.categoryId == id);
+  
   return newArr;
 }
 
@@ -21,7 +22,7 @@ const formCategories = (data) => {
 export const getProducts = (categoryId) => {
   const data = sessionStorage.getItem("data");
 
-  if( data == null || typeof data === 'undefined') {
+  if( data == null && typeof data === 'undefined') {
     return false;
   } else {
     const products = formProducts(categoryId, data);
