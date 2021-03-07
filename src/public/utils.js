@@ -1,22 +1,26 @@
 const formProducts = (id, data) => {
   const dataObj = JSON.parse(data);
-  const array = dataObj.data.offers.offer;
-  const newArr = array.filter(item => item.categoryId == id);
+  const arrayDataCategories = dataObj.data.categories.category;
+  const categories = arrayDataCategories.find(item => item.id === id)
+  const arrayData = dataObj.data.offers.offer;
+  const products = arrayData.filter(item => item.categoryId == id);
   
-  return newArr;
+  return [categories, products];
 }
 
 const formProduct = (id, data) => {
   const dataObj = JSON.parse(data);
-  const array = dataObj.data.offers.offer;
-  const product = array.find(item => item.id == id);
+  const arrayData = dataObj.data.offers.offer;
+  const product = arrayData.find(item => item.id == id);
+
   return product;
 }
 
 const formCategories = (data) => {
   const dataArr = JSON.parse(data);
-  const array = dataArr.data.categories.category;
-  return array;
+  const categories = dataArr.data.categories.category;
+
+  return categories;
 }
 
 export const getProducts = (categoryId) => {

@@ -9,7 +9,7 @@ const PersonalInfo = () => {
         <div className="personal-info__testimonials">
           <div className="personal-info__user-details">
             <div className="personal-info__block">
-              <i class="far fa-user-circle"></i>
+              <i className="far fa-user-circle"></i>
               <h1>Личный данные</h1>
               <div className="personal-info__content">
                 <div>
@@ -26,14 +26,14 @@ const PersonalInfo = () => {
                 </div>
               </div>
               <div className="edit">
-                <i class="far fa-edit"></i>
+                <i className="far fa-edit"></i>
                 <span>Редактировать</span>
               </div>
             </div>
           </div>
           <div className="personal-info__user-details">
             <div className="personal-info__block">
-              <i class="fas fa-id-card"></i>
+              <i className="fas fa-id-card"></i>
               <h1>Контакты</h1>
               <div className="personal-info__content">
                 <div>
@@ -46,14 +46,14 @@ const PersonalInfo = () => {
                 </div>
               </div>
               <div className="edit">
-                <i class="far fa-edit"></i>
+                <i className="far fa-edit"></i>
                 <span>Редактировать</span>
               </div>
             </div>
           </div>
           <div className="personal-info__user-details">
             <div className="personal-info__block">
-              <i class="fas fa-truck"></i>
+              <i className="fas fa-truck"></i>
               <h1>Адрес доставки:</h1>
               <div className="personal-info__content">
                 <div>
@@ -61,14 +61,14 @@ const PersonalInfo = () => {
                 </div>
               </div>
               <div className="edit">
-                <i class="far fa-edit"></i>
+                <i className="far fa-edit"></i>
                 <span>Редактировать</span>
               </div>
             </div>
           </div>
           <div className="personal-info__user-details">
             <div className="personal-info__block">
-              <i class="fas fa-sign-in-alt"></i>
+              <i className="fas fa-sign-in-alt"></i>
               <h1>Логин</h1>
               <div className="personal-info__content">
                 <div>
@@ -81,7 +81,7 @@ const PersonalInfo = () => {
                 </div>
               </div>
               <div className="edit">
-                <i class="far fa-edit"></i>
+                <i className="far fa-edit"></i>
                 <span>Редактировать</span>
               </div>
             </div>

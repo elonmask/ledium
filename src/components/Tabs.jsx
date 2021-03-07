@@ -21,6 +21,10 @@ const Tabs = () => {
       title: 'Оплата',
       content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur optio illo repellendus, architecto eveniet repudiandae ea magnam, eligendi dignissimos qui repellat vero neque soluta laborum animi nihil amet aut eum temporibus quam exercitationem similique. Sed ratione rerum, maiores corrupti qui ipsam nostrum quos, ipsa modi molestias porro beatae totam excepturi.',
     },
+    {
+      title: 'Отзывы',
+      content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio, repellat!'
+    },
   ]
 
   const [currentTab, setCurrentTab] = useState(0);

@@ -14,7 +14,7 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen} ) => {
         <div className={ shoppingCartOpen ? "shopping-cart cart-active" : "shopping-cart" }>
           <div className="carts">
             <div className="cart-block">
-              <i class="fas fa-times"></i>
+              <i className="fas fa-times"></i>
               <img
                 src="https://api.ledium.shop/img/?prodname=Лампа LED A55 6W 4100K Е27"
                 alt="" className="cart__img"

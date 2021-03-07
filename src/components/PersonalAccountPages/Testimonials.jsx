@@ -41,7 +41,7 @@ const Testimonials = () => {
               ></textarea>
               <button type="submit" className="testimonials__btn">Ответить</button>
               <i
-                class="fas fa-sort-up"
+                className="fas fa-sort-up"
                 onClick={()=>{setCommentOpen(false)}}
               ></i>
             </div>

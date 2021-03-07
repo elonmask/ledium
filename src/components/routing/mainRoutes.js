@@ -1,26 +1,26 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import Main from '../Main'
-import  Catalog  from '../Catalog';
+import Main from '../Main.jsx'
+import  Category  from '../Category.jsx';
 import Product from '..//Product.jsx';
 import PersonalInfo from '..//PersonalAccountPages/PersonalInfo.jsx';
 import ViewedProducts from '..//PersonalAccountPages/ViewedProducts.jsx';
 import Orders from '..//PersonalAccountPages/Orders';
 import Testimonials from '..//PersonalAccountPages/Testimonials';
-import CatalogMainPage from '../CatalogMainPage';
+import Catalog from '../Catalog.jsx';
 
 export const routes = [
   {
     path: '/catalog/category/:id',
-    component: Catalog,
+    component: Category,
     render: ({match}) => {
-      return <Catalog match={match}/>
+      return <Category match={match}/>
     },
     exact: true,
   },
   {
     path: '/catalog',
-    component: CatalogMainPage,
+    component: Catalog,
     exact: true,
   },
   {

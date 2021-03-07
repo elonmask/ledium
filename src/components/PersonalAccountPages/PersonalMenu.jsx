@@ -28,12 +28,12 @@ const PersonalMenu = ({ setMenuIsOpen, menuIsOpen }) => {
         }
       >
         <i 
-          class="fas fa-times"
+          className="fas fa-times"
           onClick={()=>{setMenuIsOpen(false)}}
         ></i>
         <Link to="info">
           <div className="personal-info__user-section">
-            <i class="far fa-user-circle"></i>
+            <i className="far fa-user-circle"></i>
             <div>
               <h2>Пользователь</h2>
               <p>spacedev@gmail.com</p>
@@ -43,7 +43,7 @@ const PersonalMenu = ({ setMenuIsOpen, menuIsOpen }) => {
           <div className="personal-info__sections">
             <ul>
               <li className="personal-info__section">
-                <i class="fas fa-shopping-cart"></i>
+                <i className="fas fa-shopping-cart"></i>
                 <a 
                   onClick={()=>{openCart()}}
                   className="btn-after"
@@ -52,19 +52,19 @@ const PersonalMenu = ({ setMenuIsOpen, menuIsOpen }) => {
                 </a>
               </li>
               <li className="personal-info__section">
-                <i class="fas fa-history"></i>
+                <i className="fas fa-history"></i>
                 <a href="orders">Мои заказы</a>
               </li>
               <li className="personal-info__section">
-                <i class="far fa-comment"></i>
+                <i className="far fa-comment"></i>
                 <a href="testimonials">Мои отзывы</a>
               </li>
               <li className="personal-info__section">
-                <i class="far fa-eye"></i>
+                <i className="far fa-eye"></i>
                 <a href="viewed">Просмотрено</a>
               </li>
               <li className="personal-info__section">
-                <i class="fas fa-sign-in-alt"></i>
+                <i className="fas fa-sign-in-alt"></i>
                 <button onClick={()=>{openModal()}}>Выход</button>
               </li>
             </ul>

@@ -592,7 +592,7 @@ button:focus {
     padding: 0;
   }
   .section__menu-h2 {
-    margin: 20px 0;
+    margin: 70px 30px 20px;
   }
   .section__menu-h2 h2 {
     font-size: 20px;
@@ -625,7 +625,7 @@ button:focus {
 
   .section__menu-h2 h2 {
     font-size: 27px;
-    padding: 0 20px 0 0;
+    padding: 0 30px 30px;
     margin-bottom: 100px;
   }
 
@@ -634,7 +634,7 @@ button:focus {
   }
 
   .section__menu-h2 {
-    height: 50px;
+    height: 150px;
     line-height: 100px;
     padding: 0;
   }
@@ -1629,9 +1629,22 @@ button:focus {
 
 @media screen and (max-width: 1200px) {
   .section__menu {
-    padding: 40px 5%;
+    padding: 40px 5% 70px;
   }
   .section__list {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.opacity {
+  opacity: 0.3;
+}
+
+
+@media screen and (min-width: 1200px) {
+  .section__menu-h2 {
+    padding: 0 5% 50px;
+    height: 80px;
+    margin: 0 ;
   }
 }

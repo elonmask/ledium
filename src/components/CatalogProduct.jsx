@@ -1,4 +1,8 @@
 import React from 'react';
+import noPhoto from '../public/images/no_photo.jpg';
+import potok from '../public/images/potok.svg';
+import flow from '../public/images/temp_svet.svg';
+import heart from '../public/images/heart-shape.svg';
 
 const catalogProduct = ( {good} ) => {
 
@@ -27,31 +31,34 @@ const catalogProduct = ( {good} ) => {
   return (
     <>
       <div className="card">
-        <img src="images/heart-shape.svg" alt="" className="heart" />
-        <img alt="" src={picture} className="card__img" />
+        <img src={heart} alt="" className="heart" />
+        <img 
+          alt="" 
+          src={ picture !== 'undefined' ? picture : noPhoto} 
+          className="card__img" 
+        />
         <div className="card__info">
           <div className="card__icons">
             <div className="card__icons-box" title="Световой поток">
-              <img src="images/potok.svg" alt="" className="card__icon" />
+              <img src={potok} alt="" className="card__icon" />
               <span>{Params.lightFlow}</span>
             </div>
             <div className="card__icons-box" title="Цветовая температура">
-              <img src="images/temp_svet.svg" alt="" className="card__icon" />
+              <img src={flow} alt="" className="card__icon" />
               <span>{Params.lightTemperature}</span>
             </div>
           </div>
           <div className="card__title">
             <h3 className="card__h3">
               <a
-                href="product"
                 className="card__link"
               >
-                {good.name.split(' ').splice(0, 4).join(' ')}
+                {good.name.slice(0, 30)}...
               </a>
             </h3>
           </div>
           <div className="card__buy">
-            <span className="card__price">{good.price} грн</span>
+            <span className="card__price">{ good.available !== 'false' ? `${good.price} грн` : 'Нет в наличии' }</span>
             <button className="card__button-buy">Купить</button>
           </div>
           <div className="card__p">
