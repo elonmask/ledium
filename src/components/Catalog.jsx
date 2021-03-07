@@ -48,6 +48,16 @@ const Catalog = () => {
     }
   })
 
+  const setPicture = (id) => {
+    let img = '';
+    categoriesImg.map(categoryImg => {
+      if (categoryImg.id == id) {
+        img =  categoryImg.img;
+      }
+    })
+    return img;
+  }
+
   const setCategoryEng = (id) => {
     let eng = '';
     categoriesEnglish.map(category => {
@@ -73,13 +83,11 @@ const Catalog = () => {
                 <a
                   className="section__link"
                   onClick={() => {history.push(`/catalog/category/${setCategoryEng(category.id)}`)} }>
-                    {categoriesImg.map(categoryImg => (
                       <img
                         className="section__menu-img" 
                         alt="" 
-                        src={category.id === categoryImg.id ? categoryImg.img : ''} 
+                        src={setPicture(category.id)} 
                       />
-                    ))}
                   <span>{category.text}</span>
                 </a>
               </li>

@@ -57,7 +57,9 @@ const Category = ({match}) => {
   }, [categoryId]);
 
   const openProductCard = (obj) => {
-    if ( obj.available == 'false' &&  obj.description.text <= 1  || obj.available == 'false' &&  obj.description.text.includes('undefined') ) {
+    if ( obj.available == 'false' &&  obj.description.text <= 1 || 
+         obj.available == 'false' &&  obj.description.text.includes('undefined') 
+    ) {
       console.log('нет в наличии')
     } else {
       history.push(`/catalog/category/${match.params.id}/product/${obj.id}`);

@@ -11,6 +11,7 @@ import potok from '../public/images/potok.svg';
 const Product = ({match}) => {
 
   const [products, setProducts] = useState(getProduct(match.params.id));
+  const [descrp, setDescrip] = useState('');
 
   useEffect(() => {
     if( products == false ) {
@@ -18,10 +19,13 @@ const Product = ({match}) => {
       .get('https://api.ledium.shop/feed')
       .then( response => {
         sessionStorage.setItem("data", JSON.stringify(response.data));
-        setProducts(getProduct(match.params.id))
+        setProducts(getProduct(match.params.id));
       })
     }
+    setDescrip(products.description.text);
   })
+
+  console.log(descrp);
 
   if (Object.keys(products).length !== 0) {
     return (
@@ -56,8 +60,8 @@ const Product = ({match}) => {
                 <span>4000Lm</span>
               </div>
               </div>
-              <p>Описание</p>
-              <p className="product__description">{products.description.text}</p>
+              <p className="p-descrip">Описание</p>
+              <p className="product__description">{descrp}</p>
               <div className="product__buy">
                 <div className="product__buy-quantity">
                   <label className="quantity-title" htmlFor="input-quantity">Кол-во</label>
@@ -77,7 +81,7 @@ const Product = ({match}) => {
               </div>
             </div>
           </div>
-          <Tabs />
+          <Tabs descrp={descrp}/>
         </main>
       </>
     )
