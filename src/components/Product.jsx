@@ -25,13 +25,47 @@ const Product = ({match}) => {
     setDescrip(products.description.text);
   })
 
-  console.log(descrp);
+  const setName = (str) => {
+
+    const array = [];
+    const name = str.split(' ');
+
+    for ( let i = 0; i < name.length; i++ ) {
+     if(name[i].includes('W') || name[i].includes('V')) {
+       return array.join(' ')
+     } else {
+       array.push(name[i])
+     }
+    }
+
+    return array.join(' ')
+  }
+
+  const setChar = (str) => {
+    let value = '';
+    
+    if( str == 'K' ) {
+      products.param.map(char => {
+        if ( char.name == 'Колірна температура') {
+          value = char.text;
+        }
+      })
+    } else if ( str == 'Lm' ) {
+      products.param.map(char => {
+        if ( char.name == 'Світловий потік') {
+          value = char.text;
+        }
+      })
+    }
+
+    return value;
+  }
 
   if (Object.keys(products).length !== 0) {
     return (
       <>
         <main className="product">
-          <h2>{products.name}</h2>
+          <h2>{setName(products.name)}</h2>
           <div className="product__info">
             <div className="product__block-img">
               <img
@@ -49,7 +83,7 @@ const Product = ({match}) => {
                     alt=""
                     className="product__icon-img"
                   />
-                  <span>3000K</span>
+                  <span>{setChar('K')}</span>
                 </div>
               <div className="product__icon">
                 <img
@@ -57,7 +91,7 @@ const Product = ({match}) => {
                   alt=""
                   className="product__icon-img"
                 />
-                <span>4000Lm</span>
+                <span>{setChar('Lm')}</span>
               </div>
               </div>
               <p className="p-descrip">Описание</p>
@@ -81,7 +115,7 @@ const Product = ({match}) => {
               </div>
             </div>
           </div>
-          <Tabs descrp={descrp}/>
+          <Tabs products={products}/>
         </main>
       </>
     )

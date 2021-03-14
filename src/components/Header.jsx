@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { getCategories } from '../public/utils';
 import categoriesEnglish from '../public/categories.json';
+import Account from './Account/Account'
 
 import mobLogo from '../public/./images/LEDiumLOGO.png'
 import lampa  from '../public/images/lampa.png';
@@ -149,6 +150,7 @@ const Header = () => {
               ))}
             </ul>
             <ul className="mob-menu__list">
+              <li className="mob-menu__item-info"><a href="#" className="mob-menu__link-info">Нравится</a></li>
               <li className="mob-menu__item-info"><a href="#" className="mob-menu__link-info">О компании</a></li>
               <li className="mob-menu__item-info"><a href="#" className="mob-menu__link-info">Новинки</a></li>
               <li className="mob-menu__item-info"><a href="#" className="mob-menu__link-info header__link--active">Акции</a></li>
@@ -224,7 +226,7 @@ const Header = () => {
                 <img src={supermarket} alt="" className="header__icon" />
               </a>
             </section>
-            <PersonalMenu 
+            <Account
               setMenuIsOpen={setMenuIsOpen}
               menuIsOpen={menuIsOpen}
             />

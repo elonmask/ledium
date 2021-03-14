@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 import '../public/style/tabs.css';
 
-const Tabs = ({ descrp }) => {
+const Tabs = ({ products }) => {
 
   const tabs = [
     {
@@ -13,7 +13,7 @@ const Tabs = ({ descrp }) => {
     {
       id: 2,
       title: 'Описание',
-      content: descrp,
+      content: `${products.description.text}`,
     },
     {
       id: 3,
@@ -56,7 +56,24 @@ const Tabs = ({ descrp }) => {
             </>
           ))}
         </div>
-        <div className="tabs__content">{tabs[currentTab].content}</div>
+        { currentTab === 0 ? (
+          <div className="tabs__content">
+            <ul>
+              {products.param.map(p => (
+                <>
+                  <li className="tabs-char">
+                    <div className="char-item">
+                      <span className="char-span">{p.name}</span>
+                    </div>
+                    <span className="blue">{p.text}</span>
+                  </li>
+                </>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <div className="tabs__content">{tabs[currentTab].content}</div>
+        )}
       </div>
     </>
   )

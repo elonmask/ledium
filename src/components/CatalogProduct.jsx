@@ -27,6 +27,22 @@ const catalogProduct = ( {good} ) => {
 
   const Params = getParams(good.name);
   const picture = `${good.picture}`;
+
+  const setName = (str) => {
+
+    const array = [];
+    const name = str.split(' ');
+
+    for ( let i = 0; i < name.length; i++ ) {
+     if(name[i].includes('W') || name[i].includes('V')) {
+       return array.join(' ')
+     } else {
+       array.push(name[i])
+     }
+    }
+
+    return array.join(' ')
+  }
  
   return (
     <>
@@ -53,7 +69,7 @@ const catalogProduct = ( {good} ) => {
               <a
                 className="card__link"
               >
-                {good.name.slice(0, 30)}...
+                {setName(good.name)}
               </a>
             </h3>
           </div>

@@ -1,0 +1,131 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.account-modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal-overlay {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+
+}
+
+.account {
+  position: relative;
+  z-index: 11;
+  background-color: #fff;
+  border-radius: 10px;
+  min-width: 600px;
+  margin: 100px 0;
+  padding: 20px;
+  height: auto;
+  max-height: 90%;
+  overflow-y: auto;
+}
+
+.account__content {
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+}
+
+
+.account__title {
+  margin: 0 0 10px;
+  color: #333;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.label-content {
+  font-size: 14px;
+  color: #797878;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.account__form {
+  border: 1px solid #d2d2d2;
+  border-radius: 4px;
+  outline: none;
+  transition: border .2s ease-in-out;
+  background-color: #fff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 16px;
+  height: 40px;
+  margin: 0 0 10px;
+  padding-left: 10px;
+}
+
+.account__btn {
+  width: 100%;
+  margin-bottom: 16px;
+  font-size: 18px;
+  height: 48px;
+  position: relative;
+  display: inline-block;
+  margin: 10px 0 10px;
+  padding-left: 16px;
+  padding-right: 16px;
+  text-align: center;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #56b4c9;
+  color: #fff;
+  cursor: pointer;
+}
+
+.account__link {
+  text-decoration: none;
+  color: #3e77aa;
+  cursor: pointer;
+  font-size: 16px;
+  align-self: center;
+}
+
+.account__more-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.account__checkbox {
+  margin-left: 5px;
+}
+
+.account-close {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  font-size: 20px;
+  color: #333
+}
+
+.account__text {
+  font-size: 14px;
+  color: #797878;
+  display: block;
+  max-width: 600px;
+}
+
+.account__disable {
+  display: none;
+}

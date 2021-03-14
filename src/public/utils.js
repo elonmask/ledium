@@ -1,8 +1,8 @@
 const formProducts = (id, data) => {
   const dataObj = JSON.parse(data);
-  const arrayDataCategories = dataObj.data.categories.category;
+  const arrayDataCategories = dataObj.data.shop.categories.category;
   const categories = arrayDataCategories.find(item => item.id === id)
-  const arrayData = dataObj.data.offers.offer;
+  const arrayData = dataObj.data.shop.offers.offer;
   const products = arrayData.filter(item => item.categoryId == id);
   
   return [categories, products];
@@ -10,7 +10,7 @@ const formProducts = (id, data) => {
 
 const formProduct = (id, data) => {
   const dataObj = JSON.parse(data);
-  const arrayData = dataObj.data.offers.offer;
+  const arrayData = dataObj.data.shop.offers.offer;
   const product = arrayData.find(item => item.id == id);
 
   return product;
@@ -18,7 +18,7 @@ const formProduct = (id, data) => {
 
 const formCategories = (data) => {
   const dataArr = JSON.parse(data);
-  const categories = dataArr.data.categories.category;
+  const categories = dataArr.data.shop.categories.category;
 
   return categories;
 }

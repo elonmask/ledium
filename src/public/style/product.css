@@ -1,6 +1,6 @@
 .product {
   margin: 0;
-  padding: 50px 10%;
+  padding: 20px 10% 50px;
 }
 
 @media screen and (max-width: 1150px) {
@@ -124,13 +124,13 @@
 
 @media screen and (min-width: 1600px) {
   .product {
-    padding: 50px 15%;
+    padding: 20px 15% 50px;
   }
 }
 
 @media screen and (min-width: 1900px) {
   .product {
-    padding: 50px 20%;
+    padding: 20px 20% 50px;
   }
 }
 
@@ -174,4 +174,8 @@
     width: 100%;
     margin-top: 10px;
   }
+}
+
+.product h2 {
+  margin-bottom: 0px;
 }
