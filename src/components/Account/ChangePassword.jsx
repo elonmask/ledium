@@ -21,7 +21,7 @@ const ChangePassword = ({ changePassword, setChangePassword }) => {
           <form className="account__content">
               <label  className="label-content" htmlFor="email">Эл. почта</label>
               <input 
-                id="email"
+                id="email-reset"
                 name="email"
                 className="account__form"
                 required

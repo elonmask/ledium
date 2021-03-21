@@ -70,15 +70,15 @@ const Category = ({match}) => {
     return (
       <main>
       <div className="page-content">
-        <div className="catalog">
+        <div className="catalog catalog-category">
           <div className="catalog-header">
             <div className="breadcrumbs">
               <span>
                 <span>
-                  <a className="opacity" href="/">Главная > </a> 
+                  <a className="opacity" href="/">Главная  `&gt;`</a> 
                 </span>
                 <span>
-                  <a className="opacity" href="/catalog">Каталог > </a> 
+                  <a className="opacity" href="/catalog">Каталог  `&gt;`</a> 
                 </span>
                 <span>
                   <a href="/catalog">{goods[0].text}</a> 

@@ -69,7 +69,7 @@ button:focus {
   }
 }
 
-@media screen and (min-width: 2000px) {
+@media screen and (min-width: 1900px) {
   .header {
     padding: 20px 20% 0;
   }
@@ -354,6 +354,7 @@ button:focus {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  cursor: pointer;
 }
 
 .header__nav-link:hover {
@@ -568,11 +569,14 @@ button:focus {
   cursor: pointer;
   display: block;
   color: black;
+  transition: all 0.1s;
 }
 
-.section__link:focus {
-  background-color: #fff;
+.section__link:hover {
+  transform: scale(1.1);
+  color: #56b4c9;
 }
+
 
 @media screen and (min-width: 320px) {
   .section__menu {
@@ -592,7 +596,7 @@ button:focus {
     padding: 0;
   }
   .section__menu-h2 {
-    margin: 70px 30px 20px;
+    margin: 30px 30px 20px;
   }
   .section__menu-h2 h2 {
     font-size: 20px;
@@ -620,7 +624,7 @@ button:focus {
 @media (min-width: 769px) {
   .section__menu {
     display: block;
-    padding: 40px 10%;
+    padding: 40px 20%;
   }
 
   .section__menu-h2 h2 {
@@ -634,7 +638,7 @@ button:focus {
   }
 
   .section__menu-h2 {
-    height: 150px;
+    height: 50px;
     line-height: 100px;
     padding: 0;
   }
@@ -948,7 +952,6 @@ button:focus {
   .section__article1,
   .section__article2 {
     width: 100%;
-    float: none;
   }
   .section__article3,
   .section__parallax1 {
@@ -1197,7 +1200,7 @@ button:focus {
   height: 500px;
   color: black;
   box-shadow: 0 3px 13px 0 rgba(0,0,0, 1);
-  z-index: 2;
+  z-index: 1000;
 }
 
 .footer__top {
@@ -1267,8 +1270,8 @@ button:focus {
 
 .footer__arrow {
   transform: rotate(180deg);
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   position: absolute;
   right: 5%;
   bottom: 5%;
@@ -1647,4 +1650,18 @@ button:focus {
     height: 80px;
     margin: 0 ;
   }
+}
+
+@media screen and (max-width: 500px) {
+  .footer__arrow {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.arrow-menu {
+  color: #56b4c9;
+  font-size: 14px;
+  position: absolute;
+  right: 20px;
 }

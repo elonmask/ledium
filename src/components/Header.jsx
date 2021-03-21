@@ -5,7 +5,8 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { getCategories } from '../public/utils';
 import categoriesEnglish from '../public/categories.json';
-import Account from './Account/Account'
+import Account from './Account/Account';
+import ShoppingCart from './PersonalAccountPages/ShoppingCart';
 
 import mobLogo from '../public/./images/LEDiumLOGO.png'
 import lampa  from '../public/images/lampa.png';
@@ -53,6 +54,12 @@ const Header = () => {
   const [categories, setCategories] = useState(getCategories);
   const [burger, setBurger] = useState(false);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [shoppingCartOpen, setShoppingCartOpen] = useState(false);
+
+  const openCart = () => {
+    setShoppingCartOpen(true);
+    setMenuIsOpen(false);
+  }
 
   let className = 'header__burger';
   let mobMenu = 'mob-menu';
@@ -138,7 +145,9 @@ const Header = () => {
                       className="mob-menu__img" 
                     />
                     {category.text}
+                    <i class="fas fa-chevron-right arrow-menu"></i>
                   </a>
+                  
                   {/*<ul className="mob-menu__list-child">
                     <li className="mob-menu__item-child">
                       <a href="#" className="mob-menu__link-child">
@@ -222,7 +231,7 @@ const Header = () => {
               {/*<a href="#" className="header__mob-block" id="block1">
                 <img src="images/adjust.svg" alt="" className="header__icon" />
               </a>*/}
-              <a href="#" className="header__mob-block">
+              <a className="header__mob-block"  onClick={()=>{openCart()}}>
                 <img src={supermarket} alt="" className="header__icon" />
               </a>
             </section>
@@ -265,6 +274,10 @@ const Header = () => {
           </li>
         ))}
       </ul>
+      <ShoppingCart 
+        shoppingCartOpen={shoppingCartOpen}
+        setShoppingCartOpen={setShoppingCartOpen}
+      />
     </header>
     )
   } else {

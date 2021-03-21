@@ -116,7 +116,8 @@
   top: 25px;
   right: 25px;
   font-size: 20px;
-  color: #333
+  color: #333;
+  cursor: pointer;
 }
 
 .account__text {
@@ -128,4 +129,22 @@
 
 .account__disable {
   display: none;
+}
+
+@media screen and (max-width: 700px) {
+  .account {
+    border-radius: 0;
+    min-width: 300px;
+    width: 100%;
+    margin: 0;
+    padding: 60px 20px;
+    height: auto;
+    max-height: auto;
+    min-height: 100%;
+    overflow-y: scroll;
+  }
+}
+
+.disable {
+  border: 1px solid red;
 }
