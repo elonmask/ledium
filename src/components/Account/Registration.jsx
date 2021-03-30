@@ -18,26 +18,35 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    /*const data = { 
+    const data = { 
       first_name: firstName,
       last_name: lastName,
       surname: surname,
       number: number,
       email: email,
       password: password,
-    };*/
+    };
 
     //const userEmail = {
      // email: email,
     //}
 
     axios
-      .post(`http://api.ledium.shop/user/email_exist/`, { "email": email }, { "headers": {
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Credentials': true,
-        'Content-Type': 'application/json',
-      }})
-      .then(response => console.log(response));
+      .post(`https://api.ledium.shop/user/email_exist/`, { "email": email })
+        .then(response => {
+          console.log(response);
+          if(response.data.status == true) {
+            alert('Пользователь с такой почтой уже существует')
+          } else if (response.data.status == false) {
+            axios.post('https://api.ledium.shop/adduser', data)
+              .then(response => {
+                console.log(response);
+                openAccount();
+            });
+          } else {
+            alert('Попробуйте позже');
+          }
+        });
     
     //axios.post('https://api.ledium.shop/adduser', data)
      //.then(response => console.log(response));

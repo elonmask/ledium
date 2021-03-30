@@ -10,7 +10,7 @@ const Exit = ({ modalIsOpen, setModalIsOpen }) => {
 
   return (
     <>
-      <div className={ modalIsOpen ? 'exit-container' : ''}>
+      <div className={ modalIsOpen ? 'exit-container' : 'none-exit'}>
         <div className={ modalIsOpen ? 'exit exit-active' : 'exit'}>
           <h2>Выйти?</h2>
           <div className="exit__btns">

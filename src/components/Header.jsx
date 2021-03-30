@@ -19,6 +19,7 @@ import facebook  from '../public/images/facebook.svg';
 import youtube  from '../public/images/youtube.svg';
 import supermarket from '../public/images/supermarket.svg';
 import phone from '../public/images/phone-call.svg';
+import HeaderAccount from './HeaderAccount';
 
 
 const Header = () => {
@@ -55,6 +56,7 @@ const Header = () => {
   const [burger, setBurger] = useState(false);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [shoppingCartOpen, setShoppingCartOpen] = useState(false);
+  const [perMenuIsOpen, setPerMenuIsOpen] = useState(false);
 
   const openCart = () => {
     setShoppingCartOpen(true);
@@ -67,10 +69,6 @@ const Header = () => {
     className += ' active';
     mobMenu += ' active-menu';
   };
-
-  const openMenu = () => {
-    setMenuIsOpen(true);
-  }
 
   const closeMenu = (id) => {
     history.push(`/catalog/category/${setCategoryEng(id)}`);
@@ -222,12 +220,12 @@ const Header = () => {
               <a href="#" className="none header__mob-block header__mob-block--active">
                 <img src={phone} alt="" className="header__icon header__icon--white" />
               </a>
-              <a 
-                className=" header__mob-block header__mob-block--active user-block"
-                onClick={()=>{openMenu()}}
-              >
-                <i className="fas fa-user-alt"></i>
-              </a>
+              <HeaderAccount 
+                setMenuIsOpen={setMenuIsOpen}
+                menuIsOpen={menuIsOpen}
+                setPerMenuIsOpen={setPerMenuIsOpen}
+                perMenuIsOpen={perMenuIsOpen}
+              />
               {/*<a href="#" className="header__mob-block" id="block1">
                 <img src="images/adjust.svg" alt="" className="header__icon" />
               </a>*/}
@@ -235,10 +233,6 @@ const Header = () => {
                 <img src={supermarket} alt="" className="header__icon" />
               </a>
             </section>
-            <Account
-              setMenuIsOpen={setMenuIsOpen}
-              menuIsOpen={menuIsOpen}
-            />
           </section>
         </section>
       <ul

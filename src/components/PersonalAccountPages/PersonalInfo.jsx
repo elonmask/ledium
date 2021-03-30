@@ -1,8 +1,20 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import Edit from './Edit';
 import './style/personal-info.css';
 
 const PersonalInfo = () => {
+  const [data, setData] = useState({});
+  const [type, setType] = useState('');
+  const [edit, setEdit] = useState(false);
+  
+  const userData = sessionStorage.getItem('currentUser');
+
+  useEffect(() => {
+    if(userData !== null && userData !== undefined) {
+      setData(JSON.parse(userData))
+    }
+  }, []);
+
   return (
     <>
       <main className="personal-info">
@@ -14,20 +26,27 @@ const PersonalInfo = () => {
               <div className="personal-info__content">
                 <div>
                   <p>Фамилия:</p>
-                  <p>Не указано</p>
+                  <p>{data.surname}</p>
                 </div>
                 <div>
                   <p>Имя:</p>
-                  <p>Не указано</p>
+                  <p>{data.first_name}</p>
                 </div>
                 <div>
                   <p>Отчество:</p>
-                  <p>Не указано</p>
+                  <p>{data.last_name}</p>
                 </div>
               </div>
               <div className="edit">
                 <i className="far fa-edit"></i>
-                <span>Редактировать</span>
+                <span
+                  onClick={()=> {
+                    setType('change-name')
+                    setEdit(true)
+                  }}
+                >
+                  Редактировать
+                </span>
               </div>
             </div>
           </div>
@@ -38,16 +57,23 @@ const PersonalInfo = () => {
               <div className="personal-info__content">
                 <div>
                   <p>Подтвержденный телефон:</p>
-                  <p>+380 63 468 78 89</p>
+                  <p>{data.number}</p>
                 </div>
                 <div>
                   <p>Электронная почта:</p>
-                  <p>spacedev@gmail.com</p>
+                  <p>{data.email}</p>
                 </div>
               </div>
               <div className="edit">
                 <i className="far fa-edit"></i>
-                <span>Редактировать</span>
+                <span
+                  onClick={()=> {
+                    setType('change-email')
+                    setEdit(true)
+                  }}
+                >
+                  Редактировать
+                </span>
               </div>
             </div>
           </div>
@@ -62,7 +88,14 @@ const PersonalInfo = () => {
               </div>
               <div className="edit">
                 <i className="far fa-edit"></i>
-                <span>Редактировать</span>
+                <span
+                  onClick={()=> {
+                    setType('change-adres')
+                    setEdit(true)
+                  }}
+                >
+                  Редактировать
+                </span>
               </div>
             </div>
           </div>
@@ -73,21 +106,35 @@ const PersonalInfo = () => {
               <div className="personal-info__content">
                 <div>
                   <p>Логин(пароль):</p>
-                  <p>+380 63 468 78 89</p>
+                  <p>{data.password}</p>
                 </div>
                 <div>
                   <p>Логин (электронная почта):</p>
-                  <p>spacedev@gmail.com</p>
+                  <p>{data.email}</p>
                 </div>
               </div>
               <div className="edit">
                 <i className="far fa-edit"></i>
-                <span>Редактировать</span>
+                <span
+                  onClick={()=> {
+                    setType('change-login')
+                    setEdit(true)
+                  }}
+                >
+                  Редактировать
+                </span>
               </div>
             </div>
           </div>
         </div>
       </main>
+      <Edit 
+        data={data}
+        setData={setData}
+        type={type} 
+        edit={edit}
+        setEdit={setEdit}
+      />
     </>
   )
 }

@@ -322,3 +322,12 @@
   opacity: 1;
   display: flex;
 }
+
+.edit span {
+  cursor: pointer;
+}
+
+.edit span:hover {
+  color: #56b4c9;
+  text-decoration: underline;
+}

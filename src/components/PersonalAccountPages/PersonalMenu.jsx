@@ -3,35 +3,35 @@ import { Link } from 'react-router-dom';
 import Exit from './Exit';
 import ShoppingCart from './ShoppingCart';
 
-const PersonalMenu = ({ setMenuIsOpen, menuIsOpen }) => {
+const PersonalMenu = ({ setPerMenuIsOpen, perMenuIsOpen }) => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [shoppingCartOpen, setShoppingCartOpen] = useState(false);
 
   const openModal = () => {
     setModalIsOpen(true);
-    setMenuIsOpen(false);
+    setPerMenuIsOpen(false);
   }
 
   const openCart = () => {
     setShoppingCartOpen(true);
-    setMenuIsOpen(false);
+    setPerMenuIsOpen(false);
   }
 
   return (
     <>
       <div
         className={ 
-        menuIsOpen 
+        perMenuIsOpen 
           ? 'personal-menu-block personal-info-active'
           : 'personal-menu-block'
         }
       >
         <i 
           className="fas fa-times"
-          onClick={()=>{setMenuIsOpen(false)}}
+          onClick={()=>{setPerMenuIsOpen(false)}}
         ></i>
-        <Link to="info">
+        <Link to="/info">
           <div className="personal-info__user-section">
             <i className="far fa-user-circle"></i>
             <div>

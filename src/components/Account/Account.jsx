@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import axios from 'axios';
 import './account.css'
 import Registration from './Registration';
 import ChangePassword from './ChangePassword'
@@ -7,7 +7,40 @@ import ChangePassword from './ChangePassword'
 const Account = ({ setMenuIsOpen, menuIsOpen }) => {
 
   const [regPopUp, setRegPopUp] = useState(false);
-  const [changePassword, setChangePassword] = useState(false)
+  const [changePassword, setChangePassword] = useState(false);
+  const [emailUser, setEmailUser] = useState('');
+  const [passwordUser, setPasswordUser] = useState('');
+
+  const userData = sessionStorage.getItem('currentUser');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    
+    const user = {
+      email: emailUser,
+      password: passwordUser,
+    };
+
+    axios
+      .post(`https://api.ledium.shop/user/login/`, user )
+        .then(response => {
+          console.log(response);
+          if(response.data.status == false) {
+            alert('Неправильная почта или пароль');
+          } else if (response.data.status == true) {
+            console.log(response);
+            sessionStorage.setItem('currentUser', JSON.stringify(response.data.userData) );
+            closeAccount();
+          } else {
+            alert('Попробуйте позже');
+          }
+        });
+    
+    if ( emailUser && passwordUser ) {
+      setEmailUser('');
+      setPasswordUser('');
+    }
+  };
 
   const closeAccount = () => {
     setMenuIsOpen(false);
@@ -33,7 +66,11 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
           onClick={()=>{closeAccount()}}
         ></i>
         <h2 className="account__title">Вход</h2>
-          <form className="account__content">
+          <form 
+            className="account__content" 
+            onSubmit={handleSubmit}
+            action='https://api.ledium.shop/user/login/'
+          >
               <label  className="label-content" htmlFor="email">Эл. почта</label>
               <input 
                 id="email"
@@ -41,6 +78,8 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
                 className="account__form"
                 required
                 type="email"
+                value={emailUser}
+                onChange={event => setEmailUser(event.target.value.trim())}
               />
               <label className="label-content" htmlFor="password">Пароль</label>
               <input 
@@ -49,6 +88,8 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
                 className="account__form"
                 required
                 type="password"
+                value={passwordUser}
+                onChange={event => setPasswordUser(event.target.value.trim())}
               />
             <div className="account__more-info">
               <div>
