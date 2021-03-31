@@ -67,7 +67,7 @@
 @media screen and (max-width: 550px) {
   .exit {
     width: 300px;
-    height: 200px;
+    height: 130px;
   }
   .exit__btn {
     border: none;
@@ -75,7 +75,11 @@
     background-color: #fff;
     color: #000;
     font-weight: 400;
-    font-size: 28px;
-    padding: 0 30px 50px 30px;
+    font-size: 20px;
+    padding: 0 30px 0px 30px;
+  }
+  .exit h2 {
+    padding: 0 20px 20px;
+    font-size: 20px;
   }
 }

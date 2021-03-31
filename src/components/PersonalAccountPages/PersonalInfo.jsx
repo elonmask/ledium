@@ -105,12 +105,8 @@ const PersonalInfo = () => {
               <h1>Логин</h1>
               <div className="personal-info__content">
                 <div>
-                  <p>Логин(пароль):</p>
-                  <p>{data.password}</p>
-                </div>
-                <div>
-                  <p>Логин (электронная почта):</p>
-                  <p>{data.email}</p>
+                  <p>Текущий пароль:</p>
+                  <p>Сменить пароль</p>
                 </div>
               </div>
               <div className="edit">

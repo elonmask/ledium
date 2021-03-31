@@ -74,6 +74,10 @@
   padding-left: 10px;
 }
 
+.account__form:focus {
+  border: 1px solid #64cfe7;
+}
+
 .account__btn {
   width: 100%;
   margin-bottom: 16px;
@@ -92,6 +96,11 @@
   background-color: #56b4c9;
   color: #fff;
   cursor: pointer;
+  transition: all 0.2s;
+}
+
+.account__btn:hover {
+  transform: scale(1.02)
 }
 
 .account__link {

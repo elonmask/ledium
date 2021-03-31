@@ -298,6 +298,11 @@ button:focus {
 
 .header__mob-block--active {
   background-color: #56b4c9;
+  transition: transform 0.2s;
+}
+
+.header__mob-block--active:hover {
+  transform: scale(1.1)
 }
 
 .header__icon {
@@ -596,13 +601,13 @@ button:focus {
     padding: 0;
   }
   .section__menu-h2 {
-    margin: 30px 30px 20px;
+    margin: 90px 30px 20px;
   }
   .section__menu-h2 h2 {
     font-size: 20px;
   }
   .section__menu-h2 a {
-    top: -3px;
+    top: 10px;
   }
 }
 
@@ -1200,7 +1205,7 @@ button:focus {
   height: 500px;
   color: black;
   box-shadow: 0 3px 13px 0 rgba(0,0,0, 1);
-  z-index: 1000;
+  z-index: 1;
 }
 
 .footer__top {

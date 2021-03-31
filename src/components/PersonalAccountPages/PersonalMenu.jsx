@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Exit from './Exit';
 import ShoppingCart from './ShoppingCart';
@@ -7,6 +7,15 @@ const PersonalMenu = ({ setPerMenuIsOpen, perMenuIsOpen }) => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [shoppingCartOpen, setShoppingCartOpen] = useState(false);
+  const [data, setData] = useState({});
+
+  const userData = sessionStorage.getItem('currentUser');
+
+  useEffect(() => {
+    if(userData !== null && userData !== undefined) {
+      setData(JSON.parse(userData))
+    }
+  }, []);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -31,19 +40,21 @@ const PersonalMenu = ({ setPerMenuIsOpen, perMenuIsOpen }) => {
           className="fas fa-times"
           onClick={()=>{setPerMenuIsOpen(false)}}
         ></i>
-        <Link to="/info">
           <div className="personal-info__user-section">
             <i className="far fa-user-circle"></i>
             <div>
               <h2>Пользователь</h2>
-              <p>spacedev@gmail.com</p>
+              <p>{data.first_name} {data.surname}</p>
             </div>
           </div>
-          </Link>
           <div className="personal-info__sections">
             <ul>
               <li className="personal-info__section">
-                <i className="fas fa-shopping-cart"></i>
+                <i className="fas fa-user-circle"></i>
+                <a href="/info">Личные данные</a>
+              </li>
+              <li className="personal-info__section">
+                <i class="fas fa-shopping-cart"></i>
                 <a 
                   onClick={()=>{openCart()}}
                   className="btn-after"
@@ -53,16 +64,16 @@ const PersonalMenu = ({ setPerMenuIsOpen, perMenuIsOpen }) => {
               </li>
               <li className="personal-info__section">
                 <i className="fas fa-history"></i>
-                <a href="orders">Мои заказы</a>
+                <a href="/orders">Мои заказы</a>
               </li>
-              <li className="personal-info__section">
+              {/*<li className="personal-info__section">
                 <i className="far fa-comment"></i>
                 <a href="testimonials">Мои отзывы</a>
               </li>
               <li className="personal-info__section">
                 <i className="far fa-eye"></i>
                 <a href="viewed">Просмотрено</a>
-              </li>
+              </li>*/}
               <li className="personal-info__section">
                 <i className="fas fa-sign-in-alt"></i>
                 <button onClick={()=>{openModal()}}>Выход</button>

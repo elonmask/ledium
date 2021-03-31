@@ -10,7 +10,7 @@ const Main = () => {
     <main className="section">
       <section className="section__menu-h2 menu-mob">
           <h2>Наша продукция</h2>
-          <a href="catalog">перейти в каталог<i>`&gt;`</i></a>
+          <a href="catalog">перейти в каталог<i>&gt;</i></a>
         </section>
     {/*<section className="section__first">
         <div className="section__content">

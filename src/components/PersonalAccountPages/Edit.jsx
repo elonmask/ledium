@@ -1,69 +1,175 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import InputMask from 'react-input-mask';
 const Edit = ({ type, edit, setEdit, data, setData }) => {
 
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [user, setUser] = useState({});
+  const [adress, setAdress] = useState('');
 
   const userData = sessionStorage.getItem('currentUser');
+
+  useEffect(() => {
+    if(userData !== null && userData !== undefined) {
+      setUser(JSON.parse(userData))
+    }
+  }, []);
+
+  const changeUser = (name, info) => {
+    let obj = {...user}
+    switch(name) {
+      case 'name':
+        obj.first_name = info;
+        setUser({...obj});
+        break
+      case 'lastname':
+        obj.last_name = info;
+        setUser({...obj});
+        break
+      case 'surname':
+        obj.surname = info;
+        setUser({...obj});
+        break
+      case 'number':
+        obj.number = info;
+        setUser({...obj});
+        break
+      case 'email':
+        obj.email = info;
+        setUser({...obj});
+        break
+      case 'password':
+        obj.password = info;
+        setUser({...obj});
+        break
+    }
+  }
 
   const closeEdit = () => {
     setEdit(false);
   }
 
-  const changeData = (property, info) => {
-    let obj = {...data};
-  
-    if(obj.hasOwnProperty(property)) {
-      switch(property) {
-        case 'first_name' :
-          obj.first_name = info;
-          sessionStorage.setItem('currentUser', JSON.stringify(obj));
-          setData(obj);
-        case 'last_name' :
-          obj.last_name = info;
-          sessionStorage.setItem('currentUser', JSON.stringify(obj));
-          setData(obj);
-      }
-    }
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if(data.first_name !== name) {
+    if (  user.first_name !== data.first_name ||
+          user.last_name !== data.last_name ||
+          user.surname !== data.surname
+    ) {
       axios
       .post(`https://api.ledium.shop/user/change_user/`, { 
         param: 'first_name',
         old: data.first_name,
-        change: name
+        change: user.first_name
       })
         .then(response => {
           console.log(response);
-          changeData('first_name', name);
-      });
-    }
-    if(data.last_name !== lastName) {
-      axios
-      .post(`https://api.ledium.shop/user/change_user/`, { 
-        param: 'last_name',
-        old: data.last_name,
-        change: lastName
-      })
-        .then(response => {
-          console.log(response);
-          changeData('last_name', lastName);
-      });
-    }
+          let obj = {...data};
+          obj.first_name = user.first_name;
+          sessionStorage.setItem('currentUser', JSON.stringify(obj));
+          setData({...obj});
 
-    if ( name && lastName && surname ) {
-      setName('');
-      setLastName('');
-      setSurname('');
+          axios
+            .post(`https://api.ledium.shop/user/change_user/`, { 
+              param: 'last_name',
+              old: data.last_name,
+              change: user.last_name
+            })
+              .then(response => {
+                console.log(response);
+                obj.last_name = user.last_name;
+                sessionStorage.setItem('currentUser', JSON.stringify(obj));
+                setData({...obj});
+                
+
+                axios
+                  .post(`https://api.ledium.shop/user/change_user/`, { 
+                  param: 'surname',
+                  old: data.surname,
+                  change: user.surname
+                })
+                  .then(response => {
+                    console.log(response);
+                    obj.surname = user.surname;
+                    sessionStorage.setItem('currentUser', JSON.stringify(obj));
+                    setData({...obj});
+                });
+                });
+          });
     }
   }; 
+  
+  const handleSubmitContact = (event) => {
+    event.preventDefault();
 
+    if (  user.number !== data.number ||
+      user.email !== data.email
+    ) {
+      axios
+      .post(`https://api.ledium.shop/user/change_user/`, { 
+        param: 'number',
+        old: data.number,
+        change: user.number
+      })
+        .then(response => {
+          console.log(response);
+          let obj = {...data};
+          obj.number = user.number;
+          sessionStorage.setItem('currentUser', JSON.stringify(obj));
+          setData({...obj});
+
+          axios
+          .post(`https://api.ledium.shop/user/change_user/`, { 
+            param: 'email',
+            old: data.email,
+            change: user.email,
+            password: data.password
+          })
+            .then(response => {
+              console.log(response);
+              obj.email = user.email;
+              sessionStorage.setItem('currentUser', JSON.stringify(obj));
+              setData({...obj});
+              })
+          });
+        }
+  }; 
+
+  const handleSubmitAdress= (event) => {
+    event.preventDefault();
+
+      axios
+      .post(`https://api.ledium.shop/user/set_address/`, { 
+        address: adress,
+      })
+        .then(response => {
+          console.log(response);
+          let obj = {...data};
+          obj.address = adress;
+          sessionStorage.setItem('currentUser', JSON.stringify(obj));
+          setData({...obj});
+        });
+  }; 
+
+  const handleSubmitPassword = (event) => {
+    event.preventDefault();
+
+    if (  user.password !== data.password ) {
+      axios
+      .post(`https://api.ledium.shop/user/change_user/`, { 
+        param: 'password',
+        old: data.password,
+        change: user.password,
+        email: data.email
+      })
+        .then(response => {
+          console.log(response);
+          let obj = {...data};
+          obj.password = user.password;
+          sessionStorage.setItem('currentUser', JSON.stringify(obj));
+          setData({...obj});
+        });
+      }
+  };
 
     switch(type) {
       case 'change-name':
@@ -87,8 +193,8 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
                       className="account__form"
                       required
                       type="text"
-                      value={surname}
-                      onChange={event => setSurname(event.target.value.trim())}
+                      value={user.surname}
+                      onChange={event => changeUser('surname', event.target.value)}
                     />
                     <label  className="first-name-edit" htmlFor="email">Имя:</label>
                     <input 
@@ -96,8 +202,8 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
                       className="account__form"
                       required
                       type="text"
-                      value={name}
-                      onChange={event => setName(event.target.value.trim())}
+                      value={user.first_name}
+                      onChange={event => changeUser('name', event.target.value)}
                     />
                     <label  className="last-name-edit" htmlFor="email">Отчество:</label>
                     <input 
@@ -105,10 +211,10 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
                       className="account__form"
                       required
                       type="text"
-                      value={lastName}
-                      onChange={event => setLastName(event.target.value.trim())}
+                      value={user.last_name}
+                      onChange={event => changeUser('lastname', event.target.value)}
                     />
-                  <button className="account__btn" type="submit">Сохранить</button>
+                  <button className="account__btn" type="submit" onClick={()=>{closeEdit()}}>Сохранить</button>
                   <a 
                     className="account__link"
                     onClick={()=>{closeEdit()}}
@@ -134,15 +240,17 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
                 <h2 className="account__title">Контакты</h2>
                 <form 
                   className="account__content"
+                  onSubmit={handleSubmitContact}
                 >
                   <label  className="label-content" htmlFor="phone-edit">Подтвержденный телефон:</label>
-                  <input 
+                  <InputMask
+                    type='tel'
                     id="phone-edit"
                     className="account__form"
+                    mask="+38 (999) 999 99 99" 
                     required
-                    type="number"
-                    //value={emailUser}
-                    //onChange={event => setEmailUser(event.target.value.trim())}
+                    value={user.number}
+                    onChange={event => changeUser('number', event.target.value)}
                   />
                   <label  className="label-content" htmlFor="email-edit">Электронная почта:</label>
                   <input 
@@ -150,10 +258,10 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
                     className="account__form"
                     required
                     type="email"
-                    //value={emailUser}
-                    //onChange={event => setEmailUser(event.target.value.trim())}
+                    value={user.email}
+                    onChange={event => changeUser('email', event.target.value)}
                   />
-                  <button className="account__btn" type="submit">Сохранить</button>
+                  <button className="account__btn" type="submit" onClick={()=>{closeEdit()}}>Сохранить</button>
                   <a 
                     className="account__link"
                     onClick={()=>{closeEdit()}}
@@ -179,15 +287,15 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
                 <h2 className="account__title">Адрес доставки:</h2>
                 <form 
                   className="account__content"
+                  onSubmit={handleSubmitAdress}
                 >
-                  <input 
+                  <input
                     className="account__form"
                     required
-                    type="text"
-                    //value={emailUser}
-                    //onChange={event => setEmailUser(event.target.value.trim())}
+                    value={adress}
+                    onChange={event => setAdress(event.target.value)}
                   />
-                  <button className="account__btn" type="submit">Сохранить</button>
+                  <button className="account__btn" type="submit" onClick={()=>{closeEdit()}}>Сохранить</button>
                   <a 
                     className="account__link"
                     onClick={()=>{closeEdit()}}
@@ -213,26 +321,18 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
                 <h2 className="account__title">Логин</h2>
                 <form 
                   className="account__content"
+                  onSubmit={handleSubmitPassword}
                 >
-                  <label  className="label-content" htmlFor="login-edit">Логин(пароль):</label>
+                  <label  className="label-content" htmlFor="login-edit">Сменить пароль:</label>
                   <input 
                     id="login-edit"
                     className="account__form"
                     required
                     type="password"
-                    //value={emailUser}
-                    //onChange={event => setEmailUser(event.target.value.trim())}
+                    value={user.password}
+                    onChange={event => changeUser('password', event.target.value)}
                   />
-                  <label className="label-content" htmlFor="login-email-edit">Логин (электронная почта):</label>
-                  <input 
-                    id="login-email-edit"
-                    className="account__form"
-                    required
-                    type="password"
-                    //value={passwordUser}
-                    //onChange={event => setPasswordUser(event.target.value.trim())}
-                  />
-                  <button className="account__btn" type="submit">Сохранить</button>
+                  <button className="account__btn" type="submit" onClick={()=>{closeEdit()}}>Сохранить</button>
                   <a 
                     className="account__link"
                     onClick={()=>{closeEdit()}}

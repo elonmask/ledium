@@ -37,7 +37,7 @@
 
 .personal-info__sections ul {
   padding: 0;
-  height: 168px;
+  height: fit-content;
   width: 100%;
 }
 
@@ -88,7 +88,7 @@
 .personal-info__block {
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  padding: 20px 0 50px 90px;
+  padding: 20px 0 20px 90px;
 }
 
 .personal-info__content {
@@ -130,7 +130,7 @@
 .personal-info__sections {
   display: block;
   width: 100%;
-  padding: 15px;
+  padding: 15px 5px 0;
 }
 
 .personal-info__user-details .fa-truck,
@@ -172,7 +172,7 @@
 
 @media screen and (max-width: 700px) {
   .personal-info__block {
-    padding: 60px 0 50px 20px;
+    padding: 80px 0 20px 20px;
   }
   .personal-info {
     flex-direction: column;
@@ -203,7 +203,7 @@
 
 @media screen and (max-width: 1500px) {
   .personal-info {
-    padding: 100px 20px;
+    padding: 100px 5%;
   }
 }
 
@@ -250,19 +250,20 @@
 }
 
 .personal-menu-block {
-  width: 250px;
-  height: 330px;
+  width: 200px;
+  height: max-content;
   z-index: 1000;
-  padding: 30px 10px 0;
+  padding: 20px 10px 10px;
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #fff;
+  border-radius: 5px;
   box-shadow: 0 3px 13px 0 rgba(0,0,0, 0.3);
   opacity: 0;
   position: absolute;
-  top: 100px;
+  top: 120px;
   right: 0;
   transition: all 0.5s;
 }
@@ -283,7 +284,7 @@
 
 @media screen and (max-width: 500px) {
   .personal-menu-block {
-    padding: 30px 0 150px;
+    padding: 30px 20px 150px;
     width: 100vw;
     height: 100vh;
     top: 50px;
