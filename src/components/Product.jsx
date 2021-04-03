@@ -10,8 +10,11 @@ import potok from '../public/images/potok.svg';
 
 const Product = ({match}) => {
 
+  const goods = sessionStorage.getItem('goods');
+  
   const [products, setProducts] = useState(getProduct(match.params.id));
   const [descrp, setDescrip] = useState('');
+  const [product, setProduct] = useState( JSON.parse(goods) !== null ? JSON.parse(goods) : []);
 
   useEffect(() => {
     if( products == false ) {
@@ -24,6 +27,23 @@ const Product = ({match}) => {
     }
     setDescrip(products.description.text);
   })
+
+
+  const addProduct = () => {
+    console.log("Goods", goods);
+    if(products.available == 'В наличии') {
+      setProduct(JSON.parse(goods));
+      let arr = [...product];
+      arr.push(products);
+      sessionStorage.setItem('goods', JSON.stringify(arr));
+      setProduct(arr);
+      console.log(product);
+    } else {
+      alert('Товара нет в наличии');
+    }
+  } 
+
+  console.log(goods);
 
   const setName = (str) => {
 
@@ -111,7 +131,12 @@ const Product = ({match}) => {
                   <p className="quantity-title">Цена</p>
                   <p className="poduct__price__text">{products.price} грн</p>
                 </div>
-                <button className="header__catalog product__btn">Добавить в корзину</button>
+                <button 
+                  className="header__catalog product__btn"
+                  onClick={ () => addProduct()}
+                >
+                  Добавить в корзину
+                </button>
               </div>
             </div>
           </div>

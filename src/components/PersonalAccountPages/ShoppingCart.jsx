@@ -5,7 +5,10 @@ import './style/shopping-cart.css';
 
 const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen} ) => {
 
-  const [makeOrder, setOrder] = useState(false)
+  const goods = sessionStorage.getItem('goods');
+  let arr = JSON.parse(goods);
+  const [makeOrder, setOrder] = useState(false);
+  const [product, setProduct] = useState(arr);
 
   const CloseCart = () => {
     setShoppingCartOpen(false)
@@ -16,9 +19,32 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen} ) => {
     setOrder(true);
   }
 
+  const sumProducts = () => {
+    let total = 0;
+    product.map(n => {
+      let price = +n.price;
+      total += price;
+    });
+    return `${total}`;
+  }
+
+  const deleteProduct = (obj) => {
+    let arr = [...product];
+    const index = arr.indexOf(obj);
+    if( index > -1 ) {
+      arr.splice(index, 1);
+      sessionStorage.setItem('goods', JSON.stringify(arr));
+      setProduct(arr);
+    }
+  }
+
+  //console.log(product);
+
   return (
     <>
-     <div className={ shoppingCartOpen ? 'account-modal' : 'account__disable'}>
+    { product !== null ? (
+      <>
+        <div className={ shoppingCartOpen ? 'account-modal' : 'account__disable'}>
     <div className="modal-overlay"></div>
       <div className="account">
         <i 
@@ -26,15 +52,20 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen} ) => {
           onClick={()=>{CloseCart()}}
         ></i>
         <h2 className="account__title">Корзина</h2>
-        <div>
+        {product.map(n => (
+          <>
+             <div>
         <div className="cart-product">
             <img 
               alt=""
-              src="https://api.ledium.shop/img/?prodname=Лампа LED A55 6W 4100K Е27"
+              src={n.picture}
               className="card-product-img"
             />
-            <a className="cart-product-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
-            <i className="fas fa-trash-alt trash"></i>
+            <a className="cart-product-title">{n.name}</a>
+            <i 
+              className="fas fa-trash-alt trash"
+              onClick={() => deleteProduct(n)}
+            ></i>
           </div>
           <div className="cart-details">
             <label className="quantity-title" htmlFor="product-quantity">
@@ -46,57 +77,11 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen} ) => {
                 min="1" max=""
               />
             </label>
-            <a className="cart-product-price">289 грн</a>
+            <a className="cart-product-price">{n.price} грн</a>
           </div>
         </div>
-
-        <div>
-        <div className="cart-product">
-            <img 
-              alt=""
-              src="https://api.ledium.shop/img/?prodname=Лампа LED A55 6W 4100K Е27"
-              className="card-product-img"
-            />
-            <a className="cart-product-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
-            <i className="fas fa-trash-alt trash"></i>
-          </div>
-          <div className="cart-details">
-            <label className="quantity-title" htmlFor="product-quantity">
-              <input 
-                className="quantity" 
-                type="number" 
-                id="product-quantity" 
-                name="quantity" 
-                min="1" max=""
-              />
-            </label>
-            <a className="cart-product-price">289 грн</a>
-          </div>
-        </div>
-
-        <div>
-        <div className="cart-product">
-            <img 
-              alt=""
-              src="https://api.ledium.shop/img/?prodname=Лампа LED A55 6W 4100K Е27"
-              className="card-product-img"
-            />
-            <a className="cart-product-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
-            <i className="fas fa-trash-alt trash"></i>
-          </div>
-          <div className="cart-details">
-            <label className="quantity-title" htmlFor="product-quantity">
-              <input 
-                className="quantity" 
-                type="number" 
-                id="product-quantity" 
-                name="quantity" 
-                min="1" max=""
-              />
-            </label>
-            <a className="cart-product-price">289 грн</a>
-          </div>
-        </div>
+          </>
+        ))}
           
           <div className="cart-product-btns">
             <button 
@@ -106,7 +91,7 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen} ) => {
               Продолжить покупки
             </button>
             <div className="btn-cart-price">
-              <p className="cart-product-btns-price">289 грн</p>
+              <p className="cart-product-btns-price">{sumProducts()} грн</p>
               <button 
                 className="cart-product-make-order"
                 onClick={() => openOrder()}
@@ -121,6 +106,22 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen} ) => {
         makeOrder={makeOrder}
         setOrder={setOrder}
       />
+      </>
+
+    ) : (
+      <div className={ shoppingCartOpen ? 'account-modal' : 'account__disable'}>
+    <div className="modal-overlay"></div>
+      <div className="account">
+        <i 
+          className="fas fa-times account-close"
+          onClick={()=>{CloseCart()}}
+        ></i>
+        <h2 className="account__title">Корзина</h2>
+        <p>У Вас еще нет товаров в корзине</p>
+      </div>
+    </div>
+    )}
+     
     </>
   )
 }
