@@ -1,11 +1,122 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import InputMask from 'react-input-mask';
+import crypto from 'crypto'
 
 import '../public/style/order.css'
 
-const Order = ({ makeOrder, setOrder }) => {
+const Order = ({ makeOrder, setOrder, product }) => {
+  const [amount, setAmount] = useState('');
+  const [user, setUser] = useState({});
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [email, setEmail] = useState('');
+  const [number, setNumber] = useState('');
+  const [password, setPassword] = useState('');
+
+  const userData = sessionStorage.getItem('currentUser');
 
   const closeOrder = () => {
     setOrder(false);
+  }
+
+  useEffect(() => {
+    let total = 0;
+    product.map(n => {
+      let price = +n.price;
+      total += price;
+    });
+    setAmount(`${total}`);
+  }, [])
+
+  useEffect(() => {
+    if(makeOrder == true) {
+      if(userData !== null && userData !== undefined) {
+        setUser(JSON.parse(userData))
+      } 
+    }
+  }, [makeOrder])
+
+  const totalSum = () => {
+    let total = amount;
+    let n = +total;
+    let sum = n + 59;
+    return `${sum}`
+  }
+
+  const changeUser = (name, info) => {
+    let obj = {...user}
+    switch(name) {
+      case 'name':
+        obj.first_name = info;
+        setUser({...obj});
+        break
+      case 'lastname':
+        obj.last_name = info;
+        setUser({...obj});
+        break
+      case 'surname':
+        obj.surname = info;
+        setUser({...obj});
+        break
+      case 'number':
+        obj.number = info;
+        setUser({...obj});
+        break
+      case 'email':
+        obj.email = info;
+        setUser({...obj});
+        break
+      case 'password':
+        obj.password = info;
+        setUser({...obj});
+        break
+    }
+  }
+
+  const addOrder = () => {
+    if ( user.hasOwnProperty('email') ) {
+      const date = new Date();
+      const userID = crypto.createHash('sha256').update(email + '' + password).digest('base64');
+      axios.post('https://api.ledium.shop/user/addorder/', [ userID, product, amount, date ] )
+        .then(response => {
+          console.log(response);
+          alert('Ваш заказ принят');
+        })
+    } else {
+      const data = { 
+        first_name: firstName,
+        last_name: lastName,
+        surname: surname,
+        number: number,
+        email: email,
+        password: password,
+      };
+  
+      axios
+        .post(`https://api.ledium.shop/user/email_exist/`, { "email": email })
+          .then(response => {
+            console.log(response);
+            if(response.data.status == true) {
+              alert('Пользователь с такой почтой уже существует. Пожалуйста войдите в личный кабинет')
+            } else if (response.data.status == false) {
+              axios.post('https://api.ledium.shop/adduser', data)
+                .then(response => {
+                  console.log(response);
+                  const date = new Date();
+                  const userID = crypto.createHash('sha256').update(email + '' + password).digest('base64');
+                  axios.post('https://api.ledium.shop/user/addorder/', [ userID, product, amount, date ] )
+                    .then(response => {
+                      console.log(response);
+                      alert('Ваш заказ принят');
+                    })
+              });
+            } else {
+              alert('Попробуйте позже');
+            }
+          });
+    }
   }
 
   return (
@@ -18,7 +129,94 @@ const Order = ({ makeOrder, setOrder }) => {
           onClick={()=>{closeOrder()}}
         ></i>
         <h2 className="account__title">Оформление заказа</h2>
-          <form className="order__content-block">
+          { user.hasOwnProperty('email') ? (
+            <form className="order__content-block">
+            <div className="order-units">
+              <div>!</div>
+              <p>Ваши контактные данные</p>
+            </div>
+          <div className="order-per-info-block">
+            <div className="order-per-info">
+              <div className="order-inputs">
+              <label  className="label-order" htmlFor="order-surname">
+                Фамилия
+              </label>
+              <input 
+                id="order-surname"
+                name="order-surname"
+                className="account__form order__form"
+                required
+                type="text"
+                value={user.surname}
+                onChange={event => changeUser('surname', event.target.value)}
+              />
+              </div>
+              <div className="order-inputs">
+              <label className="label-order" htmlFor="order-name">
+                Имя
+              </label>
+              <input 
+                id="order-name"
+                name="order-name"
+                className="account__form order__form"
+                required
+                type="text"
+                value={user.first_name}
+                onChange={event => changeUser('name', event.target.value)}
+              />
+              </div>
+            </div>
+
+            <div className="order-per-info">
+              <div className="order-inputs">
+              <label className="label-order" htmlFor="order-email">
+                Почта
+              </label>
+              <input 
+                id="order-email"
+                name="order-email"
+                className="account__form order__form"
+                required
+                type="email"
+                value={user.email}
+                onChange={event => changeUser('email', event.target.value)}
+              />
+              </div>
+            </div>
+
+            <div className="order-per-info">
+              <div className="order-inputs">
+              <label  className="label-order" htmlFor="order-tel">
+                Мобильный телефон
+              </label>
+              <InputMask
+                id="order-tel"
+                name="order-tel"
+                className="account__form order__form"
+                mask="+38 (999) 999 99 99" 
+                required
+                value={user.number}
+                onChange={event => changeUser('number', event.target.value)}
+                type="tel"
+              />
+              </div>
+              <div className="order-inputs">
+              <label className="label-order" htmlFor="order-city">
+                Адрес
+              </label>
+              <input 
+                id="order-city"
+                name="order-city"
+                className="account__form order__form"
+                required
+                type="text"
+              />
+              </div>
+            </div>
+          </div>
+        </form>
+          ) : (
+            <form className="order__content-block">
               <div className="order-units">
                 <div>!</div>
                 <p>Ваши контактные данные</p>
@@ -35,6 +233,8 @@ const Order = ({ makeOrder, setOrder }) => {
                   className="account__form order__form"
                   required
                   type="text"
+                  value={surname}
+                  onChange={event => setSurname(event.target.value)}
                 />
                 </div>
                 <div className="order-inputs">
@@ -47,6 +247,8 @@ const Order = ({ makeOrder, setOrder }) => {
                   className="account__form order__form"
                   required
                   type="text"
+                  value={firstName}
+                  onChange={event => setFirstName(event.target.value)}
                 />
                 </div>
               </div>
@@ -56,17 +258,20 @@ const Order = ({ makeOrder, setOrder }) => {
                 <label  className="label-order" htmlFor="order-tel">
                   Мобильный телефон
                 </label>
-                <input 
+                <InputMask
                   id="order-tel"
                   name="order-tel"
                   className="account__form order__form"
+                  mask="+38 (999) 999 99 99" 
                   required
                   type="tel"
+                  value={number}
+                  onChange={event => setNumber(event.target.value)}
                 />
                 </div>
                 <div className="order-inputs">
                 <label className="label-order" htmlFor="order-city">
-                  Город
+                  Адрес
                 </label>
                 <input 
                   id="order-city"
@@ -77,28 +282,63 @@ const Order = ({ makeOrder, setOrder }) => {
                 />
                 </div>
               </div>
+
+              <div className="order-per-info">
+                <div className="order-inputs">
+                <label  className="label-order" htmlFor="order-email">
+                  Почта
+                </label>
+                <input
+                  id="order-email"
+                  name="order-email"
+                  className="account__form order__form"
+                  required
+                  type="email"
+                  value={email}
+                  onChange={event => setEmail(event.target.value)}
+                />
+                </div>
+                <div className="order-inputs">
+                <label className="label-order" htmlFor="order-pass">
+                  Придумайте пароль
+                </label>
+                <input 
+                  id="order-pass"
+                  name="order-pass"
+                  className="account__form order__form"
+                  required
+                  type="password"
+                  value={password}
+                  onChange={event => setPassword(event.target.value)}
+                />
+                </div>
+              </div>
             </div>
           </form>
+          )}
+          
           <div className="order__title">
-              <h1>Заказ 1</h1>
-              <p>на сумму 289 грн</p>
+              <h1>Заказ</h1>
+              <p>на сумму {amount} грн</p>
             </div>
             <div className="order-info">
               <div className="order-units">
                 <div>1</div>
                 <p>Товары</p>
               </div>
-              <div className="order-product">
+              {product.map(n => (
+                <>
+                  <div className="order-product">
                 <img 
                   alt=""
-                  src="https://api.ledium.shop/img/?prodname=Лампа LED A55 6W 4100K Е27"
+                  src={n.picture}
                   className="order-product-img"
                 />
-                <a className="order-product-title">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</a>
+                <a className="order-product-title">{n.name}</a>
                 <div className="order-product-blocks">
                   <div className="order-product-block-info">
                     <p className="order-product-text">Цена</p>
-                    <p className="order-product-price">289 грн</p>
+                    <p className="order-product-price">{n.price} грн</p>
                   </div>
                   <div className="order-product-block-info">
                     <p className="order-product-text">Количество</p>
@@ -106,11 +346,13 @@ const Order = ({ makeOrder, setOrder }) => {
                   </div>
                   <div className="order-product-block-info">
                     <p className="order-product-text">Сумма</p>
-                    <p className="order-product-price">289 грн</p>
+                    <p className="order-product-price">{n.price} грн</p>
                   </div>
                 </div>
+                </div>
+                </>
+              ))}
                 
-              </div>
             </div>
             <div className="order-adress">
               <div className="order-units">
@@ -166,8 +408,8 @@ const Order = ({ makeOrder, setOrder }) => {
                 <p>Итого</p>
               </div>
                 <div className="order-total-block">
-                  <p className="order-total-text">1 товар на сумму</p>
-                  <p className="order-price">289 грн</p>
+                  <p className="order-total-text">Всего</p>
+                  <p className="order-price">{amount}</p>
                 </div>
                 <div className="order-total-block">
                   <p className="order-total-text">стоимость доставки</p>
@@ -175,12 +417,18 @@ const Order = ({ makeOrder, setOrder }) => {
                 </div>
               <div className="order-total">
                 <div className="order-total-block">
-                  <p className="order-total-text">К оплате</p>
-                  <p className="order-total-price">348 грн</p>
+                  <p className="order-total-text">Итого</p>
+                  <p className="order-total-price">{totalSum()} грн</p>
                 </div>
               </div>
               <div>
-                <button className="order-total-btn">Заказ подтверждаю</button>
+                <button 
+                  className="order-total-btn"
+                  type='button'
+                  onClick={() => addOrder()}
+                >
+                  Заказ подтверждаю
+                </button>
                 <p className="order-total-rules">Подтверждая заказ, я принимаю условия пользовательского соглашения</p>
               </div>
             </div>

@@ -102,7 +102,7 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
                 required
                 type="text"
                 value={firstName}
-                onChange={event => setFirstName(event.target.value.trim())}
+                onChange={event => setFirstName(event.target.value)}
               />
               <label className="label-content" htmlFor="surname">Фамилия</label>
               <input 
@@ -112,7 +112,7 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
                 required
                 type="text"
                 value={surname}
-                onChange={event => setSurname(event.target.value.trim())}
+                onChange={event => setSurname(event.target.value)}
               />
               <label className="label-content" htmlFor="second-name">Отчество</label>
               <input 
@@ -122,7 +122,7 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
                 required
                 type="text"
                 value={lastName}
-                onChange={event => setLastName(event.target.value.trim())}
+                onChange={event => setLastName(event.target.value)}
               />
               <label className="label-content" htmlFor="telephone">Номер телефона</label>
               <InputMask
@@ -133,7 +133,7 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
                 mask="+38 (999) 999 99 99" 
                 required
                 value={number}
-                onChange={event => setNumber(event.target.value.trim())}
+                onChange={event => setNumber(event.target.value)}
               />
               <label  className="label-content" htmlFor="email">Эл. почта</label>
               <input 
@@ -143,7 +143,7 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
                 required
                 type="email"
                 value={email}
-                onChange={event => setEmail(event.target.value.trim())}
+                onChange={event => setEmail(event.target.value)}
               />
               <label className="label-content" htmlFor="password">Придумайте пароль</label>
               <input 

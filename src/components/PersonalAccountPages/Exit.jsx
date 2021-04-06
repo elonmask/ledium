@@ -4,9 +4,16 @@ import './style/exit.css';
 
 const Exit = ({ modalIsOpen, setModalIsOpen }) => {
 
+  const userData = sessionStorage.getItem('currentUser');
+
   const closeModal = () => {
     setModalIsOpen(false)
   }
+
+  /*const exit = () => {
+    sessionStorage.clear();
+    setModalIsOpen(false);
+  }*/
 
   return (
     <>

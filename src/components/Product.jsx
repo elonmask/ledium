@@ -11,10 +11,10 @@ import potok from '../public/images/potok.svg';
 const Product = ({match}) => {
 
   const goods = sessionStorage.getItem('goods');
-  
+  let array = JSON.parse(goods);
   const [products, setProducts] = useState(getProduct(match.params.id));
   const [descrp, setDescrip] = useState('');
-  const [product, setProduct] = useState( JSON.parse(goods) !== null ? JSON.parse(goods) : []);
+  const [product, setProduct] = useState(array);
 
   useEffect(() => {
     if( products == false ) {
@@ -26,14 +26,17 @@ const Product = ({match}) => {
       })
     }
     setDescrip(products.description.text);
-  })
-
+  }, [])
 
   const addProduct = () => {
-    console.log("Goods", goods);
+    
     if(products.available == 'В наличии') {
-      setProduct(JSON.parse(goods));
-      let arr = [...product];
+      let arr;
+      if(goods == null) {
+        arr = [];
+      } else {
+        arr = JSON.parse(sessionStorage.getItem('goods'));
+      }
       arr.push(products);
       sessionStorage.setItem('goods', JSON.stringify(arr));
       setProduct(arr);
@@ -41,9 +44,7 @@ const Product = ({match}) => {
     } else {
       alert('Товара нет в наличии');
     }
-  } 
-
-  console.log(goods);
+  }
 
   const setName = (str) => {
 

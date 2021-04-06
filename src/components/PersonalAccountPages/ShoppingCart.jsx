@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import { useHistory } from 'react-router-dom';
 import Order from '../Order'
 
 import './style/shopping-cart.css';
@@ -9,7 +10,7 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen} ) => {
   let arr = JSON.parse(goods);
   const [makeOrder, setOrder] = useState(false);
   const [product, setProduct] = useState(arr);
-
+  
   const CloseCart = () => {
     setShoppingCartOpen(false)
   }
@@ -38,7 +39,11 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen} ) => {
     }
   }
 
-  //console.log(product);
+  useEffect(() => {
+    if(shoppingCartOpen === true) {
+      setProduct(arr);
+    }
+  }, [shoppingCartOpen])
 
   return (
     <>
@@ -61,7 +66,11 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen} ) => {
               src={n.picture}
               className="card-product-img"
             />
-            <a className="cart-product-title">{n.name}</a>
+            <a 
+              className="cart-product-title"
+            >
+              {n.name}
+            </a>
             <i 
               className="fas fa-trash-alt trash"
               onClick={() => deleteProduct(n)}
@@ -105,6 +114,7 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen} ) => {
       <Order 
         makeOrder={makeOrder}
         setOrder={setOrder}
+        product={product}
       />
       </>
 

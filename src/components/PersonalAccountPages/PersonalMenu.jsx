@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Exit from './Exit';
 import ShoppingCart from './ShoppingCart';
 
@@ -12,10 +11,12 @@ const PersonalMenu = ({ setPerMenuIsOpen, perMenuIsOpen }) => {
   const userData = sessionStorage.getItem('currentUser');
 
   useEffect(() => {
-    if(userData !== null && userData !== undefined) {
-      setData(JSON.parse(userData))
+    if(perMenuIsOpen == true) {
+      if(userData !== null && userData !== undefined) {
+        setData(JSON.parse(userData))
+      }
     }
-  }, []);
+  }, [perMenuIsOpen]);
 
   const openModal = () => {
     setModalIsOpen(true);

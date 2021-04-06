@@ -40,16 +40,6 @@ const Category = ({match}) => {
     }
   });
 
-/*********************************** */
-/**Вот этот Юзэфект это костыль, что бы меню работало. Его нужно будет убрать*/
- /* useEffect(() => { 
-    if (sessionStorage.getItem("data") != null && typeof sessionStorage.getItem("data") !== "undefined") {
-      setCategory(JSON.parse(sessionStorage.getItem("data"))?.data?.categories?.category);
-    }
-   }, [goods]);
-
-   /************************* */
-
   useEffect(() => {
     if ( goods !== false ) {
       setGoods(getProducts(categoryId));
