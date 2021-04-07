@@ -27,6 +27,11 @@
   color: #56b4c9;
   cursor: pointer;
   align-self: center;
+  transition: color 0.1s;
+}
+
+.trash:hover {
+  color: red;
 }
 
 .cart-details {
@@ -114,7 +119,6 @@
 .cart-product-return:hover {
   transform: scale(1.02);
 }
-
 
 .cart-product-btns-price {
   font-size: 20px;

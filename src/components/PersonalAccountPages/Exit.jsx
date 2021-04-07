@@ -10,20 +10,27 @@ const Exit = ({ modalIsOpen, setModalIsOpen }) => {
     setModalIsOpen(false)
   }
 
-  /*const exit = () => {
+  const exit = () => {
     sessionStorage.clear();
     setModalIsOpen(false);
-  }*/
+    window.location.replace('/');
+  }
 
   return (
     <>
-      <div className={ modalIsOpen ? 'exit-container' : 'none-exit'}>
-        <div className={ modalIsOpen ? 'exit exit-active' : 'exit'}>
-          <h2>Выйти?</h2>
+    <div className={ modalIsOpen ? 'account-modal' : 'account__disable'}>
+    <div className="modal-overlay" onClick={() => closeModal()}></div>
+      <div className="account">
+        <i 
+          className="fas fa-times account-close"
+          onClick={()=>{closeModal()}}
+        ></i>
+        <div className="exit">
+        <h2>Выйти?</h2>
           <div className="exit__btns">
             <button
               className="exit__btn"
-              onClick={()=>{closeModal()}}
+              onClick={()=>{exit()}}
             >
               Да
             </button>
@@ -36,6 +43,7 @@ const Exit = ({ modalIsOpen, setModalIsOpen }) => {
           </div>
         </div>
       </div>
+    </div>
     </>
   )
 }

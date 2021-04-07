@@ -11,7 +11,7 @@ const ChangePassword = ({ changePassword, setChangePassword }) => {
   return (
     <>
     <div className={ changePassword ? 'account-modal' : 'account__disable'}>
-    <div className="modal-overlay"></div>
+    <div className="modal-overlay" onClick={() => closeChangePassword()}></div>
       <div className="account">
         <i 
           className="fas fa-times account-close"

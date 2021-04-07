@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Account from './Account/Account';
 import PersonalMenu from './PersonalAccountPages/PersonalMenu';
 
@@ -16,7 +16,7 @@ const HeaderAccount = ({ menuIsOpen, setMenuIsOpen, perMenuIsOpen, setPerMenuIsO
       setMenuIsOpen(true);
     }
   }
-
+  
   return (
     <>
       <a 

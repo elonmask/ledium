@@ -7,7 +7,8 @@ import categoriesEnglish from '../public/categories.json';
 import instagram  from '../public/images/instagram.svg';
 import facebook  from '../public/images/facebook.svg';
 import youtube  from '../public/images/youtube.svg';
-import arrow from '../public/images/arrow.svg'
+import arrow from '../public/images/arrow.svg';
+import logo from '../public/./images/LEDiumLOGO.png';
 
 const Footer = () => {
   const history = useHistory();
@@ -41,11 +42,11 @@ const Footer = () => {
       <footer className="footer">
         <div className="footer__top">
           <div className="footer__section">
-            <img className="footer__img" alt="" src="images/LEDiumLOGO.png" />
+            <img className="footer__img" alt="" src={logo} />
             <p className="footer__p">
-              г. Запорожье<br />
-              +380507324444
+              г. Запорожье
             </p>
+            <a className="footer__p footer__a" href="tel: +380507324444">+38 (050) 732 44 44</a>
             <p className="footer__p">
               Сopyright 2020.<br />
               Все права защищены.

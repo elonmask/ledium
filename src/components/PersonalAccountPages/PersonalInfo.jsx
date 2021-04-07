@@ -55,13 +55,13 @@ const PersonalInfo = () => {
               <i className="fas fa-id-card"></i>
               <h1>Контакты</h1>
               <div className="personal-info__content">
-                <div>
-                  <p>Подтвержденный телефон:</p>
+                <div className="personal-contact">
+                  <p className="personal-contact-title">Подтвержденный телефон:</p>
                   <p>{data.number}</p>
                 </div>
                 <div>
                   <p>Электронная почта:</p>
-                  <p>{data.email}</p>
+                  <p className="personal-contact-email">{data.email}</p>
                 </div>
               </div>
               <div className="edit">

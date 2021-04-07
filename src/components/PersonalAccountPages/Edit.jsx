@@ -5,6 +5,7 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
 
   const [user, setUser] = useState({});
   const [adress, setAdress] = useState('');
+  const [validatePass, setValidatePass] = useState(true);
 
   const userData = sessionStorage.getItem('currentUser');
 
@@ -41,6 +42,18 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
         obj.password = info;
         setUser({...obj});
         break
+    }
+  }
+
+  const validate = (str) => {
+    const reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,32}$/;
+    const test = reg.test(user.password);
+    if (test) {
+        console.log('pass');
+        setValidatePass(true)
+    } else{
+        console.log('fail');
+        setValidatePass(false)
     }
   }
 
@@ -176,7 +189,7 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
         return (
           <>
             <div className={ edit ? 'edit-modal' : 'account__disable'}>
-              <div className="modal-overlay"></div>
+              <div className="modal-overlay" onClick={() => closeEdit()}></div>
               <div className="account">
                 <i 
                   className="fas fa-times account-close"
@@ -326,12 +339,15 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
                   <label  className="label-content" htmlFor="login-edit">Сменить пароль:</label>
                   <input 
                     id="login-edit"
-                    className="account__form"
+                    className={validatePass ? "account__form-pass" : "account__form-pass disable"}
                     required
                     type="password"
                     value={user.password}
-                    onChange={event => changeUser('password', event.target.value)}
+                    onChange={event => validate(changeUser('password', event.target.value))}
                   />
+                  <p className="account__text">
+                    Пароль должен быть не менее 6 символов, содержать цифры и латинские буквы, в том числе заглавные, и не должен совпадать с именем и эл. почтой
+                  </p>
                   <button className="account__btn" type="submit" onClick={()=>{closeEdit()}}>Сохранить</button>
                   <a 
                     className="account__link"

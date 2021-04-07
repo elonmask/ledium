@@ -41,6 +41,7 @@ button:focus {
 }
 
 .catalog {
+  position: relative;
   margin: 0 auto 50px;
   padding: 0 5%;
   width: 100%;
@@ -104,11 +105,9 @@ button:focus {
 }
 
 .page-content {
-  height: auto;
   padding-bottom: 0;
   position: relative;
   width: 100%;
-  overflow: hidden;
   margin: 0;
 }
 
@@ -460,6 +459,9 @@ button:focus {
 
 
 .sidebar {
+  position: sticky;
+  top: 0;
+  left: 0;
   width: 20%;
   float: left;
 }
@@ -625,4 +627,13 @@ button:focus {
 
 .catalog-title-category {
   margin-top: 50px !important;
+}
+
+.breadcrumbs a {
+  cursor: pointer;
+  transition: color 0.1s;
+}
+
+.breadcrumbs a:hover {
+  opacity: 1;
 }

@@ -10,6 +10,7 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
   const [changePassword, setChangePassword] = useState(false);
   const [emailUser, setEmailUser] = useState('');
   const [passwordUser, setPasswordUser] = useState('');
+  const [error, setError] = useState('');
 
   const userData = sessionStorage.getItem('currentUser');
 
@@ -26,7 +27,7 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
         .then(response => {
           console.log(response);
           if(response.data.status == false) {
-            alert('Неправильная почта или пароль');
+            setError('Неправильная почта или пароль');
           } else if (response.data.status == true) {
             console.log(response);
             sessionStorage.setItem('currentUser', JSON.stringify(response.data.userData) );
@@ -36,10 +37,10 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
           }
         });
     
-    if ( emailUser && passwordUser ) {
+    /*if ( emailUser && passwordUser ) {
       setEmailUser('');
       setPasswordUser('');
-    }
+    }*/
   };
 
   const closeAccount = () => {
@@ -59,7 +60,7 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
   return (
     <>
     <div className={ menuIsOpen ? 'account-modal' : 'account__disable'}>
-    <div className="modal-overlay"></div>
+    <div className="modal-overlay" onClick={() => closeAccount()}></div>
       <div className="account">
         <i 
           className="fas fa-times account-close"
@@ -75,7 +76,7 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
               <input 
                 id="email"
                 name="email"
-                className="account__form"
+                className={ error ? 'account__form account__form-error' : 'account__form'}
                 required
                 type="email"
                 value={emailUser}
@@ -85,7 +86,7 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
               <input 
                 id="password"
                 name="password"
-                className="account__form"
+                className={ error ? 'account__form account__form-error' : 'account__form'}
                 required
                 type="password"
                 value={passwordUser}
@@ -106,6 +107,7 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
                 Забыли пароль
               </a>
             </div>
+            <p className="error">{error}</p>
             <button className="account__btn" type="submit">Войти</button>
             <a 
               className="account__link"

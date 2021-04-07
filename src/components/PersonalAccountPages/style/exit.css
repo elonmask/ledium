@@ -16,20 +16,13 @@
 }
 
 .exit {
-  width: 500px;
-  height: 300px;
   z-index: 1000;
   padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
-  box-shadow: 0 3px 13px 0 rgba(0,0,0, 0.3);
-  visibility: hidden;
-  opacity: 0;
   height: max-content;
-  position: absolute;
   transition: all 0.5s;
 }
 
@@ -37,11 +30,6 @@
   padding: 20px;
   font-size: 28px;
   font-weight: 300;
-}
-
-.exit-active {
-  visibility: visible;
-  opacity: 1;
 }
 
 .exit__btns {

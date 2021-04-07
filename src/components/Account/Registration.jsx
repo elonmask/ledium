@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import { Formik } from 'formik';
 import InputMask from 'react-input-mask';
 
 import './account.css'
@@ -13,7 +12,8 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
   const [email, setEmail] = useState('');
   const [number, setNumber] = useState('');
   const [password, setPassword] = useState('');
-  const [validatePass, setValidatePass] = useState(null)
+  const [validatePass, setValidatePass] = useState(null);
+  const [error, setError] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,7 +36,7 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
         .then(response => {
           console.log(response);
           if(response.data.status == true) {
-            alert('Пользователь с такой почтой уже существует')
+            setError('Пользователь с такой почтой уже существует')
           } else if (response.data.status == false) {
             axios.post('https://api.ledium.shop/adduser', data)
               .then(response => {
@@ -51,7 +51,7 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
     //axios.post('https://api.ledium.shop/adduser', data)
      //.then(response => console.log(response));
 
-    if (firstName && lastName && surname && number && email && password) {
+    /*if (firstName && lastName && surname && number && email && password) {
   
       setFirstName('');
       setLastName('');
@@ -59,7 +59,7 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
       setNumber('');
       setEmail('');
       setPassword('');
-    }
+    }*/
   };
 
   const closeRegPopUp = () => {
@@ -72,7 +72,7 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
   }
 
   const validate = (str) => {
-    const reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$/;
+    const reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,32}$/;
     const test = reg.test(password);
     if (test) {
         console.log('pass');
@@ -86,7 +86,7 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
   return (
     <>
     <div className={ regPopUp ? 'account-modal' : 'account__disable'}>
-      <div className="modal-overlay"></div>
+      <div className="modal-overlay" onClick={() => closeRegPopUp()}></div>
       <div className="account">
         <i 
           className="fas fa-times account-close"
@@ -149,7 +149,7 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
               <input 
                 id="password-reg"
                 name="password"
-                className={validatePass ? "account__form" : "account__form disable"}
+                className={validatePass !== false ? "account__form-pass" : "account__form-pass disable"}
                 required
                 type="password"
                 value={password}
@@ -164,6 +164,7 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
                 <br/>Регистрируясь, вы соглашаетесь с  
                 <a className="account__link"> пользовательским соглашением</a>
               </p>
+              <p className="error">{error}</p>
             <button 
               className="account__btn" type="submit"
               disabled={ !validatePass }

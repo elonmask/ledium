@@ -50,7 +50,10 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen} ) => {
     { product !== null ? (
       <>
         <div className={ shoppingCartOpen ? 'account-modal' : 'account__disable'}>
-    <div className="modal-overlay"></div>
+          <div 
+            className="modal-overlay" 
+            onClick={() => CloseCart()}
+          ></div>
       <div className="account">
         <i 
           className="fas fa-times account-close"

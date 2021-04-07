@@ -47,7 +47,7 @@ const catalogProduct = ( {good} ) => {
   return (
     <>
       <div className="card">
-        <img src={heart} alt="" className="heart" />
+        {/*<img src={heart} alt="" className="heart" />*/}
         <img 
           alt="" 
           src={ picture !== 'undefined' ? picture : noPhoto} 

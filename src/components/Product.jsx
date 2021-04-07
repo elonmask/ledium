@@ -118,16 +118,6 @@ const Product = ({match}) => {
               <p className="p-descrip">Описание</p>
               <p className="product__description">{descrp}</p>
               <div className="product__buy">
-                <div className="product__buy-quantity">
-                  <label className="quantity-title" htmlFor="input-quantity">Кол-во</label>
-                  <input 
-                    className="quantity" 
-                    type="number" 
-                    id="input-quantity" 
-                    name="quantity" 
-                    min="1" max=""
-                  />
-                </div>
                 <div className="product__price">
                   <p className="quantity-title">Цена</p>
                   <p className="poduct__price__text">{products.price} грн</p>

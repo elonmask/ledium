@@ -91,6 +91,12 @@
   padding: 20px 0 20px 90px;
 }
 
+.personal-info__block h1 {
+  font-size: 25px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
 .personal-info__content {
   display: flex;
   justify-content: space-between;
@@ -107,7 +113,7 @@
 }
 
 .personal-info__content div {
-  margin-right: 30px;
+  margin-right: 20px;
 }
 
 .personal-info__section a,
@@ -163,11 +169,7 @@
   .personal-info__column {
     max-width: 60%;
   }
-  .personal-info__block {
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    padding: 50px 0 50px 30px;
-  }
+  
 }
 
 @media screen and (max-width: 700px) {
@@ -291,6 +293,10 @@
     right: -10px;
     justify-content: center;
   }
+  .personal-contact-email {
+    word-wrap: break-word;
+    width: 70%;
+  }
   .personal-info__user-section i {
     font-size: 46px;
     margin-bottom: 10px;
@@ -317,6 +323,9 @@
     top: 4px;
     font-size: 20px;
   }
+  .personal-contact-title {
+    max-width: min-content;
+  }
 }
 
 .personal-info-active {
@@ -331,4 +340,14 @@
 .edit span:hover {
   color: #56b4c9;
   text-decoration: underline;
+}
+
+.overlay-menu {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #000;
+  z-index: -1;
 }

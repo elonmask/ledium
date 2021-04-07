@@ -7,6 +7,7 @@ import '../public/style/order.css'
 
 const Order = ({ makeOrder, setOrder, product }) => {
   const [amount, setAmount] = useState('');
+  const [total, setTotal] = useState('');
   const [user, setUser] = useState({});
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -14,8 +15,22 @@ const Order = ({ makeOrder, setOrder, product }) => {
   const [email, setEmail] = useState('');
   const [number, setNumber] = useState('');
   const [password, setPassword] = useState('');
+  const [validatePass, setValidatePass] = useState(null);
+  const [error, setError] = useState('');
 
   const userData = sessionStorage.getItem('currentUser');
+
+  const validate = (str) => {
+    const reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,32}$/;
+    const test = reg.test(password);
+    if (test) {
+        console.log('pass');
+        setValidatePass(true)
+    } else{
+        console.log('fail');
+        setValidatePass(false)
+    }
+  }
 
   const closeOrder = () => {
     setOrder(false);
@@ -42,7 +57,7 @@ const Order = ({ makeOrder, setOrder, product }) => {
     let total = amount;
     let n = +total;
     let sum = n + 59;
-    return `${sum}`
+    return `${sum}`;
   }
 
   const changeUser = (name, info) => {
@@ -99,7 +114,8 @@ const Order = ({ makeOrder, setOrder, product }) => {
           .then(response => {
             console.log(response);
             if(response.data.status == true) {
-              alert('Пользователь с такой почтой уже существует. Пожалуйста войдите в личный кабинет')
+              setError('Пользователь с такой почтой уже существует. Пожалуйста войдите в личный кабинет');
+              console.log(error);
             } else if (response.data.status == false) {
               axios.post('https://api.ledium.shop/adduser', data)
                 .then(response => {
@@ -122,7 +138,7 @@ const Order = ({ makeOrder, setOrder, product }) => {
   return (
     <>
     <div className={ makeOrder ? 'account-modal' : 'account__disable'}>
-    <div className="modal-overlay"></div>
+    <div className="modal-overlay" onClick={() => closeOrder()}></div>
       <div className="account">
         <i 
           className="fas fa-times account-close"
@@ -221,6 +237,7 @@ const Order = ({ makeOrder, setOrder, product }) => {
                 <div>!</div>
                 <p>Ваши контактные данные</p>
               </div>
+              <p className="error">{error}</p>
             <div className="order-per-info-block">
               <div className="order-per-info">
                 <div className="order-inputs">
@@ -305,11 +322,11 @@ const Order = ({ makeOrder, setOrder, product }) => {
                 <input 
                   id="order-pass"
                   name="order-pass"
-                  className="account__form order__form"
+                  className={validatePass !== false ? "account__form-pass" : "account__form-pass disable"}
                   required
                   type="password"
                   value={password}
-                  onChange={event => setPassword(event.target.value)}
+                  onChange={event => validate(setPassword(event.target.value))}
                 />
                 </div>
               </div>

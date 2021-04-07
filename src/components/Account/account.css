@@ -74,6 +74,21 @@
   padding-left: 10px;
 }
 
+.account__form-pass {
+  border: 1px solid #d2d2d2;
+  border-radius: 4px;
+  outline: none;
+  transition: border .2s ease-in-out;
+  background-color: #fff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 16px;
+  height: 40px;
+  margin: 0 0 10px;
+  padding-left: 10px;
+}
+
 .account__form:focus {
   border: 1px solid #64cfe7;
 }
@@ -127,6 +142,11 @@
   font-size: 20px;
   color: #333;
   cursor: pointer;
+  transition: color 0.1s;
+}
+
+.account-close:hover {
+  color: #56b4c9;
 }
 
 .account__text {
@@ -170,3 +190,13 @@
   align-items: center;
   z-index: 5000;
 }
+
+.error {
+  color: red;
+}
+
+.account__form-error {
+  border-color: red;
+}
+
+

@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import potok from '../public/images/potok.svg';
 import flow from '../public/images/temp_svet.svg';
 import heart from '../public/images/heart-shape.svg';
+import FilterMenu from './FilterMenu';
+import { getProducts } from '../public/utils';
+import categoriesEng from '../public/categories.json';
 
 const Main = () => {
- 
+
   return (
     
     <main className="section">
