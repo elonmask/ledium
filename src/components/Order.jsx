@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import InputMask from 'react-input-mask';
-import crypto from 'crypto'
+import crypto from 'crypto';
+import Account from '../components/Account/Account';
 
 import '../public/style/order.css'
 
-const Order = ({ makeOrder, setOrder, product }) => {
+const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
   const [amount, setAmount] = useState('');
   const [total, setTotal] = useState('');
   const [user, setUser] = useState({});
@@ -19,6 +20,7 @@ const Order = ({ makeOrder, setOrder, product }) => {
   const [error, setError] = useState('');
 
   const userData = sessionStorage.getItem('currentUser');
+  const localData = localStorage.getItem('currentUser');
 
   const validate = (str) => {
     const reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,32}$/;
@@ -34,6 +36,11 @@ const Order = ({ makeOrder, setOrder, product }) => {
 
   const closeOrder = () => {
     setOrder(false);
+  };
+
+  const openAccount = () => {
+    setOrder(false);
+    setMenuIsOpen(true);
   }
 
   useEffect(() => {
@@ -49,7 +56,9 @@ const Order = ({ makeOrder, setOrder, product }) => {
     if(makeOrder == true) {
       if(userData !== null && userData !== undefined) {
         setUser(JSON.parse(userData))
-      } 
+      } else if (localData !== null && localData !== undefined) {
+        setUser(JSON.parse(localData))
+      }
     }
   }, [makeOrder])
 
@@ -237,6 +246,13 @@ const Order = ({ makeOrder, setOrder, product }) => {
                 <div>!</div>
                 <p>Ваши контактные данные</p>
               </div>
+              <p className="enter-title">Если у Вас уже есть аккаунт - <a 
+                  className="enter"
+                  onClick={() => openAccount()}
+                >
+                  Войти
+                </a>
+              </p>
               <p className="error">{error}</p>
             <div className="order-per-info-block">
               <div className="order-per-info">
@@ -451,6 +467,10 @@ const Order = ({ makeOrder, setOrder, product }) => {
             </div>
           </div>
       </div>
+      <Account
+        setMenuIsOpen={setMenuIsOpen}
+        menuIsOpen={menuIsOpen}
+      />
     </>
   )
 }

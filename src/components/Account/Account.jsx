@@ -11,8 +11,10 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
   const [emailUser, setEmailUser] = useState('');
   const [passwordUser, setPasswordUser] = useState('');
   const [error, setError] = useState('');
+  const [local, setLocal] = useState(false);
 
   const userData = sessionStorage.getItem('currentUser');
+  const localData = localStorage.getItem('currentUser');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,8 +32,13 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
             setError('Неправильная почта или пароль');
           } else if (response.data.status == true) {
             console.log(response);
-            sessionStorage.setItem('currentUser', JSON.stringify(response.data.userData) );
-            closeAccount();
+            if(local == true) {
+              localStorage.setItem('currentUser', JSON.stringify(response.data.userData) );
+              closeAccount();
+            } else {
+              sessionStorage.setItem('currentUser', JSON.stringify(response.data.userData) );
+              closeAccount();
+            }
           } else {
             alert('Попробуйте позже');
           }
@@ -56,6 +63,16 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
     setChangePassword(true)
     setMenuIsOpen(false);
   }
+
+  const handleChange = (e) => {
+    const checked = e;
+    console.log(checked);
+    if(checked == true) {
+      setLocal(true);
+    }
+  }
+
+  console.log(localData);
 
   return (
     <>
@@ -97,6 +114,8 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
                 <input 
                   id="remember-user"
                   type="checkbox"
+                  name="checkbox"
+                  onChange={event => handleChange(event.target.checked)}
                 />
                 <label className="account__checkbox" htmlFor="remember-user">Запомнить меня</label>
               </div>

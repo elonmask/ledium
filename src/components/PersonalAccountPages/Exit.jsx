@@ -5,12 +5,14 @@ import './style/exit.css';
 const Exit = ({ modalIsOpen, setModalIsOpen }) => {
 
   const userData = sessionStorage.getItem('currentUser');
+  const localData = localStorage.getItem('currentUser');
 
   const closeModal = () => {
     setModalIsOpen(false)
   }
 
   const exit = () => {
+    localStorage.clear();
     sessionStorage.clear();
     setModalIsOpen(false);
     window.location.replace('/');

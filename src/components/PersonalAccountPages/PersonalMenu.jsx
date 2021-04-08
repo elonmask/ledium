@@ -9,11 +9,14 @@ const PersonalMenu = ({ setPerMenuIsOpen, perMenuIsOpen }) => {
   const [data, setData] = useState({});
 
   const userData = sessionStorage.getItem('currentUser');
+  const localData = localStorage.getItem('currentUser');
 
   useEffect(() => {
     if(perMenuIsOpen == true) {
       if(userData !== null && userData !== undefined) {
         setData(JSON.parse(userData))
+      } else if (localData !== null && localData !== undefined) {
+        setData(JSON.parse(localData))
       }
     }
   }, [perMenuIsOpen]);

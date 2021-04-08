@@ -271,6 +271,8 @@ const Header = () => {
       <ShoppingCart 
         shoppingCartOpen={shoppingCartOpen}
         setShoppingCartOpen={setShoppingCartOpen}
+        setMenuIsOpen={setMenuIsOpen}
+        menuIsOpen={menuIsOpen}
       />
     </header>
     )

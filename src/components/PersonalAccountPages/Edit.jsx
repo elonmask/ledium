@@ -8,10 +8,13 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
   const [validatePass, setValidatePass] = useState(true);
 
   const userData = sessionStorage.getItem('currentUser');
+  const localData = localStorage.getItem('currentUser');
 
   useEffect(() => {
     if(userData !== null && userData !== undefined) {
       setUser(JSON.parse(userData))
+    } else if (localData !== null && localData !== undefined) {
+      setUser(JSON.parse(localData))
     }
   }, []);
 

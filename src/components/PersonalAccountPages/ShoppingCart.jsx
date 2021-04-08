@@ -4,7 +4,7 @@ import Order from '../Order'
 
 import './style/shopping-cart.css';
 
-const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen} ) => {
+const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, menuIsOpen } ) => {
 
   const goods = sessionStorage.getItem('goods');
   let arr = JSON.parse(goods);
@@ -118,6 +118,8 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen} ) => {
         makeOrder={makeOrder}
         setOrder={setOrder}
         product={product}
+        setMenuIsOpen={setMenuIsOpen}
+        menuIsOpen={menuIsOpen}
       />
       </>
 

@@ -8,10 +8,13 @@ const PersonalInfo = () => {
   const [edit, setEdit] = useState(false);
   
   const userData = sessionStorage.getItem('currentUser');
+  const localData = localStorage.getItem('currentUser');
 
   useEffect(() => {
     if(userData !== null && userData !== undefined) {
       setData(JSON.parse(userData))
+    } else if (localData !== null && localData !== undefined) {
+      setData(JSON.parse(localData))
     }
   }, []);
 

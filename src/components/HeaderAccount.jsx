@@ -6,10 +6,14 @@ const HeaderAccount = ({ menuIsOpen, setMenuIsOpen, perMenuIsOpen, setPerMenuIsO
   const [login, setLogin] = useState(false);
 
   const userData = sessionStorage.getItem('currentUser');
+  const localData = localStorage.getItem('currentUser');
 
   const userLogin = () => {
     console.log(userData);
     if (userData !== null && userData !== undefined) {
+      setLogin(true);
+      setPerMenuIsOpen(true);
+    } else if (localData !== null && localData !== undefined) {
       setLogin(true);
       setPerMenuIsOpen(true);
     } else {
