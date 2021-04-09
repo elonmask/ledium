@@ -46,7 +46,7 @@ const Catalog = () => {
         setCategories(getCategories)
       })
     }
-  })
+  }, [])
 
   const setPicture = (id) => {
     let img = '';

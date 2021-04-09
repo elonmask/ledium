@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { useHistory } from 'react-router-dom';
-import Order from '../Order'
+import Order from '../Order';
+import ProductAmount from './ProductAmount';
 
 import './style/shopping-cart.css';
 
@@ -24,7 +24,8 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, me
     let total = 0;
     product.map(n => {
       let price = +n.price;
-      total += price;
+      let priceProduct = price*n.count;
+      total += priceProduct;
     });
     return `${total}`;
   }
@@ -47,7 +48,7 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, me
 
   return (
     <>
-    { product !== null ? (
+    { product !== null && product.length >= 1 ? (
       <>
         <div className={ shoppingCartOpen ? 'account-modal' : 'account__disable'}>
           <div 
@@ -61,6 +62,7 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, me
         ></i>
         <h2 className="account__title">Корзина</h2>
         {product.map(n => (
+        
           <>
              <div>
         <div className="cart-product">
@@ -80,16 +82,12 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, me
             ></i>
           </div>
           <div className="cart-details">
-            <label className="quantity-title" htmlFor="product-quantity">
-              <input 
-                className="quantity" 
-                type="number" 
-                id="product-quantity" 
-                name="quantity" 
-                min="1" max=""
-              />
-            </label>
-            <a className="cart-product-price">{n.price} грн</a>
+            <ProductAmount
+              product={product}
+              setProduct={setProduct}
+              n={n}
+              shoppingCartOpen={shoppingCartOpen}
+            />
           </div>
         </div>
           </>
@@ -125,7 +123,7 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, me
 
     ) : (
       <div className={ shoppingCartOpen ? 'account-modal' : 'account__disable'}>
-    <div className="modal-overlay"></div>
+    <div className="modal-overlay" onClick={() => CloseCart()}></div>
       <div className="account">
         <i 
           className="fas fa-times account-close"

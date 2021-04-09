@@ -43,11 +43,6 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
             alert('Попробуйте позже');
           }
         });
-    
-    /*if ( emailUser && passwordUser ) {
-      setEmailUser('');
-      setPasswordUser('');
-    }*/
   };
 
   const closeAccount = () => {
@@ -71,8 +66,6 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
       setLocal(true);
     }
   }
-
-  console.log(localData);
 
   return (
     <>

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import ShoppingCart from './PersonalAccountPages/ShoppingCart';
 import Tabs from './Tabs.jsx';
 import axios from 'axios';
 import { getProduct } from '../public/utils'
@@ -15,6 +16,8 @@ const Product = ({match}) => {
   const [products, setProducts] = useState(getProduct(match.params.id));
   const [descrp, setDescrip] = useState('');
   const [product, setProduct] = useState(array);
+  const [shoppingCartOpen, setShoppingCartOpen] = useState(false);
+  const [added, setAdded] = useState(false)
 
   useEffect(() => {
     if( products == false ) {
@@ -28,26 +31,61 @@ const Product = ({match}) => {
     setDescrip(products.description.text);
   }, [])
 
+  products.count = 1;
+
   const addProduct = () => {
-    
     if(products.available == 'В наличии') {
       let arr;
       if(goods == null) {
         arr = [];
       } else {
         arr = JSON.parse(sessionStorage.getItem('goods'));
+        
       }
       arr.push(products);
       sessionStorage.setItem('goods', JSON.stringify(arr));
       setProduct(arr);
-      console.log(product);
+      setAdded(true);
+      setShoppingCartOpen(true);
     } else {
       alert('Товара нет в наличии');
     }
   }
 
-  const setName = (str) => {
+  const findProduct = () => {
+    let result = false;
+    if (  product !== null && product.length !== 0 ) {
+      product.map(n => {
+        if(n.id == products.id) {
+          result = true;
+        }
+      })
+    if (result == true) {
+      return (
+        <p className="added">Товар в корзине</p>
+      )
+    } else {
+      return (
+        <button 
+          className="header__catalog product__btn"
+          onClick={ () => addProduct()}
+        >
+          Добавить в корзину
+        </button>
+      )
+    }
+    } else {
+      return (
+      <button 
+        className="header__catalog product__btn"
+        onClick={ () => addProduct()}
+      >
+        Добавить в корзину
+      </button>
+    )}
+  }
 
+  const setName = (str) => {
     const array = [];
     const name = str.split(' ');
 
@@ -58,7 +96,6 @@ const Product = ({match}) => {
        array.push(name[i])
      }
     }
-
     return array.join(' ')
   }
 
@@ -78,7 +115,6 @@ const Product = ({match}) => {
         }
       })
     }
-
     return value;
   }
 
@@ -96,7 +132,7 @@ const Product = ({match}) => {
               ></img>
             </div>
             <div className="product__info-block">
-              <p>{products.available == 'true' ? 'Есть в наличии' : 'Нет в наличии'}</p>
+              <p>{products.available}</p>
               <div className="product__card">
                 <div className="product__icon">
                   <img
@@ -122,17 +158,16 @@ const Product = ({match}) => {
                   <p className="quantity-title">Цена</p>
                   <p className="poduct__price__text">{products.price} грн</p>
                 </div>
-                <button 
-                  className="header__catalog product__btn"
-                  onClick={ () => addProduct()}
-                >
-                  Добавить в корзину
-                </button>
+                {findProduct()}
               </div>
             </div>
           </div>
           <Tabs products={products}/>
         </main>
+        <ShoppingCart 
+          shoppingCartOpen={shoppingCartOpen}
+          setShoppingCartOpen={setShoppingCartOpen}
+      />
       </>
     )
   } else {

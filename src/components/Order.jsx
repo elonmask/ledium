@@ -8,7 +8,6 @@ import '../public/style/order.css'
 
 const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
   const [amount, setAmount] = useState('');
-  const [total, setTotal] = useState('');
   const [user, setUser] = useState({});
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -34,6 +33,23 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
     }
   }
 
+  const sum = (n) => {
+      if ( !n.count ) {
+        return n.price;
+      } else {
+        let price = +n.price; 
+        return `${price*n.count}`;
+      }
+  }
+
+  const fullPrice = () => {
+    let total = 0;
+    product.map(n => {
+      total += +n.price*n.count;
+    });
+    return `${total}`
+  }
+
   const closeOrder = () => {
     setOrder(false);
   };
@@ -46,11 +62,11 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
   useEffect(() => {
     let total = 0;
     product.map(n => {
-      let price = +n.price;
-      total += price;
+      total += +n.price*n.count;
     });
-    setAmount(`${total}`);
-  }, [])
+    let sum = total + 59;
+    setAmount(`${sum}`)
+  })
 
   useEffect(() => {
     if(makeOrder == true) {
@@ -61,13 +77,6 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
       }
     }
   }, [makeOrder])
-
-  const totalSum = () => {
-    let total = amount;
-    let n = +total;
-    let sum = n + 59;
-    return `${sum}`;
-  }
 
   const changeUser = (name, info) => {
     let obj = {...user}
@@ -99,7 +108,8 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
     }
   }
 
-  const addOrder = () => {
+  const addOrder = (event) => {
+    event.preventDefault();
     if ( user.hasOwnProperty('email') ) {
       const date = new Date();
       const userID = crypto.createHash('sha256').update(email + '' + password).digest('base64');
@@ -149,13 +159,14 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
     <div className={ makeOrder ? 'account-modal' : 'account__disable'}>
     <div className="modal-overlay" onClick={() => closeOrder()}></div>
       <div className="account">
+      <form onSubmit={addOrder}>
         <i 
           className="fas fa-times account-close"
           onClick={()=>{closeOrder()}}
         ></i>
         <h2 className="account__title">Оформление заказа</h2>
           { user.hasOwnProperty('email') ? (
-            <form className="order__content-block">
+            <div className="order__content-block">
             <div className="order-units">
               <div>!</div>
               <p>Ваши контактные данные</p>
@@ -239,14 +250,14 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
               </div>
             </div>
           </div>
-        </form>
+          </div>
           ) : (
             <form className="order__content-block">
               <div className="order-units">
                 <div>!</div>
                 <p>Ваши контактные данные</p>
               </div>
-              <p className="enter-title">Если у Вас уже есть аккаунт - <a 
+              <p className="enter-title"><a 
                   className="enter"
                   onClick={() => openAccount()}
                 >
@@ -352,7 +363,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
           
           <div className="order__title">
               <h1>Заказ</h1>
-              <p>на сумму {amount} грн</p>
+              <p>на сумму {fullPrice()} грн</p>
             </div>
             <div className="order-info">
               <div className="order-units">
@@ -375,11 +386,11 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
                   </div>
                   <div className="order-product-block-info">
                     <p className="order-product-text">Количество</p>
-                    <p className="order-product-price">1</p>
+                    <p className="order-product-price">{n.count}</p>
                   </div>
                   <div className="order-product-block-info">
                     <p className="order-product-text">Сумма</p>
-                    <p className="order-product-price">{n.price} грн</p>
+                    <p className="order-product-price">{sum(n)} грн</p>
                   </div>
                 </div>
                 </div>
@@ -442,7 +453,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
               </div>
                 <div className="order-total-block">
                   <p className="order-total-text">Всего</p>
-                  <p className="order-price">{amount}</p>
+                  <p className="order-price">{fullPrice()}</p>
                 </div>
                 <div className="order-total-block">
                   <p className="order-total-text">стоимость доставки</p>
@@ -451,20 +462,20 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
               <div className="order-total">
                 <div className="order-total-block">
                   <p className="order-total-text">Итого</p>
-                  <p className="order-total-price">{totalSum()} грн</p>
+                  <p className="order-total-price">{amount} грн</p>
                 </div>
               </div>
               <div>
                 <button 
                   className="order-total-btn"
-                  type='button'
-                  onClick={() => addOrder()}
+                  type='submit'
                 >
                   Заказ подтверждаю
                 </button>
                 <p className="order-total-rules">Подтверждая заказ, я принимаю условия пользовательского соглашения</p>
               </div>
             </div>
+            </form>
           </div>
       </div>
       <Account

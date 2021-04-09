@@ -17,6 +17,7 @@
   color: #56b4c9;
   cursor: pointer;
   align-self: center;
+  margin-right: 20px;
 }
 
 .cart-product-title:hover {
@@ -153,4 +154,28 @@
     margin-top: 20px;
     justify-content: space-between;
   }
+}
+
+.amount-block {
+  display: flex;
+}
+
+.amount-btn {
+  background-color: #fff;
+  border: 1px solid #cacaca;
+  border-radius: 3px;
+  padding: 7px;
+  cursor: pointer;
+}
+
+.amount-btn:hover {
+  background-color: #56b4c962;
+}
+
+.amount-count {
+  padding: 10px;
+}
+
+.amount-btn i {
+  color: #3e77aa;
 }

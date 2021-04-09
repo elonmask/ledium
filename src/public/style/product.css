@@ -192,3 +192,8 @@
 .product h2 {
   margin-bottom: 0px;
 }
+
+.added {
+  color: #56b4c9;
+  align-self: flex-end;
+}
