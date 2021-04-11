@@ -28,15 +28,15 @@ const PersonalInfo = () => {
               <h1>Личный данные</h1>
               <div className="personal-info__content">
                 <div>
-                  <p>Фамилия:</p>
+                  <p className="personal-info__content-title">Фамилия:</p>
                   <p>{data.surname}</p>
                 </div>
                 <div>
-                  <p>Имя:</p>
+                  <p className="personal-info__content-title">Имя:</p>
                   <p>{data.first_name}</p>
                 </div>
                 <div>
-                  <p>Отчество:</p>
+                  <p className="personal-info__content-title">Отчество:</p>
                   <p>{data.last_name}</p>
                 </div>
               </div>
@@ -59,11 +59,11 @@ const PersonalInfo = () => {
               <h1>Контакты</h1>
               <div className="personal-info__content">
                 <div className="personal-contact">
-                  <p className="personal-contact-title">Подтвержденный телефон:</p>
+                  <p className="personal-contact-title personal-info__content-title">Подтвержденный телефон:</p>
                   <p>{data.number}</p>
                 </div>
                 <div>
-                  <p>Электронная почта:</p>
+                  <p className="personal-info__content-title">Электронная почта:</p>
                   <p className="personal-contact-email">{data.email}</p>
                 </div>
               </div>
@@ -108,7 +108,7 @@ const PersonalInfo = () => {
               <h1>Логин</h1>
               <div className="personal-info__content">
                 <div>
-                  <p>Текущий пароль:</p>
+                  <p className="personal-info__content-title">Текущий пароль:</p>
                   <p>Сменить пароль</p>
                 </div>
               </div>

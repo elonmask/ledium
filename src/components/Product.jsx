@@ -5,6 +5,8 @@ import axios from 'axios';
 import { getProduct } from '../public/utils'
 import noPhoto from '../public/images/no_photo.jpg';
 import '../public/style/product.css';
+import { useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import tempSvet from '../public/images/temp_svet.svg';
 import potok from '../public/images/potok.svg';
@@ -17,7 +19,9 @@ const Product = ({match}) => {
   const [descrp, setDescrip] = useState('');
   const [product, setProduct] = useState(array);
   const [shoppingCartOpen, setShoppingCartOpen] = useState(false);
-  const [added, setAdded] = useState(false)
+  const [added, setAdded] = useState(false);
+  let location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     if( products == false ) {
@@ -30,6 +34,14 @@ const Product = ({match}) => {
     }
     setDescrip(products.description.text);
   }, [])
+
+  useEffect(() => {
+    if (products !== false) {
+      if (products.id !== match.params.id) {
+        setProducts(getProduct(match.params.id));
+      }
+    }
+  }, [location])
 
   products.count = 1;
 
@@ -122,6 +134,13 @@ const Product = ({match}) => {
     return (
       <>
         <main className="product">
+        <div 
+          className="breadcrumbs-product"
+          onClick={() => history.goBack()}
+        >
+          <i class="fas fa-chevron-left"></i>
+          <a>Назад</a>
+        </div>
           <h2>{setName(products.name)}</h2>
           <div className="product__info">
             <div className="product__block-img">
@@ -132,7 +151,7 @@ const Product = ({match}) => {
               ></img>
             </div>
             <div className="product__info-block">
-              <p>{products.available}</p>
+              <p className="available">{products.available}</p>
               <div className="product__card">
                 <div className="product__icon">
                   <img
@@ -151,7 +170,7 @@ const Product = ({match}) => {
                 <span>{setChar('Lm')}</span>
               </div>
               </div>
-              <p className="p-descrip">Описание</p>
+              {/*<p className="p-descrip">Описание</p>*/}
               <p className="product__description">{descrp}</p>
               <div className="product__buy">
                 <div className="product__price">

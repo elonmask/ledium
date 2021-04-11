@@ -601,7 +601,7 @@ button:focus {
     padding: 0;
   }
   .section__menu-h2 {
-    margin: 90px 30px 20px;
+    margin: 90px 30px 40px;
   }
   .section__menu-h2 h2 {
     font-size: 20px;
@@ -629,7 +629,7 @@ button:focus {
 @media (min-width: 769px) {
   .section__menu {
     display: block;
-    padding: 40px 20%;
+    padding: 40px 20% 100px;
   }
 
   .section__menu-h2 h2 {
@@ -1197,7 +1197,7 @@ button:focus {
 }
 
 .footer {
-  margin: 0;
+  margin: 0px 0 0;
   position: relative;
   padding: 70px 10%;
   background: white;

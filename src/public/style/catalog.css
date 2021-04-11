@@ -134,7 +134,7 @@ button:focus {
 }
 
 .catalog-goods {
-  margin-bottom: 50px;
+  margin-bottom: 130px;
   display: grid;
   grid-template-rows: repeat(auto-fill, 1fr);
   grid-template-columns: repeat(6, 1fr);
@@ -636,4 +636,10 @@ button:focus {
 
 .breadcrumbs a:hover {
   opacity: 1;
+}
+
+@media screen and (max-width: 1199px) {
+  .section-container {
+    margin-top: 40px !important;
+  }
 }

@@ -157,7 +157,6 @@ const Header = () => {
               ))}
             </ul>
             <ul className="mob-menu__list">
-              <li className="mob-menu__item-info"><a href="#" className="mob-menu__link-info">Нравится</a></li>
               <li className="mob-menu__item-info"><a href="#" className="mob-menu__link-info">О компании</a></li>
               <li className="mob-menu__item-info"><a href="#" className="mob-menu__link-info">Новинки</a></li>
               <li className="mob-menu__item-info"><a href="#" className="mob-menu__link-info header__link--active">Акции</a></li>

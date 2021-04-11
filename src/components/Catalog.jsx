@@ -73,7 +73,7 @@ const Catalog = () => {
     return (
       <>
         <section className="section__menu">
-          <section className="section__menu-h2">
+          <section className="section__menu-h2 section-container">
             <h2>Каталог</h2>
           </section>
           <ul className="section__list">

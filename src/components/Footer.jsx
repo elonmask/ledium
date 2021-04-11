@@ -79,14 +79,6 @@ const Footer = () => {
             </ul>
           </div>
           <div className="footer__section">
-            <h4 className="footer__h4">Пресс-центр</h4>
-            <ul>
-              <li className="footer__item"><a href="#" className="footer__nav-link">Новости</a></li>
-              <li className="footer__item"><a href="#" className="footer__nav-link">Фотогалерея</a></li>
-              <li className="footer__item"><a href="#" className="footer__nav-link">Видеогалерея</a></li>
-            </ul>
-          </div>
-          <div className="footer__section">
             <h4 className="footer__h4">Партнерам</h4>
             <ul>
               <li className="footer__item"><a href="#" className="footer__nav-link">Обучение</a></li>
@@ -105,9 +97,9 @@ const Footer = () => {
             <img src={youtube} alt="youtube" className="footer__icon" />
           </a>
         </div>
-        <a href="#">
+        {/*<a href="#">
           <img className="footer__arrow" alt="" src={arrow} />
-        </a>
+        </a>*/}
       </footer>
     )
   } else {

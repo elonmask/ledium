@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import InputMask from 'react-input-mask';
 import crypto from 'crypto';
 import Account from '../components/Account/Account';
+import categoriesEng from '../public/categories.json';
 
 import '../public/style/order.css'
 
@@ -17,9 +19,19 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
   const [password, setPassword] = useState('');
   const [validatePass, setValidatePass] = useState(null);
   const [error, setError] = useState('');
+  const history = useHistory();
 
   const userData = sessionStorage.getItem('currentUser');
   const localData = localStorage.getItem('currentUser');
+
+  const openProductPage = (product) => {
+    categoriesEng.map(n => {
+      if ( n.id === product.categoryId ) {
+        setOrder(false);
+        history.push(`/catalog/category/${n.name}/product/${product.id}`);
+      }
+    })
+  }
 
   const validate = (str) => {
     const reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,32}$/;
@@ -108,8 +120,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
     }
   }
 
-  const addOrder = (event) => {
-    event.preventDefault();
+  const addOrder = () => {
     if ( user.hasOwnProperty('email') ) {
       const date = new Date();
       const userID = crypto.createHash('sha256').update(email + '' + password).digest('base64');
@@ -159,7 +170,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
     <div className={ makeOrder ? 'account-modal' : 'account__disable'}>
     <div className="modal-overlay" onClick={() => closeOrder()}></div>
       <div className="account">
-      <form onSubmit={addOrder}>
+      
         <i 
           className="fas fa-times account-close"
           onClick={()=>{closeOrder()}}
@@ -167,6 +178,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
         <h2 className="account__title">Оформление заказа</h2>
           { user.hasOwnProperty('email') ? (
             <div className="order__content-block">
+              <form className="order__content-block">
             <div className="order-units">
               <div>!</div>
               <p>Ваши контактные данные</p>
@@ -250,6 +262,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
               </div>
             </div>
           </div>
+          </form>
           </div>
           ) : (
             <form className="order__content-block">
@@ -378,7 +391,12 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
                   src={n.picture}
                   className="order-product-img"
                 />
-                <a className="order-product-title">{n.name}</a>
+                <a 
+                  className="order-product-title"
+                  onClick={() =>openProductPage(n)}
+                >
+                  {n.name}
+                </a>
                 <div className="order-product-blocks">
                   <div className="order-product-block-info">
                     <p className="order-product-text">Цена</p>
@@ -468,14 +486,15 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
               <div>
                 <button 
                   className="order-total-btn"
-                  type='submit'
+                  type='button'
+                  onClick={() => addOrder()}
                 >
                   Заказ подтверждаю
                 </button>
                 <p className="order-total-rules">Подтверждая заказ, я принимаю условия пользовательского соглашения</p>
               </div>
             </div>
-            </form>
+            
           </div>
       </div>
       <Account

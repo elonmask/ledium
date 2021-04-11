@@ -31,9 +31,18 @@ const PersonalMenu = ({ setPerMenuIsOpen, perMenuIsOpen }) => {
     setPerMenuIsOpen(false);
   }
 
+  
+
   return (
     <>
-      <div
+    {/*<div
+      className={perMenuIsOpen 
+      ? 'wrapper wrapper-active'
+      : 'wrapper'
+    }
+    >
+  <div className='menu-overlay' onClick={()=>{setPerMenuIsOpen(false)}}></div>*/}
+    <div
         className={ 
         perMenuIsOpen 
           ? 'personal-menu-block personal-info-active'
@@ -47,8 +56,8 @@ const PersonalMenu = ({ setPerMenuIsOpen, perMenuIsOpen }) => {
           <div className="personal-info__user-section">
             <i className="far fa-user-circle"></i>
             <div>
-              <h2>Пользователь</h2>
               <p>{data.first_name} {data.surname}</p>
+              <p className="small-text">{data.email}</p>
             </div>
           </div>
           <div className="personal-info__sections">
@@ -85,6 +94,8 @@ const PersonalMenu = ({ setPerMenuIsOpen, perMenuIsOpen }) => {
             </ul>
           </div>
         </div>
+    {/*</div>*/}
+      
         <Exit 
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}

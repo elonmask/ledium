@@ -22,7 +22,7 @@ const Exit = ({ modalIsOpen, setModalIsOpen }) => {
     <>
     <div className={ modalIsOpen ? 'account-modal' : 'account__disable'}>
     <div className="modal-overlay" onClick={() => closeModal()}></div>
-      <div className="account">
+      <div className="account exit-account">
         <i 
           className="fas fa-times account-close"
           onClick={()=>{closeModal()}}

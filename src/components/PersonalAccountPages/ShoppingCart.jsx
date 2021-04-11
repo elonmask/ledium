@@ -1,15 +1,28 @@
 import React, {useEffect, useState} from 'react';
+import { useHistory } from 'react-router-dom';
 import Order from '../Order';
 import ProductAmount from './ProductAmount';
+import categoriesEng from '../../public/categories.json';
 
 import './style/shopping-cart.css';
 
-const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, menuIsOpen } ) => {
+const ShoppingCart = ( { shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, menuIsOpen } ) => {
+
+  const history = useHistory();
 
   const goods = sessionStorage.getItem('goods');
   let arr = JSON.parse(goods);
   const [makeOrder, setOrder] = useState(false);
   const [product, setProduct] = useState(arr);
+
+  const openProductPage = (product) => {
+    categoriesEng.map(n => {
+      if ( n.id === product.categoryId ) {
+        setShoppingCartOpen(false);
+        history.push(`/catalog/category/${n.name}/product/${product.id}`);
+      }
+    })
+  }
   
   const CloseCart = () => {
     setShoppingCartOpen(false)
@@ -73,6 +86,7 @@ const ShoppingCart = ( {shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, me
             />
             <a 
               className="cart-product-title"
+              onClick={() =>openProductPage(n)}
             >
               {n.name}
             </a>
