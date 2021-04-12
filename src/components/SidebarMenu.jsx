@@ -1,10 +1,26 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const SidebarMenu = () => {
 
   const history = useHistory();
-  const categories = [
+  const [categories, setCategories] = useState([]);
+
+  const transformData = (UA_Name) => {
+    
+    let result;
+
+    categoriesCache.forEach(cat => {
+      if (cat.text === UA_Name) {
+        result = cat.name;
+      }
+    })
+
+    return result;
+  }
+
+  const categoriesCache = [
     {
       id: 1,
       name: "lamps",
@@ -37,6 +53,14 @@ const SidebarMenu = () => {
     }
   ]
 
+  useEffect(() => {
+    axios.get(`https://admin.ledium.shop/categories`)
+      .then(res => {
+        const data = res.data;
+        setCategories(data);
+      })  
+  }, []);
+
   return (
     <>
       <div className="sidebar">
@@ -46,9 +70,9 @@ const SidebarMenu = () => {
             <li className="sidebar-item" key={category.id}>
               <button
                 className="sidebar-link"
-                onClick={() => history.push(`/catalog/category/${category.name}`)}
+                onClick={() => history.push(`/catalog/category/${transformData(category.name)}`)}
               >
-                {category.text}
+                {category.name}
               </button>
             </li>
           ))}

@@ -468,6 +468,11 @@ button:focus {
 
 .sidebar-list {
   margin: 50px 0 0;
+  border-radius: 25px;
+  background: white;
+  padding: 20px;
+  width: 200px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar-item {
