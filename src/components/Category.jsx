@@ -6,6 +6,9 @@ import FilterMenu from './FilterMenu';
 import { getProducts } from '../public/utils'
 import categoriesEng from '../public/categories.json';
 import '../public/style/catalog.css';
+import { getFeed } from '../redux/selectors/feedSelector';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFeed } from '../redux/actions/addFeed'
 
 const Category = ({match}) => {
 
@@ -19,7 +22,9 @@ const Category = ({match}) => {
     return n;
   }
 
-  //const [category, setCategory] = useState([]);
+  const feed = useSelector(getFeed);
+  const dispatch = useDispatch();
+
   const [array, setArray] = useState([]);
   const [categoryId, setCategoryId] = useState(findCategoryId(match.params.id));
   const [goods, setGoods] = useState(getProducts(categoryId));
@@ -28,17 +33,10 @@ const Category = ({match}) => {
   const history = useHistory();
 
   useEffect(() => {
-    if( goods == false ) {
-      axios
-      .get('https://api.ledium.shop/feed')
-      .then( response => {
-        sessionStorage.setItem("data", JSON.stringify(response.data));
-        setGoods(getProducts(findCategoryId(match.params.id)));
-      })
-    } else if (findCategoryId(match.params.id) != categoryId) {
-      setCategoryId(findCategoryId(match.params.id));
-    }
-  });
+      dispatch(addFeed);
+  }, []);
+
+  console.log(feed)
 
   useEffect(() => {
     if ( goods !== false ) {
