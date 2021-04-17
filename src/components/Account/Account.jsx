@@ -82,9 +82,8 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
             onSubmit={handleSubmit}
             action='https://api.ledium.shop/user/login/'
           >
-              <label  className="label-content" htmlFor="email">Эл. почта</label>
+              <label  className="label-content">Эл. почта</label>
               <input 
-                id="email"
                 name="email"
                 className={ error ? 'account__form account__form-error' : 'account__form'}
                 required
@@ -92,9 +91,8 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
                 value={emailUser}
                 onChange={event => setEmailUser(event.target.value.trim())}
               />
-              <label className="label-content" htmlFor="password">Пароль</label>
+              <label className="label-content">Пароль</label>
               <input 
-                id="password"
                 name="password"
                 className={ error ? 'account__form account__form-error' : 'account__form'}
                 required
@@ -105,7 +103,6 @@ const Account = ({ setMenuIsOpen, menuIsOpen }) => {
             <div className="account__more-info">
               <div>
                 <input 
-                  id="remember-user"
                   type="checkbox"
                   name="checkbox"
                   onChange={event => handleChange(event.target.checked)}

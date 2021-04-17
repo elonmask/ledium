@@ -27,10 +27,6 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
       password: password,
     };
 
-    //const userEmail = {
-     // email: email,
-    //}
-
     axios
       .post(`https://api.ledium.shop/user/email_exist/`, { "email": email })
         .then(response => {
@@ -47,19 +43,6 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
             alert('Попробуйте позже');
           }
         });
-    
-    //axios.post('https://api.ledium.shop/adduser', data)
-     //.then(response => console.log(response));
-
-    /*if (firstName && lastName && surname && number && email && password) {
-  
-      setFirstName('');
-      setLastName('');
-      setSurname('');
-      setNumber('');
-      setEmail('');
-      setPassword('');
-    }*/
   };
 
   const closeRegPopUp = () => {
@@ -94,9 +77,8 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
         ></i>
         <h2 className="account__title">Регистрация</h2>
           <form className="account__content" onSubmit={handleSubmit}>
-              <label  className="label-content" htmlFor="name">Имя</label>
+              <label  className="label-content">Имя</label>
               <input 
-                id="name"
                 name="name"
                 className="account__form"
                 required
@@ -104,9 +86,8 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
                 value={firstName}
                 onChange={event => setFirstName(event.target.value)}
               />
-              <label className="label-content" htmlFor="surname">Фамилия</label>
+              <label className="label-content">Фамилия</label>
               <input 
-                id="surname"
                 name="surname"
                 className="account__form"
                 required
@@ -114,9 +95,8 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
                 value={surname}
                 onChange={event => setSurname(event.target.value)}
               />
-              <label className="label-content" htmlFor="second-name">Отчество</label>
+              <label className="label-content">Отчество</label>
               <input 
-                id="second-name"
                 name="second-name"
                 className="account__form"
                 required
@@ -124,30 +104,25 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
                 value={lastName}
                 onChange={event => setLastName(event.target.value)}
               />
-              <label className="label-content" htmlFor="telephone">Номер телефона</label>
+              <label className="label-content">Номер телефона</label>
               <InputMask
                 type='tel'
-                id="telephone"
-                name="telephone"
                 className="account__form"
                 mask="+38 (999) 999 99 99" 
                 required
                 value={number}
                 onChange={event => setNumber(event.target.value)}
               />
-              <label  className="label-content" htmlFor="email">Эл. почта</label>
+              <label  className="label-content">Эл. почта</label>
               <input 
-                id="email-reg"
-                name="email"
                 className="account__form"
                 required
                 type="email"
                 value={email}
                 onChange={event => setEmail(event.target.value)}
               />
-              <label className="label-content" htmlFor="password">Придумайте пароль</label>
-              <input 
-                id="password-reg"
+              <label className="label-content">Придумайте пароль</label>
+              <input
                 name="password"
                 className={validatePass !== false ? "account__form-pass" : "account__form-pass disable"}
                 required

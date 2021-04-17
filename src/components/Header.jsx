@@ -143,7 +143,7 @@ const Header = () => {
                       className="mob-menu__img" 
                     />
                     {category.text}
-                    <i class="fas fa-chevron-right arrow-menu"></i>
+                    <i className="fas fa-chevron-right arrow-menu"></i>
                   </a>
                   
                   {/*<ul className="mob-menu__list-child">

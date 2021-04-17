@@ -48,14 +48,14 @@ const ProductAmount = ({ product, setProduct, n, shoppingCartOpen  }) => {
           className="amount-btn"
           onClick={() => minus()}
         >
-          <i class="fas fa-minus"></i>
+          <i className="fas fa-minus"></i>
         </button>
         <div className="amount-count">{n.count}</div>
         <button 
           className="amount-btn"
           onClick={() => plus()}
         >
-          <i class="fas fa-plus"></i>
+          <i className="fas fa-plus"></i>
         </button>
       </div>
       <a className="cart-product-price">{Sum()} грн</a>

@@ -80,13 +80,13 @@ const PersonalInfo = () => {
               </div>
             </div>
           </div>
-          <div className="personal-info__user-details">
+          {/*<div className="personal-info__user-details">
             <div className="personal-info__block">
               <i className="fas fa-truck"></i>
               <h1>Адрес доставки:</h1>
               <div className="personal-info__content">
                 <div>
-                  <p>ул Киевская 18</p>
+                  <p>-</p>
                 </div>
               </div>
               <div className="edit">
@@ -101,7 +101,7 @@ const PersonalInfo = () => {
                 </span>
               </div>
             </div>
-          </div>
+                </div>*/}
           <div className="personal-info__user-details">
             <div className="personal-info__block">
               <i className="fas fa-sign-in-alt"></i>

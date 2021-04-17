@@ -67,7 +67,7 @@ const PersonalMenu = ({ setPerMenuIsOpen, perMenuIsOpen }) => {
                 <a href="/info">Личные данные</a>
               </li>
               <li className="personal-info__section">
-                <i class="fas fa-shopping-cart"></i>
+                <i className="fas fa-shopping-cart"></i>
                 <a 
                   onClick={()=>{openCart()}}
                   className="btn-after"

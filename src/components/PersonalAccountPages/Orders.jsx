@@ -1,9 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import crypto from 'crypto';
 
 import './style/orders.css'
 
-
 const Orders = () => {
+  const userData = sessionStorage.getItem('currentUser');
+  const localData = localStorage.getItem('currentUser');
+
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    if(userData !== null && userData !== undefined) {
+      setData(JSON.parse(userData))
+    } else if (localData !== null && localData !== undefined) {
+      setData(JSON.parse(localData))
+    }
+    axios
+    .get(`https://api.ledium.shop/user/allorders/?userID=${data.ID}`)
+      .then(response => {
+        console.log(response)
+      })
+  }, []);
+
+  /*useEffect(() => {
+    const userID = crypto.createHash('sha256').update(data.email + '' + data.password).digest('base64').replace(/\+/g, "").replace(/\=/g, "").replace(/\-/g, "");
+    axios
+    .get(`https://api.ledium.shop/user/allorders/?userID=${userID}`)
+      .then(response => {
+        console.log(response)
+      })
+  });*/
+
+  console.log(data.ID);
+
   return (
     <>
       <main className="personal-info">
