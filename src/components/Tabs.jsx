@@ -12,7 +12,7 @@ const Tabs = ({ products }) => {
     },
     {
       id: 2,
-      title: 'Описание',
+      title: 'Детальніше',
       content: [`${products.description.text}`],
     },
     {

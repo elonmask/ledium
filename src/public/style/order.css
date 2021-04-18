@@ -301,3 +301,8 @@
   max-width: 250px;
   word-wrap: break-word;
 }
+
+.order-id {
+  width: 100%;
+  word-break: break-all;
+}

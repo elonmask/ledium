@@ -39,21 +39,21 @@ const Footer = () => {
  
   if (categories.length > 0) {
     return (
-      <footer className="footer">
+      <footer className="footer" id="footer">
         <div className="footer__top">
           <div className="footer__section">
             <img className="footer__img" alt="" src={logo} />
             <p className="footer__p">
-              г. Запорожье
+              м. Запоріжжя
             </p>
             <a className="footer__p footer__a" href="tel: +380507324444">+38 (050) 732 44 44</a>
             <p className="footer__p">
               Сopyright 2020.<br />
-              Все права защищены.
+              Усі права захищені.
             </p>
           </div>
-          <div className="footer__section">
-            <h4 className="footer__h4">Продукция</h4>
+          <div className="footer__section section-margin">
+            <h4 className="footer__h4">Каталог</h4>
             <ul>
               {categories.map(category => (
                 <li 
@@ -70,21 +70,15 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          <div className="footer__section">
+          {/*<div className="footer__section">
             <h4 className="footer__h4">Общая информация</h4>
             <ul>
               <li className="footer__item"><a href="#" className="footer__nav-link">Свяжитесь с нами</a></li>
               <li className="footer__item"><a href="#" className="footer__nav-link">Политика конфидинциальности</a></li>
               <li className="footer__item"><a href="#" className="footer__nav-link">Условия и положения</a></li>
             </ul>
-          </div>
-          <div className="footer__section">
-            <h4 className="footer__h4">Партнерам</h4>
-            <ul>
-              <li className="footer__item"><a href="#" className="footer__nav-link">Обучение</a></li>
-              <li className="footer__item"><a href="#" className="footer__nav-link">Каталоги</a></li>
-            </ul>
-          </div>
+          </div>*/}
+          
         </div>
         <div className="footer__icons">
           <a href="http://instagram.com">

@@ -75,13 +75,13 @@ const catalogProduct = ( {good} ) => {
           </div>
           <div className="card__buy">
             <span className="card__price">{ good.available !== 'false' ? `${good.price} грн` : 'Нет в наличии' }</span>
-            <button className="card__button-buy">Купить</button>
+            <button className="card__button-buy">Купити</button>
           </div>
           <div className="card__p">
             <p><strong>{good.Available}</strong></p>
-            <p><strong>Мощность:</strong> {Params.power}</p>
-            <p><strong>Цветовая температура:</strong> {Params.lightTemperature}</p>
-            <p><strong>Световой поток, Лм</strong> {Params.lightFlow}</p>
+            <p><strong>Потужність:</strong> {Params.power}</p>
+            <p><strong>Колірна температура:</strong> {Params.lightTemperature}</p>
+            <p><strong>Світловий потік, Лм</strong> {Params.lightFlow}</p>
           </div>
           </div>
     </div>

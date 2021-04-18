@@ -65,7 +65,7 @@ const Category = ({match}) => {
             <div className="breadcrumbs">
               <span>
                 <span>
-                  <a className="opacity" href="/">Главная  / </a> 
+                  <a className="opacity" href="/">Головна / </a> 
                 </span>
                 <span>
                   <a className="opacity" href="/catalog">Каталог  / </a> 

@@ -129,7 +129,7 @@ button:focus {
   list-style: none;
   display: flex;
   justify-content: space-between;
-  width: 75%;
+  width: 50%;
 }
 
 .header__menu-icons {
@@ -1199,7 +1199,7 @@ button:focus {
 .footer {
   margin: 0px 0 0;
   position: relative;
-  padding: 70px 10%;
+  padding: 50px 10% 30px;
   background: white;
   width: 100%;
   height: max-content;
@@ -1210,7 +1210,7 @@ button:focus {
 
 .footer__top {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .footer__img {
@@ -1257,8 +1257,8 @@ button:focus {
 .footer__icons {
   position: absolute;
   display: flex;
-  left: 80%;
-  bottom: 25%;
+  left: 10%;
+  bottom: 10%;
 }
 
 .footer__icon {
@@ -1281,6 +1281,10 @@ button:focus {
   position: absolute;
   right: 5%;
   bottom: 5%;
+}
+
+.section-margin {
+  margin-left: 70px;
 }
 
 @media screen and (max-width: 800px) {

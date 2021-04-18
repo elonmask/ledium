@@ -7,6 +7,7 @@ import Delivery from './Delivery';
 import Pay from './Pay';
 import OrderProducts from './OrderProducts';
 import OrderAccept from './OrderAccept'
+import LiqPayPopUp from './LiqPayPopUp';
 
 import '../public/style/order.css'
 
@@ -27,7 +28,8 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
   const [adress, setAdress] = useState('');
   const [poshtaAdress, setPoshtaAdress] = useState('')
   const [orderAccept, setOrderAccept] = useState(false)
-  const [orderID, setOrderID] = useState('')
+  const [orderID, setOrderID] = useState('');
+  const [openLiqPay, setOpenLiqPay] = useState(false)
 
   const userData = sessionStorage.getItem('currentUser');
   const localData = localStorage.getItem('currentUser');
@@ -102,86 +104,98 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
     }
   }
 
-  const addOrder = () => {
-    if ( user.hasOwnProperty('email') ) {
-      const userID = crypto.createHash('sha256').update(email + '' + password).digest('base64').replace(/\+/g, "").replace(/\=/g, "").replace(/\-/g, "");
-      axios.post('https://api.ledium.shop/user/addorder/', 
-      delivery == 1 ? 
-      { 
-        userID: userID, 
-        goods: product, 
-        total: amount, 
-        date: new Date(), 
-        addr: city+' '+adress, 
-        pay: pay 
-      } : { 
-        userID: userID, 
-        goods: product, 
-        total: amount, 
-        date: new Date(), 
-        addr: city+' '+poshtaAdress, 
-        pay: pay 
-      }
-      )
-        .then(response => {
-          console.log(response.data);
-          setOrderID(response.data.ID);
-          setOrder(false);
-          setOrderAccept(true);
-          sessionStorage.removeItem('goods')
-        })
-    } else {
-      const data = { 
-        first_name: firstName,
-        last_name: lastName,
-        surname: surname,
-        number: number,
-        email: email,
-        password: password,
-      };
-  
-      axios
-        .post(`https://api.ledium.shop/user/email_exist/`, { "email": email })
+      const addOrder = () => {
+      if ( user.hasOwnProperty('email') ) {
+        const userID = crypto.createHash('sha256').update(email + '' + password).digest('base64').replace(/\+/g, "").replace(/\=/g, "").replace(/\-/g, "");
+        axios.post('https://api.ledium.shop/user/addorder/', 
+        delivery == 1 ? 
+        { 
+          userID: userID, 
+          goods: product, 
+          total: amount, 
+          date: new Date(), 
+          addr: city+' '+adress, 
+          pay: pay 
+        } : { 
+          userID: userID, 
+          goods: product, 
+          total: amount, 
+          date: new Date(), 
+          addr: city+' '+poshtaAdress, 
+          pay: pay 
+        }
+        )
           .then(response => {
-            console.log(response);
-            if(response.data.status == true) {
-              setError('Пользователь с такой почтой уже существует. Пожалуйста войдите в личный кабинет');
-              console.log(error);
-            } else if (response.data.status == false) {
-              axios.post('https://api.ledium.shop/adduser', data)
-                .then(response => {
-                  console.log(response);
-                  const userID = crypto.createHash('sha256').update(email + '' + password).digest('base64').replace(/\+/g, "").replace(/\=/g, "").replace(/\-/g, "");
-                  axios.post('https://api.ledium.shop/user/addorder/', 
-                    delivery == 1 ? 
-                      { 
-                        userID: userID, 
-                        goods: product, 
-                        total: amount, 
-                        date: new Date(), 
-                        addr: city+' '+adress, 
-                        pay: pay 
-                      } : { 
-                        userID: userID, 
-                        goods: product, 
-                        total: amount, 
-                        date: new Date(), 
-                        addr: city+' '+poshtaAdress, 
-                        pay: pay 
-                      }
-                  )
-                    .then(response => {
-                      console.log(response.data);
-                      setOrderID(response.data.ID)
-                      setOrder(false);
-                      setOrderAccept(true);
-                      sessionStorage.removeItem('goods')
-                    })
-              });
+            if ( pay == 'cart' ) {
+              console.log(response.data);
+              setOrderID(response.data.ID);
+              setOrder(false);
+              setOpenLiqPay(true);
             } else {
-              alert('Попробуйте позже');
+            console.log(response.data);
+            setOrderID(response.data.ID);
+            setOrder(false);
+            setOrderAccept(true);
+            sessionStorage.removeItem('goods')
             }
-          });
+          })
+      } else {
+        const data = { 
+          first_name: firstName,
+          last_name: lastName,
+          surname: surname,
+          number: number,
+          email: email,
+          password: password,
+        };
+    
+        axios
+          .post(`https://api.ledium.shop/user/email_exist/`, { "email": email })
+            .then(response => {
+              console.log(response);
+              if(response.data.status == true) {
+                setError('Пользователь с такой почтой уже существует. Пожалуйста войдите в личный кабинет');
+                console.log(error);
+              } else if (response.data.status == false) {
+                axios.post('https://api.ledium.shop/adduser', data)
+                  .then(response => {
+                    console.log(response);
+                    const userID = crypto.createHash('sha256').update(email + '' + password).digest('base64').replace(/\+/g, "").replace(/\=/g, "").replace(/\-/g, "");
+                    axios.post('https://api.ledium.shop/user/addorder/', 
+                      delivery == 1 ? 
+                        { 
+                          userID: userID, 
+                          goods: product, 
+                          total: amount, 
+                          date: new Date(), 
+                          addr: city+' '+adress, 
+                          pay: pay 
+                        } : { 
+                          userID: userID, 
+                          goods: product, 
+                          total: amount, 
+                          date: new Date(), 
+                          addr: city+' '+poshtaAdress, 
+                          pay: pay 
+                        }
+                    )
+                      .then(response => {
+                        if ( pay == 'cart' ) {
+                          setOrder(false);
+                          LiqPayPopUp(true);
+                        } else {
+                        console.log(response.data);
+                        setOrderID(response.data.ID)
+                        setOrder(false);
+                        setOrderAccept(true);
+                        sessionStorage.removeItem('goods')
+                        }
+                      })
+                });
+              } else {
+                alert('Попробуйте позже');
+              }
+            });
     }
   }
 
@@ -419,6 +433,12 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
       <OrderAccept 
         orderAccept={orderAccept}
         setOrderAccept={setOrderAccept}
+        orderID={orderID}
+      />
+      <LiqPayPopUp 
+        openLiqPay={openLiqPay}
+        setOpenLiqPay={setOpenLiqPay}
+        amount={amount}
         orderID={orderID}
       />
     </>

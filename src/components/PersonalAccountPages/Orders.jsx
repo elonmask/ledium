@@ -9,6 +9,7 @@ const Orders = () => {
   const localData = localStorage.getItem('currentUser');
 
   const [data, setData] = useState({});
+  const [orders, setOrders] = useState(null);
 
   useEffect(() => {
     if(userData !== null && userData !== undefined) {
@@ -23,65 +24,70 @@ const Orders = () => {
       })
   }, []);
 
-  /*useEffect(() => {
-    const userID = crypto.createHash('sha256').update(data.email + '' + data.password).digest('base64').replace(/\+/g, "").replace(/\=/g, "").replace(/\-/g, "");
-    axios
-    .get(`https://api.ledium.shop/user/allorders/?userID=${userID}`)
-      .then(response => {
-        console.log(response)
-      })
-  });*/
 
-  console.log(data.ID);
+    if (orders == null) {
+      const userID = crypto.createHash('sha256').update(data.email + '' + data.password).digest('base64').replace(/\+/g, "").replace(/\=/g, "").replace(/\-/g, "");
+      axios
+      .get(`https://api.ledium.shop/user/allorders/?userID=${userID}`)
+        .then(response => {
+          console.log(response.data);
+          setOrders(response.data);
+        })
+    }
+
+  const date = (str) => {
+    let s = [];
+    const date = str.slice(0, 10).replace(/-/g, '.');
+    const n = date.split('.');
+
+    for ( let i = n.length - 1 ; i >= 0; i-- ) {
+      s.push(n[i]);
+    }
+    return s.join('.')
+  } 
+
+  const payment = (str) => {
+    console.log(str)
+    if ( str == 'cash' ) {
+      return 'наличными';
+    } else {
+      return 'онлайн';
+    }
+  }
 
   return (
     <>
+    {orders !== null ? (
       <main className="personal-info">
-        <div className="personal-info__testimonials">
-          <div className="order">
-            <div className="order__content">
-              <div className="order__color"></div>
-              <p>N 345 349 595</p>
-              <p>25.07.2020</p>
-              <p className="order__status">Выполнен</p>
-              <p className="order__sum">Сумма заказа:<br />339грн</p>
-            </div>
-            <img
-              alt=""
-              className="order__img"
-              src='https://api.ledium.shop/img/?prodname=Лампа LED A55 6W 4100K Е27'
-            />
-          </div>
-          <div className="order">
-            <div className="order__content">
-              <div className="order__color yellow"></div>
-              <p>N 345 349 595</p>
-              <p>25.07.2020</p>
-              <p className="order__status">В процессе</p>
-              <p className="order__sum">Сумма заказа:<br />339грн</p>
-            </div>
-            <img
-              alt=""
-              className="order__img"
-              src='https://api.ledium.shop/img/?prodname=Лампа LED A55 6W 4100K Е27'
-            />
-          </div>
-          <div className="order">
-            <div className="order__content">
-              <div className="order__color red"></div>
-              <p>N 345 349 595</p>
-              <p>25.07.2020</p>
-              <p className="order__status">Отменен</p>
-              <p className="order__sum">Сумма заказа:<br />339грн</p>
-            </div>
-            <img
-              alt=""
-              className="order__img"
-              src='https://api.ledium.shop/img/?prodname=Лампа LED A55 6W 4100K Е27'
-            />
-          </div>
-        </div>
-      </main>
+      <div className="personal-info__testimonials">
+         {orders.map(order => (
+           <>
+             <div className="order">
+               <div className="order__content">
+                 <p className="order-id">N {order.ID}</p>
+                 <p>{date(order.date)}</p>
+                 <p>Оплата {payment(order.pay)}</p>
+                 <p className="order__status">Новый заказ</p>
+                 <p className="order__sum">Сумма заказа:<br />{order.total} грн</p>
+               </div>
+               <img
+                 alt=""
+                 className="order__img"
+                 src={order.goods[0].picture}
+               />
+             </div>
+           </>  
+         ))}
+      </div>
+    </main>
+    ): (
+      <main className="personal-info">
+      <div className="personal-info__testimonials">
+         <h3>Вы еще не сделали ни одного заказа</h3>
+      </div>
+    </main>
+    )}
+       
     </>
   )
 }

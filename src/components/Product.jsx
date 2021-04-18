@@ -74,7 +74,7 @@ const Product = ({match}) => {
       })
     if (result == true) {
       return (
-        <p className="added">Товар в корзине</p>
+        <p className="added">В кошику</p>
       )
     } else {
       return (
@@ -82,7 +82,7 @@ const Product = ({match}) => {
           className="header__catalog product__btn"
           onClick={ () => addProduct()}
         >
-          Добавить в корзину
+          Додати до кошику
         </button>
       )
     }
@@ -92,7 +92,7 @@ const Product = ({match}) => {
         className="header__catalog product__btn"
         onClick={ () => addProduct()}
       >
-        Добавить в корзину
+        Додати до кошику
       </button>
     )}
   }
@@ -174,7 +174,7 @@ const Product = ({match}) => {
               <p className="product__description">{descrp}</p>
               <div className="product__buy">
                 <div className="product__price">
-                  <p className="quantity-title">Цена</p>
+                  <p className="quantity-title">Ціна</p>
                   <p className="poduct__price__text">{products.price} грн</p>
                 </div>
                 {findProduct()}

@@ -19,9 +19,9 @@ const Populars = () => {
     }, []);
 
     return (
-        <div className="catalog-content">
+        <div className="catalog-content" id="popular">
     <div className="catalog-header">
-        <h1>Популярные товары</h1>
+        <h1>Популярні товари</h1>
     </div>
     <div className="catalog-goods">
         {
@@ -50,14 +50,14 @@ const Populars = () => {
                         </h3>
                     </div>
                     <div className="card__buy">
-                        <span className="card__price">{prod.price}</span>
-                        <button className="card__button-buy">Купить</button>
+                        <span className="card__price">{prod.price} грн</span>
+                        <button className="card__button-buy">Купити</button>
                     </div>
                     <div className="card__p">
                         <p><strong>{ prod.available ? "В наличии" : "нет в наличии" }</strong></p>
-                        <p><strong>Мощность:</strong> 10W</p>
-                        <p><strong>Цветовая температура:</strong>{prod.color_temp}</p>
-                        <p><strong>Световой поток, Лм</strong>{prod.lightFlow}</p>
+                        <p><strong>Потужність:</strong> 10W</p>
+                        <p><strong>Колірна температура:</strong>{prod.color_temp}</p>
+                        <p><strong>Світловий потік, Лм</strong>{prod.lightFlow}</p>
                     </div>
                 </div>
             </div>

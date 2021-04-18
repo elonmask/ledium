@@ -157,11 +157,9 @@ const Header = () => {
               ))}
             </ul>
             <ul className="mob-menu__list">
-              <li className="mob-menu__item-info"><a href="#" className="mob-menu__link-info">О компании</a></li>
-              <li className="mob-menu__item-info"><a href="#" className="mob-menu__link-info">Новинки</a></li>
-              <li className="mob-menu__item-info"><a href="#" className="mob-menu__link-info header__link--active">Акции</a></li>
-              <li className="mob-menu__item-info"><a href="#" className="mob-menu__link-info">Где купить</a></li>
-              <li className="mob-menu__item-info"><a href="#" className="mob-menu__link-info">Контакты</a></li>
+              <li className="mob-menu__item-info"><a href="/#popular" className="mob-menu__link-info">Популярні</a></li>
+              <li className="mob-menu__item-info"><a href="/#sales" className="mob-menu__link-info header__link--active">Акції</a></li>
+              <li className="mob-menu__item-info"><a href="#footer" className="mob-menu__link-info">Контакти</a></li>
               <ul className="mob-menu__list-icon">
                 <li className="mob-menu__item-icon">
                   <a href="http://instagram.com" className="header__link">
@@ -173,11 +171,6 @@ const Header = () => {
                     <img src={facebook} alt="instagram" className="header__menu-icons" />
                   </a>
                 </li>
-                <li className="mob-menu__item-icon">
-                  <a href="http://youtube.com" className="header__link">
-                    <img src={youtube} alt="instagram" className="header__menu-icons" />
-                  </a>
-                </li>
               </ul>
             </ul>
           </section>
@@ -185,24 +178,17 @@ const Header = () => {
           <section className="header__contant">
             <section className="header__menu">
               <ul className="header__list">
-                <li className="header__item"><a href="#" className="header__link header__link--action">О компании</a></li>
-                <li className="header__item"><a href="#" className="header__link header__link--action">Новинки</a></li>
-                <li className="header__item"><a href="#" className="header__link header__link--active header__link--action">Акции</a></li>
-                <li className="header__item"><a href="#" className="header__link header__link--action">Где купить</a></li>
-                <li className="header__item"><a href="#" className="header__link header__link--action">Контакты</a></li>
+                <li className="header__item"><a href="/#popular" className="header__link header__link--action">Популярні</a></li>
+                <li className="header__item"><a href="/#sales" className="header__link header__link--active header__link--action">Акції</a></li>
+                <li className="header__item"><a href="#footer" className="header__link header__link--action">Контакти</a></li>
+              </ul>
+              <ul className="header__menu--icons">
                 <li className="header__item">
                   <a href="http://instagram.com" className="header__link">
                     <img src={instagram} alt="instagram" className="header__menu-icons" />
                   </a>
-                </li>
-                <li className="header__item">
                   <a href="http://facebook.com" className="header__link">
                     <img src={facebook} alt="instagram" className="header__menu-icons" />
-                  </a>
-                </li>
-                <li className="header__item">
-                  <a href="http://youtube.com" className="header__link">
-                    <img src={youtube} alt="instagram" className="header__menu-icons" />
                   </a>
                 </li>
               </ul>
@@ -218,7 +204,7 @@ const Header = () => {
               </div>
               <a href="#" className="none header__mob-block header__mob-block--active">
                 <img src={phone} alt="" className="header__icon header__icon--white" />
-              </a>
+                </a>
               <HeaderAccount 
                 setMenuIsOpen={setMenuIsOpen}
                 menuIsOpen={menuIsOpen}
