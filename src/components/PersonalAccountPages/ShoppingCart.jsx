@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Order from '../Order';
 import ProductAmount from './ProductAmount';
 import categoriesEng from '../../public/categories.json';
+import noPhoto from '../../public/images/no_photo.jpg';
 
 import './style/shopping-cart.css';
 
@@ -36,7 +37,7 @@ const ShoppingCart = ( { shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, m
   const sumProducts = () => {
     let total = 0;
     product.map(n => {
-      let price = +n.price;
+      let price = parseInt(n.price.replace(" грн", ""));
       let priceProduct = price*n.count;
       total += priceProduct;
     });
@@ -73,7 +74,7 @@ const ShoppingCart = ( { shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, m
           className="fas fa-times account-close"
           onClick={()=>{CloseCart()}}
         ></i>
-        <h2 className="account__title">Корзина</h2>
+        <h2 className="account__title">Кошик</h2>
         {product.map(n => (
         
           <>
@@ -81,21 +82,21 @@ const ShoppingCart = ( { shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, m
         <div className="cart-product">
             <img 
               alt=""
-              src={n.picture}
+              src={ typeof n.picture !== 'undefined' ? `https://admin.ledium.shop${n.picture.url}` : noPhoto}
               className="card-product-img"
             />
             <a 
               className="cart-product-title"
               onClick={() =>openProductPage(n)}
             >
-              {n.name}
+              {n.Name}
             </a>
             <i 
               className="fas fa-trash-alt trash"
               onClick={() => deleteProduct(n)}
             ></i>
           </div>
-          <div className="cart-details">
+          <div className="cart-details"> 
             <ProductAmount
               product={product}
               setProduct={setProduct}
@@ -112,15 +113,15 @@ const ShoppingCart = ( { shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, m
               className="cart-product-return"
               onClick={() => CloseCart()}
             >
-              Продолжить покупки
+              Продовжити покупки
             </button>
             <div className="btn-cart-price">
-              <p className="cart-product-btns-price">{sumProducts()} грн</p>
+              <p className="cart-product-btns-price">{sumProducts()}</p>
               <button 
                 className="cart-product-make-order"
                 onClick={() => openOrder()}
               >
-                Оформить заказ
+                Оформити замовлення
               </button>
             </div>
           </div>
@@ -143,8 +144,8 @@ const ShoppingCart = ( { shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, m
           className="fas fa-times account-close"
           onClick={()=>{CloseCart()}}
         ></i>
-        <h2 className="account__title">Корзина</h2>
-        <p>У Вас еще нет товаров в корзине</p>
+        <h2 className="account__title">Кошик</h2>
+        <p>У Вас поки що немає товарів у кошику.</p>
       </div>
     </div>
     )}

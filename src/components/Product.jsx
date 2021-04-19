@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import ShoppingCart from './PersonalAccountPages/ShoppingCart';
 import Tabs from './Tabs.jsx';
 import axios from 'axios';
-import { getProduct } from '../public/utils'
 import noPhoto from '../public/images/no_photo.jpg';
 import '../public/style/product.css';
 import { useLocation } from 'react-router-dom';
@@ -15,60 +14,66 @@ const Product = ({match}) => {
 
   const goods = sessionStorage.getItem('goods');
   let array = JSON.parse(goods);
-  const [products, setProducts] = useState(getProduct(match.params.id));
-  const [descrp, setDescrip] = useState('');
-  const [product, setProduct] = useState(array);
+  //const [products, setProducts] = useState(getProduct(match.params.id));
+  //const [descrp, setDescrip] = useState('');
+  //const [product, setProduct] = useState(array);
   const [shoppingCartOpen, setShoppingCartOpen] = useState(false);
   const [added, setAdded] = useState(false);
   let location = useLocation();
   const history = useHistory();
 
-  useEffect(() => {
-    if( products == false ) {
-      axios
-      .get('https://api.ledium.shop/feed')
-      .then( response => {
-        sessionStorage.setItem("data", JSON.stringify(response.data));
-        setProducts(getProduct(match.params.id));
-      })
-    }
-    setDescrip(products.description.text);
-  }, [])
+  const [good, setGood] = useState(null)
+
+  console.log(good);
+
+  const getItem = (id, data) => {
+    let item = null;
+    data.forEach(it => {
+      if (it.id.toString() === id) {
+        item = it;
+      }
+    })
+
+    return item;
+  }
 
   useEffect(() => {
+      axios
+      .get('https://admin.ledium.shop/goods')
+      .then( response => {
+        setGood(getItem(match.params.id, response.data));
+      })
+  }, [])
+
+  /*useEffect(() => {
     if (products !== false) {
       if (products.id !== match.params.id) {
         setProducts(getProduct(match.params.id));
       }
     }
-  }, [location])
-
-  products.count = 1;
+  }, [location])*/
 
   const addProduct = () => {
-    if(products.available == 'В наличии') {
       let arr;
-      if(goods == null) {
+      if(sessionStorage.getItem('goods') === null) {
         arr = [];
       } else {
         arr = JSON.parse(sessionStorage.getItem('goods'));
         
       }
-      arr.push(products);
+      good.count = 1;
+      arr.push(good);
       sessionStorage.setItem('goods', JSON.stringify(arr));
-      setProduct(arr);
       setAdded(true);
       setShoppingCartOpen(true);
-    } else {
-      alert('Товара нет в наличии');
-    }
   }
 
   const findProduct = () => {
+    /*
     let result = false;
     if (  product !== null && product.length !== 0 ) {
       product.map(n => {
-        if(n.id == products.id) {
+        if(n.id == good?.id) {
           result = true;
         }
       })
@@ -82,7 +87,7 @@ const Product = ({match}) => {
           className="header__catalog product__btn"
           onClick={ () => addProduct()}
         >
-          Додати до кошику
+          Додати до кошика
         </button>
       )
     }
@@ -92,45 +97,38 @@ const Product = ({match}) => {
         className="header__catalog product__btn"
         onClick={ () => addProduct()}
       >
-        Додати до кошику
+        Додати до кошика
       </button>
     )}
-  }
+    */
 
-  const setName = (str) => {
-    const array = [];
-    const name = str.split(' ');
-
-    for ( let i = 0; i < name.length; i++ ) {
-     if(name[i].includes('W') || name[i].includes('V')) {
-       return array.join(' ')
-     } else {
-       array.push(name[i])
-     }
+    if(added) {
+      return (
+        <p className="added">У кошику</p>
+      )
+    } else {
+      if (good?.available) {
+        return (
+          <button 
+            className="header__catalog product__btn"
+            onClick={ () => addProduct()}
+          >
+            Додати до кошика
+          </button>
+        )
+      } else {
+        return (
+          <button 
+            className="header__catalog product__btn"
+          >
+            Немає у наявності
+          </button>
+        )
+      }
     }
-    return array.join(' ')
   }
 
-  const setChar = (str) => {
-    let value = '';
-    
-    if( str == 'K' ) {
-      products.param.map(char => {
-        if ( char.name == 'Колірна температура') {
-          value = char.text;
-        }
-      })
-    } else if ( str == 'Lm' ) {
-      products.param.map(char => {
-        if ( char.name == 'Світловий потік') {
-          value = char.text;
-        }
-      })
-    }
-    return value;
-  }
-
-  if (Object.keys(products).length !== 0) {
+  if (good !== null) {
     return (
       <>
         <main className="product">
@@ -141,17 +139,17 @@ const Product = ({match}) => {
           <i class="fas fa-chevron-left"></i>
           <a>Назад</a>
         </div>
-          <h2>{setName(products.name)}</h2>
+          <h2>{good.Name}</h2>
           <div className="product__info">
             <div className="product__block-img">
               <img
-                src={ products.picture !== 'undefined' ? products.picture : noPhoto} 
+                src={ typeof good.picture !== 'undefined' ? `https://admin.ledium.shop${good.picture.url}` : noPhoto} 
                 alt=""
                 className="product__img"
               ></img>
             </div>
             <div className="product__info-block">
-              <p className="available">{products.available}</p>
+              <p className="available">{good.available === true ? "В наявності" : "Немає в наявності"}</p>
               <div className="product__card">
                 <div className="product__icon">
                   <img
@@ -159,7 +157,7 @@ const Product = ({match}) => {
                     alt=""
                     className="product__icon-img"
                   />
-                  <span>{setChar('K')}</span>
+                  <span>{good?.ColorTemperature}</span>
                 </div>
               <div className="product__icon">
                 <img
@@ -167,21 +165,20 @@ const Product = ({match}) => {
                   alt=""
                   className="product__icon-img"
                 />
-                <span>{setChar('Lm')}</span>
+                <span>{good?.LightFlow}</span>
               </div>
               </div>
-              {/*<p className="p-descrip">Описание</p>*/}
-              <p className="product__description">{descrp}</p>
+              <p className="product__description">{good?.description}</p>
               <div className="product__buy">
                 <div className="product__price">
                   <p className="quantity-title">Ціна</p>
-                  <p className="poduct__price__text">{products.price} грн</p>
+                  <p className="poduct__price__text">{good?.price}</p>
                 </div>
                 {findProduct()}
               </div>
             </div>
           </div>
-          <Tabs products={products}/>
+          <Tabs products={good}/>
         </main>
         <ShoppingCart 
           shoppingCartOpen={shoppingCartOpen}

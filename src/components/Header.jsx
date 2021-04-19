@@ -27,32 +27,32 @@ const Header = () => {
   const categoriesImg = [
     {
       img: lampa,
-      id: '1',
-    },
-    {
-      img: prozector,
-      id: '2',
-    },
-    {
-      img: phitolampa,
       id: '3',
     },
     {
-      img: svetilnik,
+      img: prozector,
       id: '4',
     },
     {
-      img: nastLampa,
+      img: phitolampa,
       id: '5',
     },
     {
-      img: lampa,
+      img: svetilnik,
       id: '6',
+    },
+    {
+      img: nastLampa,
+      id: '7',
+    },
+    {
+      img: lampa,
+      id: '8',
     },
   ]
   const history = useHistory();
 
-  const [categories, setCategories] = useState(getCategories);
+  const [categories, setCategories] = useState([]);
   const [burger, setBurger] = useState(false);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [shoppingCartOpen, setShoppingCartOpen] = useState(false);
@@ -76,15 +76,12 @@ const Header = () => {
   }
 
   useEffect(() => {
-    if( categories == false ) {
-      axios
-      .get('https://api.ledium.shop/feed')
+    axios
+      .get('https://admin.ledium.shop/categories')
       .then( response => {
-        sessionStorage.setItem("data", JSON.stringify(response.data));
-        setCategories(getCategories)
+        setCategories(response.data);
       })
-    }
-  })
+  }, []);
 
   const setPicture = (id) => {
     let img = '';
@@ -99,15 +96,14 @@ const Header = () => {
   const setCategoryEng = (id) => {
     let eng = '';
     categoriesEnglish.map(category => {
-      if ( category.id === id) {
-        console.log(category.name);
+      if ( category.id === id.toString()) {
         eng = category.name;
       }
     })
+    console.log(eng)
     return eng;
   }
 
-  if (categories.length > 0) {
     return (
       <header 
        //className={ window.location.pathname.includes('catalog') ? "header header-height" : "header"}
@@ -142,7 +138,7 @@ const Header = () => {
                       src={setPicture(category.id)} 
                       className="mob-menu__img" 
                     />
-                    {category.text}
+                    {category.name}
                     <i className="fas fa-chevron-right arrow-menu"></i>
                   </a>
                   
@@ -202,9 +198,6 @@ const Header = () => {
                 <input className="header__searchbar" type="text" name="search" placeholder="Поиск товаров по каталогу" />
                 <button className="header__btn-search">Поиск</button>
               </div>
-              <a href="#" className="none header__mob-block header__mob-block--active">
-                <img src={phone} alt="" className="header__icon header__icon--white" />
-                </a>
               <HeaderAccount 
                 setMenuIsOpen={setMenuIsOpen}
                 menuIsOpen={menuIsOpen}
@@ -238,7 +231,7 @@ const Header = () => {
                 alt="" 
                 className="header__nav-img" 
               />
-                {category.text} 
+                {category.name} 
             </a>
             {/*<div className="header__menu-child">
               <ul className="header__list-child">
@@ -261,11 +254,7 @@ const Header = () => {
       />
     </header>
     )
-  } else {
-      return (
-        <div></div>
-      )
-  }
+  
 };
 
 export default Header;

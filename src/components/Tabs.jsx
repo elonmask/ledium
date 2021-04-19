@@ -13,7 +13,7 @@ const Tabs = ({ products }) => {
     {
       id: 2,
       title: 'Детальніше',
-      content: [`${products.description.text}`],
+      content: [`${products.description}`],
     },
     {
       id: 3,
@@ -64,16 +64,150 @@ const Tabs = ({ products }) => {
         { currentTab === 0 ? (
           <div className="tabs__content">
             <ul>
-              {products.param.map(p => (
-                <>
+              {
+                products.PackWidth !== null
+                ? (
                   <li className="tabs-char">
                     <div className="char-item">
-                      <span className="char-span">{p.name}</span>
+                      <span className="char-span">Ширина упаковки</span>
                     </div>
-                    <span className="blue">{p.text}</span>
+                    <span className="blue">{products.PackWidth}</span>
                   </li>
-                </>
-              ))}
+                )
+                : ''
+              }
+              {
+                products.PackLength !== null
+                ? (
+                  <li className="tabs-char">
+                    <div className="char-item">
+                      <span className="char-span">Довжина упаковки</span>
+                    </div>
+                    <span className="blue">{products.PackLength}</span>
+                  </li>
+                )
+                : ''
+              }
+              {
+                products.Len !== null
+                ? (
+                  <li className="tabs-char">
+                    <div className="char-item">
+                      <span className="char-span">Довжина</span>
+                    </div>
+                    <span className="blue">{products.Len}</span>
+                  </li>
+                )
+                : ''
+              }
+              {
+                products.Width !== null
+                ? (
+                  <li className="tabs-char">
+                    <div className="char-item">
+                      <span className="char-span">Ширина</span>
+                    </div>
+                    <span className="blue">{products.Width}</span>
+                  </li>
+                )
+                : ''
+              }
+              {
+                products.Material !== null
+                ? (
+                  <li className="tabs-char">
+                    <div className="char-item">
+                      <span className="char-span">Матеріал</span>
+                    </div>
+                    <span className="blue">{products.Material}</span>
+                  </li>
+                )
+                : ''
+              }
+              {
+                products.Power !== null
+                ? (
+                  <li className="tabs-char">
+                    <div className="char-item">
+                      <span className="char-span">Потужність</span>
+                    </div>
+                    <span className="blue">{products.Power}</span>
+                  </li>
+                )
+                : ''
+              }
+              {
+                products.Voltage !== null
+                ? (
+                  <li className="tabs-char">
+                    <div className="char-item">
+                      <span className="char-span">Вольтаж</span>
+                    </div>
+                    <span className="blue">{products.Voltage}</span>
+                  </li>
+                )
+                : ''
+              }
+              {
+                products.ColorTemperature !== null
+                ? (
+                  <li className="tabs-char">
+                    <div className="char-item">
+                      <span className="char-span">Колірна температура</span>
+                    </div>
+                    <span className="blue">{products.ColorTemperature}</span>
+                  </li>
+                )
+                : ''
+              }
+              {
+                products.LightFlow !== null
+                ? (
+                  <li className="tabs-char">
+                    <div className="char-item">
+                      <span className="char-span">Світловий потік</span>
+                    </div>
+                    <span className="blue">{products.LightFlow}</span>
+                  </li>
+                )
+                : ''
+              }
+              {
+                products.ServiceLife !== null
+                ? (
+                  <li className="tabs-char">
+                    <div className="char-item">
+                      <span className="char-span">Тривалість роботи</span>
+                    </div>
+                    <span className="blue">{products.ServiceLife}</span>
+                  </li>
+                )
+                : ''
+              }
+              {
+                products.SocleType !== null
+                ? (
+                  <li className="tabs-char">
+                    <div className="char-item">
+                      <span className="char-span">Тип цоколя</span>
+                    </div>
+                    <span className="blue">{products.SocleType}</span>
+                  </li>
+                )
+                : ''
+              }
+              {
+                products.LightScattering !== null
+                ? (
+                  <li className="tabs-char">
+                    <div className="char-item">
+                      <span className="char-span">Розсіювання</span>
+                    </div>
+                    <span className="blue">{products.LightScattering}</span>
+                  </li>
+                )
+                : ''
+              }
             </ul>
           </div>
         ) : (

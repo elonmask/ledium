@@ -6,62 +6,25 @@ import heart from '../public/images/heart-shape.svg';
 
 const catalogProduct = ( {good} ) => {
 
-  const getParams = (productName) => {
-    
-    let lightTemperature = "";
-    let lightFlow = "";
-    let power = "";
-    
-    productName.split(" ").forEach(item => {
-        if (item.includes("0K")) {
-            lightTemperature = item;
-        } else if (item.includes("0Lm")) {
-            lightFlow = item;
-        } else if (item.includes("W")) {
-          power = item;
-        }
-    })
-
-    return { power: power, lightTemperature: lightTemperature, lightFlow: lightFlow };
-  }
-
-  const Params = getParams(good.name);
-  const picture = `${good.picture}`;
-
-  const setName = (str) => {
-
-    const array = [];
-    const name = str.split(' ');
-
-    for ( let i = 0; i < name.length; i++ ) {
-     if(name[i].includes('W') || name[i].includes('V')) {
-       return array.join(' ')
-     } else {
-       array.push(name[i])
-     }
-    }
-
-    return array.join(' ')
-  }
+  const picture = good.picture?.url;
  
   return (
     <>
       <div className="card">
-        {/*<img src={heart} alt="" className="heart" />*/}
         <img 
           alt="" 
-          src={ picture !== 'undefined' ? picture : noPhoto} 
+          src={ typeof picture !== 'undefined' ? `https://admin.ledium.shop${picture}` : noPhoto} 
           className="card__img" 
         />
         <div className="card__info">
           <div className="card__icons">
             <div className="card__icons-box" title="Световой поток">
               <img src={potok} alt="" className="card__icon" />
-              <span>{Params.lightFlow}</span>
+              <span>{good?.LightFlow}</span>
             </div>
             <div className="card__icons-box" title="Цветовая температура">
               <img src={flow} alt="" className="card__icon" />
-              <span>{Params.lightTemperature}</span>
+              <span>{good?.ColorTemperature}</span>
             </div>
           </div>
           <div className="card__title">
@@ -69,19 +32,23 @@ const catalogProduct = ( {good} ) => {
               <a
                 className="card__link"
               >
-                {setName(good.name)}
+                {good.Name}
               </a>
             </h3>
           </div>
           <div className="card__buy">
-            <span className="card__price">{ good.available !== 'false' ? `${good.price} грн` : 'Нет в наличии' }</span>
-            <button className="card__button-buy">Купити</button>
+            <span className="card__price">{ good.available !== false ? `${good.price}` : 'Немає у наявності' }</span>
+            {
+              good.available === true
+              ? <button className="card__button-buy">Купити</button>
+              : '' 
+            }
           </div>
           <div className="card__p">
-            <p><strong>{good.Available}</strong></p>
-            <p><strong>Потужність:</strong> {Params.power}</p>
-            <p><strong>Колірна температура:</strong> {Params.lightTemperature}</p>
-            <p><strong>Світловий потік, Лм</strong> {Params.lightFlow}</p>
+            <p><strong>{good?.Available}</strong></p>
+            <p><strong>Потужність:</strong> {good?.Power}</p>
+            <p><strong>Колірна температура:</strong> {good.ColorTemperature}</p>
+            <p><strong>Світловий потік, Лм</strong> {good.LightFlow}</p>
           </div>
           </div>
     </div>

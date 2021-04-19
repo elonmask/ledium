@@ -5,39 +5,48 @@ import { useState } from 'react';
 import axios from 'axios';
 import { getCategories } from '../public/utils';
 import categoriesEnglish from '../public/categories.json';
-
+ 
 const Catalog = () => {
   const history = useHistory();
-  const [categories, setCategories] = useState(getCategories);
+  //const [categories, setCategories] = useState(getCategories);
+  const [catalog, setCatalog] = useState([]);
 
   const categoriesImg = [
     {
       img: 'https://api.ledium.shop/img/?prodname=Лампа LED A55 6W 4100K Е27',
-      id: '1',
-    },
-    {
-      img: 'https://api.ledium.shop/img/?prodname=Світлодіодний_прожектор_30W_LEDium_EXCELLENT',
-      id: '2',
-    },
-    {
-      img: 'https://api.ledium.shop/img/?prodname=Лампа LED A60 FITO 11W 4100K Е27',
       id: '3',
     },
     {
-      img: 'https://api.ledium.shop/img/?prodname=protect',
+      img: 'https://api.ledium.shop/img/?prodname=Світлодіодний_прожектор_30W_LEDium_EXCELLENT',
       id: '4',
     },
     {
-      img: 'https://api.ledium.shop/img/?prodname=Настольная лампа LEDium RAINBOW',
+      img: 'https://api.ledium.shop/img/?prodname=Лампа LED A60 FITO 11W 4100K Е27',
       id: '5',
     },
     {
-      img: 'https://api.ledium.shop/img/?prodname=Лампа LED A55 6W 4100K Е27',
+      img: 'https://api.ledium.shop/img/?prodname=protect',
       id: '6',
+    },
+    {
+      img: 'https://api.ledium.shop/img/?prodname=Настольная лампа LEDium RAINBOW',
+      id: '7',
+    },
+    {
+      img: 'https://api.ledium.shop/img/?prodname=svet1',
+      id: '8',
     },
   ]
 
   useEffect(() => {
+    axios
+      .get('https://admin.ledium.shop/categories')
+      .then( response => {
+        setCatalog(response.data);
+      })
+  }, []);
+
+  /*useEffect(() => {
     if( categories == false ) {
       axios
       .get('https://api.ledium.shop/feed')
@@ -46,7 +55,7 @@ const Catalog = () => {
         setCategories(getCategories)
       })
     }
-  }, [])
+  }, [])*/
 
   const setPicture = (id) => {
     let img = '';
@@ -61,15 +70,18 @@ const Catalog = () => {
   const setCategoryEng = (id) => {
     let eng = '';
     categoriesEnglish.map(category => {
-      if ( category.id === id) {
-        console.log(category.name);
+      if ( category.id === id.toString()) {
         eng = category.name;
       }
     })
+    console.log(eng)
     return eng;
   }
 
-  if ( categories.length > 0 ) {
+  const handleClick = (categoryName) => {
+    history.push(`/catalog/category/${categoryName}`);
+  }
+
     return (
       <>
         <section className="section__menu">
@@ -77,18 +89,18 @@ const Catalog = () => {
             <h2>Каталог</h2>
           </section>
           <ul className="section__list">
-            {categories.map(category => (
+            {catalog.map(category => (
               <>
               <li className="section__item" key={category.id}>
                 <a
                   className="section__link"
-                  onClick={() => {history.push(`/catalog/category/${setCategoryEng(category.id)}`)} }>
+                  onClick={() => {handleClick(setCategoryEng(category.id))} }>
                       <img
                         className="section__menu-img" 
                         alt="" 
                         src={setPicture(category.id)} 
                       />
-                  <span>{category.text}</span>
+                  <span>{category.name}</span>
                 </a>
               </li>
               </>
@@ -97,11 +109,6 @@ const Catalog = () => {
         </section>
       </>
     )
-  } else {
-    return (
-      <div></div>
-    )
-  }
 }
 
 export default Catalog;

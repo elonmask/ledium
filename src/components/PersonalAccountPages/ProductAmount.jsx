@@ -17,7 +17,7 @@ const ProductAmount = ({ product, setProduct, n, shoppingCartOpen  }) => {
   const plus = () => {
     let arr = [...product];
     setCount(count + 1);
-    n.count =count;
+    n.count = count;
     setProduct(arr);
     sessionStorage.setItem('goods', JSON.stringify(arr));
   };
@@ -26,7 +26,7 @@ const ProductAmount = ({ product, setProduct, n, shoppingCartOpen  }) => {
     let arr = [...product];
     if (count >= 1) {
       setCount(count - 1);
-      n.count =count;
+      n.count = count;
       setProduct(arr);
       sessionStorage.setItem('goods', JSON.stringify(arr));
     }
@@ -36,8 +36,8 @@ const ProductAmount = ({ product, setProduct, n, shoppingCartOpen  }) => {
     if ( !n.count ) {
       return n.price;
     } else {
-      let price = +n.price; 
-      return `${price*n.count}`;
+      let price = parseInt(n.price.replace(" грн", "")); 
+      return `${price * n.count} грн.`;
     }
   };
 
@@ -58,7 +58,7 @@ const ProductAmount = ({ product, setProduct, n, shoppingCartOpen  }) => {
           <i className="fas fa-plus"></i>
         </button>
       </div>
-      <a className="cart-product-price">{Sum()} грн</a>
+      <a className="cart-product-price">{Sum()}</a>
     </>
   )
 }

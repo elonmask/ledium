@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
 import categoriesEng from '../public/categories.json';
+import noPhoto from '../public/images/no_photo.jpg';
 
 const OrderProducts = ({product, setOrder}) => {
 
@@ -18,52 +19,52 @@ const OrderProducts = ({product, setOrder}) => {
   const fullPrice = () => {
     let total = 0;
     product.map(n => {
-      total += +n.price*n.count;
+      total += parseInt(n.price.replace(" грн", "")) * n.count;
     });
     return `${total}`
   }
 
   const sum = (n) => {
     if ( !n.count ) {
-      return n.price;
+      return parseInt(n.price.replace(" грн", ""));
     } else {
-      let price = +n.price; 
-      return `${price*n.count}`;
+      let price = parseInt(n.price.replace(" грн", "")); 
+      return `${price *n.count}`;
     }
   }
 
   return (
     <>
       <div className="order__title">
-        <h1>Заказ</h1>
+        <h1>Замовлення</h1>
         <p>на сумму {fullPrice()} грн</p>
       </div>
       <div className="order-info">
         <div className="order-units">
           <div>1</div>
-          <p>Товары</p>
+          <p>Товари</p>
         </div>
         {product.map(n => (
           <>
             <div className="order-product">
               <img 
                 alt=""
-                src={n.picture}
+                src={typeof n.picture !== 'undefined' ? `https://admin.ledium.shop${n.picture.url}` : noPhoto}
                 className="order-product-img"
               />
               <a 
                 className="order-product-title"
                 onClick={() =>openProductPage(n)}
               >
-                {n.name}
+                {n.Name}
               </a>
               <div className="order-product-blocks">
                 <div className="order-product-block-info">
-                  <p className="order-product-text">Цена</p>
+                  <p className="order-product-text">Ціна</p>
                   <p className="order-product-price">{n.price} грн</p>
                 </div>
                 <div className="order-product-block-info">
-                  <p className="order-product-text">Количество</p>
+                  <p className="order-product-text">Кількість</p>
                   <p className="order-product-price">{n.count}</p>
                 </div>
                 <div className="order-product-block-info">

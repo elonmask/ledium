@@ -58,7 +58,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
   useEffect(() => {
     let total = 0;
     product.map(n => {
-      total += +n.price*n.count;
+      total += parseInt(n.price.replace(" грн", "")) * n.count;
     });
     let sum = total;
     setAmount(`${sum}`)
@@ -209,19 +209,19 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
           className="fas fa-times account-close"
           onClick={()=>{closeOrder()}}
         ></i>
-        <h2 className="account__title">Оформление заказа</h2>
+        <h2 className="account__title">Замовлення</h2>
           { user.hasOwnProperty('email') ? (
             <div className="order__content-block">
               <form className="order__content-block">
             <div className="order-units">
               <div>!</div>
-              <p>Ваши контактные данные</p>
+              <p>Ваші контактні дані</p>
             </div>
           <div className="order-per-info-block">
             <div className="order-per-info">
               <div className="order-inputs">
               <label  className="label-order">
-                Фамилия
+                Прізвище
               </label>
               <input 
                 name="order-surname"
@@ -234,7 +234,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
               </div>
               <div className="order-inputs">
               <label className="label-order">
-                Имя
+                Ім'я
               </label>
               <input 
                 name="order-name"
@@ -250,7 +250,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
             <div className="order-per-info">
               <div className="order-inputs">
               <label className="label-order">
-                Почта
+                E-mail
               </label>
               <input 
                 name="order-email"
@@ -264,7 +264,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
 
               <div className="order-inputs">
               <label  className="label-order">
-                Мобильный телефон
+                Мобільний телефон
               </label>
               <InputMask
                 name="order-tel"
@@ -285,13 +285,13 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
             <form className="order__content-block">
               <div className="order-units">
                 <div>!</div>
-                <p>Ваши контактные данные</p>
+                <p>Ваші контактні дані</p>
               </div>
               <p className="enter-title"><a 
                   className="enter"
                   onClick={() => openAccount()}
                 >
-                  Войти
+                  Увійти
                 </a>
               </p>
               <p className="error">{error}</p>
@@ -299,7 +299,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
               <div className="order-per-info">
                 <div className="order-inputs">
                 <label  className="label-order">
-                  Фамилия
+                  Прізвище
                 </label>
                 <input 
                   name="order-surname"
@@ -312,7 +312,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
                 </div>
                 <div className="order-inputs">
                 <label className="label-order">
-                  Имя
+                  Ім'я
                 </label>
                 <input 
                   name="order-name"
@@ -326,7 +326,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
 
                 <div className="order-inputs">
                 <label  className="label-order">
-                  Мобильный телефон
+                  Мобільний телефон
                 </label>
                 <InputMask
                   name="order-tel"
@@ -343,7 +343,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
               <div className="order-per-info">
                 <div className="order-inputs">
                 <label  className="label-order">
-                  Почта
+                  E-mail
                 </label>
                 <input
                   name="order-email"
@@ -356,7 +356,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
                 </div>
                 <div className="order-inputs">
                 <label className="label-order">
-                  Придумайте пароль
+                  Вигадайте пароль
                 </label>
                 <input 
                   name="order-pass"
@@ -396,19 +396,19 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
             <div className="order-adress">
               <div className="order-units">
                 <div>4</div>
-                <p>Итого</p>
+                <p>Разом</p>
               </div>
                 <div className="order-total-block">
-                  <p className="order-total-text">Всего</p>
+                  <p className="order-total-text">Всього</p>
                   <p className="order-price">{amount}</p>
                 </div>
                 <div className="order-total-block">
-                  <p className="order-total-text">стоимость доставки</p>
-                  <p className="order-price">По тарифам перевозчика</p>
+                  <p className="order-total-text">Вартість доставки</p>
+                  <p className="order-price">Згідно з тарифами перевізника</p>
                 </div>
               <div className="order-total">
                 <div className="order-total-block">
-                  <p className="order-total-text">Итого</p>
+                  <p className="order-total-text">Разом</p>
                   <p className="order-total-price">{amount} грн</p>
                 </div>
               </div>
@@ -418,9 +418,8 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
                   type='button'
                   onClick={() => addOrder()}
                 >
-                  Заказ подтверждаю
+                  Підтвердити замовлення
                 </button>
-                <p className="order-total-rules">Подтверждая заказ, я принимаю условия пользовательского соглашения</p>
               </div>
             </div>
             

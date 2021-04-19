@@ -1,26 +1,26 @@
 [
   {
-    "id": "1",
+    "id": "3",
     "name": "lamps"
   },
   {
-    "id": "2",
+    "id": "4",
     "name": "spotlights"
   },
   {
-    "id": "3",
+    "id": "5",
     "name": "phytolamps"
   },
   {
-    "id": "4",
+    "id": "6",
     "name": "fixtures"
   },
   {
-    "id": "5",
+    "id": "7",
     "name": "table_lamps"
   },
   {
-    "id": "6",
+    "id": "8",
     "name": "beams"
   }
 ]

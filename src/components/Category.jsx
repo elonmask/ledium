@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 import CatalogProduct from './CatalogProduct';
 import axios from 'axios';
 import FilterMenu from './FilterMenu';
-import { getProducts } from '../public/utils'
 import categoriesEng from '../public/categories.json';
 import '../public/style/catalog.css';
+import SidebarMenu from './SidebarMenu';
 
 const Category = ({match}) => {
 
@@ -19,32 +19,37 @@ const Category = ({match}) => {
     return n;
   }
 
-  //const [category, setCategory] = useState([]);
+  const getProducts = (categoryId, products) => {
+    const filteredArray = [];
+    if (typeof products !== "undefined") {
+      products.forEach(item => {
+        console.log(item.category.id, categoryId)
+      if (item.category.id.toString() === categoryId) {
+        filteredArray.push(item);
+      };
+    });
+    }
+
+    return filteredArray;
+  }
+
   const [array, setArray] = useState([]);
   const [categoryId, setCategoryId] = useState(findCategoryId(match.params.id));
-  const [goods, setGoods] = useState(getProducts(categoryId));
-  const [categoryText, setCategoryText] = useState('');
+  const [goods, setGoods] = useState([]);
 
   const history = useHistory();
 
   useEffect(() => {
-    if( goods == false ) {
-      axios
-      .get('https://api.ledium.shop/feed')
+    axios
+      .get('https://admin.ledium.shop/goods')
       .then( response => {
-        sessionStorage.setItem("data", JSON.stringify(response.data));
-        setGoods(getProducts(findCategoryId(match.params.id)));
+        setGoods(getProducts(categoryId, response.data));
       })
-    } else if (findCategoryId(match.params.id) != categoryId) {
-      setCategoryId(findCategoryId(match.params.id));
-    }
-  });
+  }, [categoryId])
 
   useEffect(() => {
-    if ( goods !== false ) {
-      setGoods(getProducts(categoryId));
-    }
-  }, [categoryId]);
+      setCategoryId(findCategoryId(match.params.id))
+  });
 
   const openProductCard = (obj) => {
     if ( obj.available == 'false' &&  obj.description.text <= 1 || 
@@ -56,8 +61,7 @@ const Category = ({match}) => {
     }
   }
 
-  if(goods.length > 0) {
-    return (
+  return (
       <main>
       <div className="page-content">
         <div className="catalog catalog-category">
@@ -71,24 +75,18 @@ const Category = ({match}) => {
                   <a className="opacity" href="/catalog">Каталог  / </a> 
                 </span>
                 <span>
-                  <a href="/catalog">{goods[0].text}</a> 
-                </span>
-                <span>
-                  <a >{categoryText}</a> 
+                  <a>{goods[0]?.category.name}</a>  
                 </span>
               </span>
             </div>
-            <h1>{goods[0].text}</h1>
+            <h1>{goods[0]?.category.name}</h1>
           </div>
         <div className="sidebar">
-          <FilterMenu
-            goods={goods}
-            setArray={setArray}
-          />
+          <SidebarMenu/>
         </div>
         <div className="catalog-content">
           <div className="catalog-goods"> 
-            { goods[1].map(good => (
+            {goods.map(good => (
               <>
                 <div onClick={() => {openProductCard(good)} }>
                   <CatalogProduct good={good}/>
@@ -102,11 +100,6 @@ const Category = ({match}) => {
     </div>
   </main>
     )
-  } else {
-    return (
-      <div></div>
-    )
-  }
 };
 
 export default Category;
