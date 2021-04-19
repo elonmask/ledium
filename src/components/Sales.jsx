@@ -3,12 +3,15 @@ import axios from 'axios';
 import heart from '../public/images/heart-shape.svg';
 import potok from '../public/images/potok.svg';
 import flow from '../public/images/temp_svet.svg';
+import categoriesEnglish from '../public/categories.json';
 
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 
 const Sales = () => {
 
     const [goods, setGoods] = useState([]);
+    const history = useHistory();
 
     useEffect(() => {
         axios.get(`https://admin.ledium.shop/sales`)
@@ -17,6 +20,17 @@ const Sales = () => {
             setGoods(data);
         }) 
     }, []);
+
+    const categoryName = (id) => {
+        let cat_name = null
+        categoriesEnglish.forEach(item => {
+            if (item.id === id.toString()) {
+                cat_name = item.name;
+            }
+        })
+
+        return cat_name;
+    }
 
     return (
         <div className="catalog-content" id="sales">
@@ -28,36 +42,38 @@ const Sales = () => {
             goods.length >= 1
             ? (
                 goods.map(prod => (
-                    <div className="card">
-                <img src={heart} alt="" className="heart" />
-                <img alt="" src={`https://admin.ledium.shop` + prod.picture.url} className="card__img" />
+                    <div className="card"
+                    onClick={ () => {history.push(`/catalog/category/${categoryName(prod.Product.category)}/product/${prod.Product.id}`) }}
+                    >
+                <img alt="" src={`https://admin.ledium.shop` + prod.Product.picture.url} className="card__img" />
                 <div className="card__info">
                     <div className="card__icons">
                         <div className="card__icons-box" title="Световой поток">
                             <img src={potok} alt="" className="card__icon" />
-                            <span>{prod.lightFlow}</span>
+                            <span>{prod.Product.lightFlow}</span>
                         </div>
                         <div className="card__icons-box" title="Цветовая температура">
                             <img src={flow} alt="" className="card__icon" />
-                            <span>{prod.color_temp}</span>
+                            <span>{prod.Product.color_temp}</span>
                         </div>
                     </div>
                     <div className="card__title">
                         <h3 className="card__h3">
                             <a className="card__link">
-                                {prod.Name.replace("$", "")}
+                                {prod.Product.Name.replace("$", "")}
                             </a>
                         </h3>
                     </div>
                     <div className="card__buy">
-                        <span className="card__price">{prod.price} грн</span>
+                        <span className="card__price__old">{prod.price} грн</span>
+                        <span className="card__price__new">{prod.Product.price}</span>
                         <button className="card__button-buy">Купити</button>
                     </div>
                     <div className="card__p">
-                        <p><strong>{ prod.available ? "В наличии" : "нет в наличии" }</strong></p>
+                        <p><strong>{ prod.Product.available ? "В наличии" : "нет в наличии" }</strong></p>
                         <p><strong>Потужність:</strong> 10W</p>
-                        <p><strong>Колірна температура:</strong>{prod.color_temp}</p>
-                        <p><strong>Світловий потік, Лм</strong>{prod.lightFlow}</p>
+                        <p><strong>Колірна температура:</strong>{prod.Product.color_temp}</p>
+                        <p><strong>Світловий потік, Лм</strong>{prod.Product.lightFlow}</p>
                     </div>
                 </div>
             </div>

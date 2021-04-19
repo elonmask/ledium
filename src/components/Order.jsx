@@ -106,7 +106,8 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
 
       const addOrder = () => {
       if ( user.hasOwnProperty('email') ) {
-        const userID = crypto.createHash('sha256').update(email + '' + password).digest('base64').replace(/\+/g, "").replace(/\=/g, "").replace(/\-/g, "");
+        console.log(user)
+        const userID = crypto.createHash('sha256').update(user.email + '' + user.password).digest('base64').replace(/\+/g, "").replace(/\=/g, "").replace(/\-/g, "");
         axios.post('https://api.ledium.shop/user/addorder/', 
         delivery == 1 ? 
         { 
@@ -181,8 +182,9 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
                     )
                       .then(response => {
                         if ( pay == 'cart' ) {
+                          setOrderID(response.data.ID);
                           setOrder(false);
-                          LiqPayPopUp(true);
+                          setOpenLiqPay(true);
                         } else {
                         console.log(response.data);
                         setOrderID(response.data.ID)

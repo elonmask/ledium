@@ -143,7 +143,7 @@ const Product = ({match}) => {
           <div className="product__info">
             <div className="product__block-img">
               <img
-                src={ typeof good.picture !== 'undefined' ? `https://admin.ledium.shop${good.picture.url}` : noPhoto} 
+                src={ good.picture !== null && typeof good.picture !== 'undefined' ? `https://admin.ledium.shop${good.picture.url}` : noPhoto} 
                 alt=""
                 className="product__img"
               ></img>

@@ -12,8 +12,8 @@ const OrderAccept = ({orderAccept, setOrderAccept, orderID}) => {
           onClick={()=>setOrderAccept(false)}
         ></i>
         <div className="exit">
-        <h2>Спасибо, Ваш заказ принят</h2>
-        <p className="order-number">Номер заказа {orderID}</p>
+        <h2>Дякуємо, Ваше замовлення прийняте в обробку.</h2>
+        <p className="order-number">{`ID Вашого замовлення:\n`}{orderID}</p>
         </div>
       </div>
     </div>
