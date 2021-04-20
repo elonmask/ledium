@@ -161,6 +161,9 @@
 }
 
 @media screen and (max-width: 700px) {
+  .account-modal {
+    position: absolute;
+  }
   .account {
     border-radius: 0;
     min-width: 300px;
