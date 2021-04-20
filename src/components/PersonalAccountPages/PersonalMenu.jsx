@@ -31,8 +31,6 @@ const PersonalMenu = ({ setPerMenuIsOpen, perMenuIsOpen }) => {
     setPerMenuIsOpen(false);
   }
 
-  
-
   return (
     <>
     {/*<div

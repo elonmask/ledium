@@ -61,7 +61,13 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
       total += parseInt(n.price.replace(" ₴", "")) * n.count;
     });
     let sum = total;
-    setAmount(`${sum}`)
+    setAmount(`${sum}`);
+
+    if(makeOrder){
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    } 
   })
 
   useEffect(() => {

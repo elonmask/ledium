@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import './account.css'
 
@@ -7,6 +7,8 @@ const ChangePassword = ({ changePassword, setChangePassword }) => {
   const closeChangePassword = () => {
     setChangePassword(false);
   }
+
+  console.log(changePassword)
 
   return (
     <>
