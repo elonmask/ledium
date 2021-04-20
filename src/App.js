@@ -5,7 +5,7 @@ import Navigate from './components/routing/Navigate'
 import Footer from './components/Footer.jsx';
 import { routes } from './components/routing/mainRoutes'
 import './public/style/style.css';
-
+import './components/Account/account.css';
 
 function App() {
   return (
