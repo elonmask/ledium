@@ -66,7 +66,7 @@ const Sales = () => {
                     </div>
                     <div className="card__buy">
                       <div className="card__buy-block-price">
-                        <span className="card__price__old">{prod.price} грн</span>
+                        <span className="card__price__old">{prod.price} ₴</span>
                         <span className="card__price__new">{prod.Product.price}</span>
                       </div>
                         <button className="card__button-buy">Купити</button>

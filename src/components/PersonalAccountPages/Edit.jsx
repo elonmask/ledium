@@ -198,12 +198,12 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
                   className="fas fa-times account-close"
                   onClick={()=>{closeEdit()}}
                 ></i>
-                <h2 className="account__title">Личный данные</h2>
+                <h2 className="account__title">Особисті дані</h2>
                 <form 
                   className="account__content"
                   onSubmit={handleSubmit}
                 >
-                    <label  className="surname-edit" htmlFor="email">Фамилия:</label>
+                    <label  className="surname-edit" htmlFor="email">Прізвище:</label>
                     <input 
                       id="surname-edit"
                       className="account__form"
@@ -212,7 +212,7 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
                       value={user.surname}
                       onChange={event => changeUser('surname', event.target.value)}
                     />
-                    <label  className="first-name-edit" htmlFor="email">Имя:</label>
+                    <label  className="first-name-edit" htmlFor="email">Ім'я:</label>
                     <input 
                       id="first-name-edit"
                       className="account__form"
@@ -221,7 +221,7 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
                       value={user.first_name}
                       onChange={event => changeUser('name', event.target.value)}
                     />
-                    <label  className="last-name-edit" htmlFor="email">Отчество:</label>
+                    <label  className="last-name-edit" htmlFor="email">По батькові:</label>
                     <input 
                       id="last-name-edit"
                       className="account__form"
@@ -253,12 +253,12 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
                   className="fas fa-times account-close"
                   onClick={()=>{closeEdit()}}
                 ></i>
-                <h2 className="account__title">Контакты</h2>
+                <h2 className="account__title">Контакти</h2>
                 <form 
                   className="account__content"
                   onSubmit={handleSubmitContact}
                 >
-                  <label  className="label-content" htmlFor="phone-edit">Подтвержденный телефон:</label>
+                  <label  className="label-content" htmlFor="phone-edit">Телефон:</label>
                   <InputMask
                     type='tel'
                     id="phone-edit"
@@ -268,7 +268,7 @@ const Edit = ({ type, edit, setEdit, data, setData }) => {
                     value={user.number}
                     onChange={event => changeUser('number', event.target.value)}
                   />
-                  <label  className="label-content" htmlFor="email-edit">Электронная почта:</label>
+                  <label  className="label-content" htmlFor="email-edit">E-Mail:</label>
                   <input 
                     id="email-edit"
                     className="account__form"

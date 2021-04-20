@@ -77,7 +77,7 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
         ></i>
         <h2 className="account__title">Регистрация</h2>
           <form className="account__content" onSubmit={handleSubmit}>
-              <label  className="label-content">Имя</label>
+              <label  className="label-content">Ім'я</label>
               <input 
                 name="name"
                 className="account__form"
@@ -86,7 +86,7 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
                 value={firstName}
                 onChange={event => setFirstName(event.target.value)}
               />
-              <label className="label-content">Фамилия</label>
+              <label className="label-content">Прізвище</label>
               <input 
                 name="surname"
                 className="account__form"
@@ -95,7 +95,7 @@ const Registration = ({ regPopUp, setRegPopUp, setMenuIsOpen }) => {
                 value={surname}
                 onChange={event => setSurname(event.target.value)}
               />
-              <label className="label-content">Отчество</label>
+              <label className="label-content">По батькові</label>
               <input 
                 name="second-name"
                 className="account__form"

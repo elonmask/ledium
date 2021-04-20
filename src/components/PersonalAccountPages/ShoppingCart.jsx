@@ -37,7 +37,7 @@ const ShoppingCart = ( { shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, m
   const sumProducts = () => {
     let total = 0;
     product.map(n => {
-      let price = parseInt(n.price.replace(" грн", ""));
+      let price = parseInt(n.price.replace(" ₴", ""));
       let priceProduct = price*n.count;
       total += priceProduct;
     });
@@ -118,7 +118,7 @@ const ShoppingCart = ( { shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, m
               Продовжити покупки
             </button>
             <div className="btn-cart-price">
-              <p className="cart-product-btns-price">{sumProducts()} грн</p>
+              <p className="cart-product-btns-price">{sumProducts()} ₴</p>
               <button 
                 className="cart-product-make-order"
                 onClick={() => openOrder()}

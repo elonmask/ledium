@@ -19,16 +19,16 @@ const OrderProducts = ({product, setOrder}) => {
   const fullPrice = () => {
     let total = 0;
     product.map(n => {
-      total += parseInt(n.price.replace(" грн", "")) * n.count;
+      total += parseInt(n.price.replace(" ₴", "")) * n.count;
     });
     return `${total}`
   }
 
   const sum = (n) => {
     if ( !n.count ) {
-      return parseInt(n.price.replace(" грн", ""));
+      return parseInt(n.price.replace(" ₴", ""));
     } else {
-      let price = parseInt(n.price.replace(" грн", "")); 
+      let price = parseInt(n.price.replace(" ₴", "")); 
       return `${price *n.count}`;
     }
   }
@@ -37,7 +37,7 @@ const OrderProducts = ({product, setOrder}) => {
     <>
       <div className="order__title">
         <h1>Замовлення</h1>
-        <p>на сумму {fullPrice()} грн</p>
+        <p>на сумму {fullPrice()} ₴</p>
       </div>
       <div className="order-info">
         <div className="order-units">
@@ -69,7 +69,7 @@ const OrderProducts = ({product, setOrder}) => {
                 </div>
                 <div className="order-product-block-info">
                   <p className="order-product-text">Сумма</p>
-                  <p className="order-product-price">{sum(n)} грн</p>
+                  <p className="order-product-price">{sum(n)} ₴</p>
                 </div>
               </div>
             </div>

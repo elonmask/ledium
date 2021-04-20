@@ -36,8 +36,8 @@ const ProductAmount = ({ product, setProduct, n, shoppingCartOpen  }) => {
     if ( !n.count ) {
       return n.price;
     } else {
-      let price = parseInt(n.price.replace(" грн", "")); 
-      return `${price * n.count} грн.`;
+      let price = parseInt(n.price.replace(" ₴", "")); 
+      return `${price * n.count} ₴`;
     }
   };
 

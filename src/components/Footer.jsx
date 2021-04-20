@@ -48,7 +48,7 @@ const Footer = () => {
             </p>
             <a className="footer__p footer__a" href="tel: +380507324444">+38 (050) 732 44 44</a>
             <p className="footer__p">
-              Сopyright 2020.<br />
+              Сopyright 2021.<br />
               Усі права захищені.
             </p>
           </div>

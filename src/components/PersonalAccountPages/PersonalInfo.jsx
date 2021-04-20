@@ -6,6 +6,8 @@ const PersonalInfo = () => {
   const [data, setData] = useState({});
   const [type, setType] = useState('');
   const [edit, setEdit] = useState(false);
+
+  const [pass_visible, setVisible] = useState(false);
   
   const userData = sessionStorage.getItem('currentUser');
   const localData = localStorage.getItem('currentUser');
@@ -18,6 +20,10 @@ const PersonalInfo = () => {
     }
   }, []);
 
+  const handleClick = () => {
+    setVisible(!pass_visible);
+  }
+
   return (
     <>
       <main className="personal-info">
@@ -25,18 +31,18 @@ const PersonalInfo = () => {
           <div className="personal-info__user-details">
             <div className="personal-info__block">
               <i className="far fa-user-circle"></i>
-              <h1>Личный данные</h1>
+              <h1>Особисті дані</h1>
               <div className="personal-info__content">
                 <div>
-                  <p className="personal-info__content-title">Фамилия:</p>
+                  <p className="personal-info__content-title">Прізвище:</p>
                   <p>{data.surname}</p>
                 </div>
                 <div>
-                  <p className="personal-info__content-title">Имя:</p>
+                  <p className="personal-info__content-title">Ім'я:</p>
                   <p>{data.first_name}</p>
                 </div>
                 <div>
-                  <p className="personal-info__content-title">Отчество:</p>
+                  <p className="personal-info__content-title">По батькові:</p>
                   <p>{data.last_name}</p>
                 </div>
               </div>
@@ -48,7 +54,7 @@ const PersonalInfo = () => {
                     setEdit(true)
                   }}
                 >
-                  Редактировать
+                  Редагрувати
                 </span>
               </div>
             </div>
@@ -56,14 +62,14 @@ const PersonalInfo = () => {
           <div className="personal-info__user-details">
             <div className="personal-info__block">
               <i className="fas fa-id-card"></i>
-              <h1>Контакты</h1>
+              <h1>Контакти</h1>
               <div className="personal-info__content">
                 <div className="personal-contact">
-                  <p className="personal-contact-title personal-info__content-title">Подтвержденный телефон:</p>
+                  <p className="personal-contact-title personal-info__content-title">Телефон:</p>
                   <p>{data.number}</p>
                 </div>
                 <div>
-                  <p className="personal-info__content-title">Электронная почта:</p>
+                  <p className="personal-info__content-title">E-Mail:</p>
                   <p className="personal-contact-email">{data.email}</p>
                 </div>
               </div>
@@ -75,7 +81,7 @@ const PersonalInfo = () => {
                     setEdit(true)
                   }}
                 >
-                  Редактировать
+                  Редагрувати
                 </span>
               </div>
             </div>
@@ -97,7 +103,7 @@ const PersonalInfo = () => {
                     setEdit(true)
                   }}
                 >
-                  Редактировать
+                  Редагрувати
                 </span>
               </div>
             </div>
@@ -105,11 +111,14 @@ const PersonalInfo = () => {
           <div className="personal-info__user-details">
             <div className="personal-info__block">
               <i className="fas fa-sign-in-alt"></i>
-              <h1>Логин</h1>
+              <h1>Пароль</h1>
               <div className="personal-info__content">
                 <div>
-                  <p className="personal-info__content-title">Текущий пароль:</p>
-                  <p>Сменить пароль</p>
+                  <p className="personal-info__content-title" style={{marginBottom: "5px"}}>Поточний пароль:</p>
+                  <div class="col-md-6">
+                    <input id="password-field" type={pass_visible ? "text" : "password"} class="form-control" name="password" value={data.password} style={{width: "auto"}}/>
+                    <span style={{ paddingTop: "28px", marginRight: "5px" }} onClick={() => {handleClick()}} toggle="#password-field" class={`${pass_visible ? "fa fa-fw fa-eye fa-eye-slash" : "fa fa-fw fa-eye" } field-icon toggle-password`}></span>
+                </div>
                 </div>
               </div>
               <div className="edit">
@@ -120,7 +129,7 @@ const PersonalInfo = () => {
                     setEdit(true)
                   }}
                 >
-                  Редактировать
+                  Змінити пароль
                 </span>
               </div>
             </div>

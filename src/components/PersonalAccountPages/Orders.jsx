@@ -12,6 +12,8 @@ const Orders = () => {
   const [data, setData] = useState({});
   const [orders, setOrders] = useState(null);
 
+  console.log(orders)
+
   useEffect(() => {
     if(userData !== null && userData !== undefined) {
       setData(JSON.parse(userData))
@@ -38,9 +40,9 @@ const Orders = () => {
 
     const sum = (n) => {
       if ( !n.count ) {
-        return parseInt(n.price.replace(" грн", ""));
+        return parseInt(n.price.replace(" ₴", ""));
       } else {
-        let price = parseInt(n.price.replace(" грн", "")); 
+        let price = parseInt(n.price.replace(" ₴", "")); 
         return `${price *n.count}`;
       }
     }
@@ -78,7 +80,11 @@ const Orders = () => {
                     <p>{date(order.date)}</p>
                     <div className="block-orders">
                       <p className="title-orders">Статус замовлення:</p>
-                      <p>В обробці</p>
+                      <p>{
+                        order?.status === "new"
+                        ? "В обробці"
+                        : "Оброблено"
+                        }</p>
                     </div>
                     <div className="block-orders">
                       <p className="title-orders">ID-замовлення:</p>
@@ -95,12 +101,12 @@ const Orders = () => {
                     </div>
                     <div className="block-orders">
                       <p className="title-orders">Cума замовлення:</p>
-                      <p>{order.total} грн</p>
+                      <p>{order.total} ₴</p>
                     </div>
                   </div>
 
                   <div className="orders-product">
-                    {order.goods.map(n => (
+                    {order.goods.map((n, idx) => (
                       <>
                         <div className="order-product">
                           <img 
@@ -116,15 +122,7 @@ const Orders = () => {
                           <div className="order-product-blocks">
                             <div className="order-product-block-info">
                               <p className="order-product-text">Ціна</p>
-                              <p className="order-product-price">{n.price}</p>
-                            </div>
-                            <div className="order-product-block-info">
-                              <p className="order-product-text">Кількість</p>
-                              <p className="order-product-price">{n.count}</p>
-                            </div>
-                            <div className="order-product-block-info">
-                              <p className="order-product-text">Сумма</p>
-                              <p className="order-product-price">{sum(n)} грн</p>
+                              <p className="order-product-price">{sum(n)} ₴</p>
                             </div>
                           </div>
                         </div>
@@ -139,7 +137,7 @@ const Orders = () => {
       ): (
         <main className="personal-info">
           <div className="personal-info__testimonials">
-            <h3>Вы еще не сделали ни одного заказа</h3>
+            <h3>У вас поки-що немає замовлень :(</h3>
           </div>
         </main>
       )}

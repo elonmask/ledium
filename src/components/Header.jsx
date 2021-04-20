@@ -21,6 +21,7 @@ import youtube  from '../public/images/youtube.svg';
 import supermarket from '../public/images/supermarket.svg';
 import phone from '../public/images/phone-call.svg';
 import HeaderAccount from './HeaderAccount';
+import Search from './SearchBody';
 
 
 const Header = () => {
@@ -197,10 +198,7 @@ const Header = () => {
             </section>
             <section className="header__action">
               <a href="/catalog" className="header__catalog">Каталог</a>
-              <div className="header__search">
-                <input className="header__searchbar" type="text" name="search" placeholder="Поиск товаров по каталогу" />
-                <button className="header__btn-search">Поиск</button>
-              </div>
+              <Search/>
               <HeaderAccount 
                 setMenuIsOpen={setMenuIsOpen}
                 menuIsOpen={menuIsOpen}

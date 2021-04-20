@@ -58,7 +58,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
   useEffect(() => {
     let total = 0;
     product.map(n => {
-      total += parseInt(n.price.replace(" грн", "")) * n.count;
+      total += parseInt(n.price.replace(" ₴", "")) * n.count;
     });
     let sum = total;
     setAmount(`${sum}`)
@@ -402,7 +402,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
               </div>
                 <div className="order-total-block">
                   <p className="order-total-text">Всього</p>
-                  <p className="order-price">{amount} грн</p>
+                  <p className="order-price">{amount} ₴</p>
                 </div>
                 <div className="order-total-block">
                   <p className="order-total-text">Вартість доставки</p>
@@ -411,7 +411,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
               <div className="order-total">
                 <div className="order-total-block">
                   <p className="order-total-text">Разом</p>
-                  <p className="order-total-price">{amount} грн</p>
+                  <p className="order-total-price">{amount} ₴</p>
                 </div>
               </div>
               <div>
