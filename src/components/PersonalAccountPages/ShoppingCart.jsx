@@ -85,6 +85,7 @@ const ShoppingCart = ( { shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, m
               src={ typeof n.picture !== 'undefined' ? `https://admin.ledium.shop${n.picture.url}` : noPhoto}
               className="card-product-img"
             />
+            <div className="cart-product-content">
             <a 
               className="cart-product-title"
               onClick={() =>openProductPage(n)}
@@ -95,6 +96,7 @@ const ShoppingCart = ( { shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, m
               className="fas fa-trash-alt trash"
               onClick={() => deleteProduct(n)}
             ></i>
+            </div>
           </div>
           <div className="cart-details"> 
             <ProductAmount
@@ -116,7 +118,7 @@ const ShoppingCart = ( { shoppingCartOpen, setShoppingCartOpen, setMenuIsOpen, m
               Продовжити покупки
             </button>
             <div className="btn-cart-price">
-              <p className="cart-product-btns-price">{sumProducts()}</p>
+              <p className="cart-product-btns-price">{sumProducts()} грн</p>
               <button 
                 className="cart-product-make-order"
                 onClick={() => openOrder()}

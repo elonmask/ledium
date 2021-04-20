@@ -28,19 +28,19 @@ const Exit = ({ modalIsOpen, setModalIsOpen }) => {
           onClick={()=>{closeModal()}}
         ></i>
         <div className="exit">
-        <h2>Выйти?</h2>
+        <h2>Бажаете вийти?</h2>
           <div className="exit__btns">
             <button
               className="exit__btn"
               onClick={()=>{exit()}}
             >
-              Да
+              Так
             </button>
             <button
               className="exit__btn"
               onClick={()=>{closeModal()}}
             >
-              Нет
+              Ні
             </button>
           </div>
         </div>

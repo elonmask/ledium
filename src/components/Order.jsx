@@ -402,7 +402,7 @@ const Order = ({ makeOrder, setOrder, product, setMenuIsOpen, menuIsOpen }) => {
               </div>
                 <div className="order-total-block">
                   <p className="order-total-text">Всього</p>
-                  <p className="order-price">{amount}</p>
+                  <p className="order-price">{amount} грн</p>
                 </div>
                 <div className="order-total-block">
                   <p className="order-total-text">Вартість доставки</p>

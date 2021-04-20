@@ -50,11 +50,11 @@ const Sales = () => {
                     <div className="card__icons">
                         <div className="card__icons-box" title="Световой поток">
                             <img src={potok} alt="" className="card__icon" />
-                            <span>{prod.Product.lightFlow}</span>
+                            <span>{prod.Product.LightFlow}</span>
                         </div>
                         <div className="card__icons-box" title="Цветовая температура">
                             <img src={flow} alt="" className="card__icon" />
-                            <span>{prod.Product.color_temp}</span>
+                            <span>{prod.Product.ColorTemperature}</span>
                         </div>
                     </div>
                     <div className="card__title">
@@ -65,8 +65,10 @@ const Sales = () => {
                         </h3>
                     </div>
                     <div className="card__buy">
+                      <div className="card__buy-block-price">
                         <span className="card__price__old">{prod.price} грн</span>
                         <span className="card__price__new">{prod.Product.price}</span>
+                      </div>
                         <button className="card__button-buy">Купити</button>
                     </div>
                     <div className="card__p">

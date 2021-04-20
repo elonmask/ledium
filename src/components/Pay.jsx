@@ -15,7 +15,7 @@ const Pay = ({ pay, setPay }) => {
             onClick={() => setPay('cash')}
           ></div>
           <div>
-            <label className="order-delivery-label" htmlFor="pay">Оплата при получении товара</label>
+            <label className="order-delivery-label" htmlFor="pay">Оплата при отриманні товара</label>
           </div>
         </div>
         <div className="order-delivery">
@@ -24,7 +24,7 @@ const Pay = ({ pay, setPay }) => {
             onClick={() => setPay('cart')}
           ></div>
           <div>
-            <label className="order-delivery-label" htmlFor="card">Картой онлайн</label>
+            <label className="order-delivery-label" htmlFor="card">Карткою онлайн</label>
           </div>
         </div>
       </div>

@@ -51,11 +51,11 @@ const Populars = () => {
                     <div className="card__icons">
                         <div className="card__icons-box" title="Световой поток">
                             <img src={potok} alt="" className="card__icon" />
-                            <span>{prod.Product.lightFlow}</span>
+                            <span>{prod.Product.LightFlow}</span>
                         </div>
                         <div className="card__icons-box" title="Цветовая температура">
                             <img src={flow} alt="" className="card__icon" />
-                            <span>{prod.Product.color_temp}</span>
+                            <span>{prod.Product.ColorTemperature}</span>
                         </div>
                     </div>
                     <div className="card__title">

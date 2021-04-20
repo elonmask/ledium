@@ -61,7 +61,7 @@ const OrderProducts = ({product, setOrder}) => {
               <div className="order-product-blocks">
                 <div className="order-product-block-info">
                   <p className="order-product-text">Ціна</p>
-                  <p className="order-product-price">{n.price} грн</p>
+                  <p className="order-product-price">{n.price}</p>
                 </div>
                 <div className="order-product-block-info">
                   <p className="order-product-text">Кількість</p>

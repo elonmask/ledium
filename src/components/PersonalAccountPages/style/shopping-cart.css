@@ -180,3 +180,9 @@
 .amount-btn i {
   color: #3e77aa;
 }
+
+.cart-product-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

@@ -128,7 +128,7 @@ button:focus {
 .header__list {
   list-style: none;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 50%;
 }
 
@@ -1542,9 +1542,15 @@ button:focus {
 }
 
 .mob-menu__img {
-  width: 25px;
+  width: 50px;
   height: 40px;
   margin-right: 20px;
+}
+
+.mob-menu__img img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 .mob-menu__logo {

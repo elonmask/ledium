@@ -64,7 +64,7 @@ const PersonalMenu = ({ setPerMenuIsOpen, perMenuIsOpen }) => {
             <ul>
               <li className="personal-info__section">
                 <i className="fas fa-user-circle"></i>
-                <a href="/info">Личные данные</a>
+                <a href="/info">Особисті дані</a>
               </li>
               <li className="personal-info__section">
                 <i className="fas fa-shopping-cart"></i>
@@ -72,12 +72,12 @@ const PersonalMenu = ({ setPerMenuIsOpen, perMenuIsOpen }) => {
                   onClick={()=>{openCart()}}
                   className="btn-after"
                 >
-                  Корзина
+                  Мій кошик
                 </a>
               </li>
               <li className="personal-info__section">
                 <i className="fas fa-history"></i>
-                <a href="/orders">Мои заказы</a>
+                <a href="/orders">Мої замовлення</a>
               </li>
               {/*<li className="personal-info__section">
                 <i className="far fa-comment"></i>
@@ -89,7 +89,7 @@ const PersonalMenu = ({ setPerMenuIsOpen, perMenuIsOpen }) => {
               </li>*/}
               <li className="personal-info__section">
                 <i className="fas fa-sign-in-alt"></i>
-                <button onClick={()=>{openModal()}}>Выход</button>
+                <button onClick={()=>{openModal()}}>Вихід</button>
               </li>
             </ul>
           </div>

@@ -22,7 +22,7 @@ const LiqPayPopUp = ({ openLiqPay, setOpenLiqPay, amount, orderID }) => {
           className="exit"
           method="POST" 
           action="https://www.liqpay.ua/api/3/checkout" 
-          accept-charset="utf-8"
+          acceptCharset="utf-8"
         >
         <h2>Оплатить</h2>
         <input 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import crypto from 'crypto';
+import noPhoto from '../../public/images/no_photo.jpg';
 
 import './style/orders.css'
 
@@ -35,6 +36,15 @@ const Orders = () => {
         })
     }
 
+    const sum = (n) => {
+      if ( !n.count ) {
+        return parseInt(n.price.replace(" грн", ""));
+      } else {
+        let price = parseInt(n.price.replace(" грн", "")); 
+        return `${price *n.count}`;
+      }
+    }
+
   const date = (str) => {
     let s = [];
     const date = str.slice(0, 10).replace(/-/g, '.');
@@ -49,7 +59,7 @@ const Orders = () => {
   const payment = (str) => {
     console.log(str)
     if ( str == 'cash' ) {
-      return 'наличными';
+      return 'готівкою';
     } else {
       return 'онлайн';
     }
@@ -57,37 +67,82 @@ const Orders = () => {
 
   return (
     <>
-    {orders !== null ? (
-      <main className="personal-info">
-      <div className="personal-info__testimonials">
-         {orders.map(order => (
-           <>
-             <div className="order">
-               <div className="order__content">
-                 <p className="order-id">N {order.ID}</p>
-                 <p>{date(order.date)}</p>
-                 <p>Оплата {payment(order.pay)}</p>
-                 <p className="order__status">Новый заказ</p>
-                 <p className="order__sum">Сумма заказа:<br />{order.total} грн</p>
-               </div>
-               <img
-                 alt=""
-                 className="order__img"
-                 src={order.goods[0].picture}
-               />
-             </div>
-           </>  
-         ))}
-      </div>
-    </main>
-    ): (
-      <main className="personal-info">
-      <div className="personal-info__testimonials">
-         <h3>Вы еще не сделали ни одного заказа</h3>
-      </div>
-    </main>
-    )}
-       
+      {orders !== null ? (
+        <main className="personal-info">
+          <div className="personal-info__testimonials">
+            {orders.map(order => (
+              <>
+                <div className="order">
+
+                  <div className="order__content">
+                    <p>{date(order.date)}</p>
+                    <div className="block-orders">
+                      <p className="title-orders">Статус замовлення:</p>
+                      <p>В обробці</p>
+                    </div>
+                    <div className="block-orders">
+                      <p className="title-orders">ID-замовлення:</p>
+                      <p>{order.ID.slice(0, 6)}</p>
+                    </div>
+                    <p className="history-orders">Історія замовлення</p>
+                    <div className="block-orders">
+                      <p className="title-orders">Адреса доставки:</p>
+                      <p>{order.addr}</p>
+                    </div>
+                    <div className="block-orders">
+                      <p className="title-orders">Cпосіб оплати:</p>
+                      <p>{payment(order.pay)}</p>
+                    </div>
+                    <div className="block-orders">
+                      <p className="title-orders">Cума замовлення:</p>
+                      <p>{order.total} грн</p>
+                    </div>
+                  </div>
+
+                  <div className="orders-product">
+                    {order.goods.map(n => (
+                      <>
+                        <div className="order-product">
+                          <img 
+                            alt=""
+                            src={typeof n.picture !== 'undefined' ? `https://admin.ledium.shop${n.picture.url}` : noPhoto}
+                            className="orders-product-img"
+                          />
+                          <a 
+                            className="order-product-title"
+                          >
+                            {n.Name}
+                          </a>
+                          <div className="order-product-blocks">
+                            <div className="order-product-block-info">
+                              <p className="order-product-text">Ціна</p>
+                              <p className="order-product-price">{n.price}</p>
+                            </div>
+                            <div className="order-product-block-info">
+                              <p className="order-product-text">Кількість</p>
+                              <p className="order-product-price">{n.count}</p>
+                            </div>
+                            <div className="order-product-block-info">
+                              <p className="order-product-text">Сумма</p>
+                              <p className="order-product-price">{sum(n)} грн</p>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    ))}
+                  </div>
+                </div>
+              </>  
+            ))}
+          </div>
+        </main>
+      ): (
+        <main className="personal-info">
+          <div className="personal-info__testimonials">
+            <h3>Вы еще не сделали ни одного заказа</h3>
+          </div>
+        </main>
+      )}
     </>
   )
 }

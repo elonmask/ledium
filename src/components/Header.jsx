@@ -10,6 +10,7 @@ import ShoppingCart from './PersonalAccountPages/ShoppingCart';
 
 import mobLogo from '../public/./images/LEDiumLOGO.png'
 import lampa  from '../public/images/lampa.png';
+import lenta from '../public/images/lenta.png';
 import prozector  from '../public/images/prozhektor.png';
 import svetilnik  from '../public/images/svetilnik.png';
 import nastLampa  from '../public/images/akcent-svetilnik.png';
@@ -46,7 +47,7 @@ const Header = () => {
       id: '7',
     },
     {
-      img: lampa,
+      img: lenta,
       id: '8',
     },
   ]
@@ -133,11 +134,13 @@ const Header = () => {
                     className="mob-menu__link"
                     onClick={() => {closeMenu(category.id)}}
                   >
-                    <img 
-                      alt="" 
-                      src={setPicture(category.id)} 
-                      className="mob-menu__img" 
-                    />
+                    <div className="mob-menu__img">
+                      <img 
+                        alt="" 
+                        src={setPicture(category.id)} 
+                       
+                      />
+                    </div>
                     {category.name}
                     <i className="fas fa-chevron-right arrow-menu"></i>
                   </a>
@@ -189,8 +192,8 @@ const Header = () => {
                 </li>
               </ul>
               <ul className="header__specs">
-                <li><a href="#" className="header__lang">UA/RU</a></li>
-              </ul>
+                <li>{/*<a href="#" className="header__lang">UA/RU</a>*/}</li>
+                </ul>
             </section>
             <section className="header__action">
               <a href="/catalog" className="header__catalog">Каталог</a>
