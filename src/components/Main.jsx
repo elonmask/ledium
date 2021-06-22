@@ -8,6 +8,9 @@ import Banner from './Banner';
 import SidebarMenu from './SidebarMenu';
 import Sales from './Sales';
 import Populars from './Populars';
+import PreLamp from './PreLamp';
+
+const Lamp = React.lazy(() => import('./Lamp'));
 
 const Main = () => {
   const [array, setArray] = useState([]);
@@ -36,6 +39,9 @@ const Main = () => {
 
         <Banner />
         <Partners />
+        <React.Suspense fallback={<PreLamp/>}>
+          <Lamp/>
+        </React.Suspense>
 
       <div className="page-content">
         <div className="catalog catalog-main">

@@ -15,7 +15,8 @@
     "react-input-mask": "^2.0.4",
     "react-phone-number-input": "^3.1.17",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "react-sprite-animator": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
