@@ -17,6 +17,17 @@ const Banner = () => {
       }) 
   }, []);
 
+  useEffect(() => {
+    const clickEvent = new MouseEvent("click", {
+      "view": window,
+      "bubbles": true,
+      "cancelable": false
+  });
+    window.bannersInterval = setInterval(() => {
+      document.getElementsByClassName("splide__arrow--next")[0].dispatchEvent(clickEvent)
+    }, 3000);
+  }, [])
+
   return (
     <>
       <section className="banner">
@@ -25,6 +36,7 @@ const Banner = () => {
             type: 'loop',
             fixedHeight: '500px',
             autoplay: true,
+            pauseOnHover : false
           }}
         >
           {
