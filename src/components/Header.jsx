@@ -14,7 +14,7 @@ import panels_  from '../public/images/panels_.png';
 import prozector  from '../public/images/prozhektor.png';
 import svetilnik  from '../public/images/svetilnik.png';
 import nastLampa  from '../public/images/akcent-svetilnik.png';
-import phitolampa  from '../public/images/phitolamp.png';
+import phitolampa  from './../public/images/phitolamp.png';
 import instagram  from '../public/images/instagram.svg';
 import facebook  from '../public/images/facebook.svg';
 import youtube  from '../public/images/youtube.svg';
@@ -135,11 +135,11 @@ const Header = () => {
                     className="mob-menu__link"
                     onClick={() => {closeMenu(category.id)}}
                   >
-                    <div className="mob-menu__img">
+                    <div className="mob-menu__img" style={ category.id === 8 ? { height: "60px" } : {}} >
                       <img 
                         alt="" 
                         src={setPicture(category.id)} 
-                       
+                        style={ category.id === 8 ? { height: "60px" } : {}} 
                       />
                     </div>
                     {category.name}
@@ -230,7 +230,8 @@ const Header = () => {
               <img 
                 src={setPicture(category.id)}
                 alt="" 
-                className="header__nav-img" 
+                className="header__nav-img"
+                style={ category.id === 8 ? { width: "30px", marginBottom: "20px" } : {}} 
               />
                 {category.name} 
             </a>
