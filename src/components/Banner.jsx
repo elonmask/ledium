@@ -23,8 +23,11 @@ const Banner = () => {
       "bubbles": true,
       "cancelable": false
   });
+    clearInterval(window.bannersInterval);
     window.bannersInterval = setInterval(() => {
-      document.getElementsByClassName("splide__arrow--next")[0].dispatchEvent(clickEvent)
+      if (window.location.pathname === "/") {
+        document.getElementsByClassName("splide__arrow--next")[0].dispatchEvent(clickEvent)
+      }
     }, 3000);
   }, [])
 

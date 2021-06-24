@@ -46,7 +46,8 @@ const Lamp = () => {
     }
 
     useEffect(() => {
-        if (window.innerWidth > 1280) {
+        if (window.innerWidth > 1280 && window.location.pathname === "/") {
+            clearInterval(window.animInterval)
         window.animInterval = setInterval(() => {
             if (isInViewport(document.getElementById("lamp_anim"))) {
                 setAnim(true)

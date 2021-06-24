@@ -10,11 +10,11 @@ import ShoppingCart from './PersonalAccountPages/ShoppingCart';
 
 import mobLogo from '../public/./images/LEDiumLOGO.png'
 import lampa  from '../public/images/lampa.png';
-import lenta from '../public/images/lenta.png';
+import panels_  from '../public/images/panels_.png';
 import prozector  from '../public/images/prozhektor.png';
 import svetilnik  from '../public/images/svetilnik.png';
 import nastLampa  from '../public/images/akcent-svetilnik.png';
-import phitolampa  from '../public/images/ulichnoe-osveschenie.png';
+import phitolampa  from '../public/images/phitolamp.png';
 import instagram  from '../public/images/instagram.svg';
 import facebook  from '../public/images/facebook.svg';
 import youtube  from '../public/images/youtube.svg';
@@ -48,7 +48,7 @@ const Header = () => {
       id: '7',
     },
     {
-      img: lenta,
+      img: panels_,
       id: '8',
     },
   ]
